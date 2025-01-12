@@ -22,7 +22,7 @@ This system is intended for use by university administrators, faculty members, a
 
 # UI Design
 - **Tool**: Figma
-- **Design Link**: [Academia Design](https://www.figma.com/design/9ySHdnuHzTA9WOxIztRgEv/UniversityManagementSystem?node-id=1-3&p=f&t=934UVhSijTQxcwWO-0&fuid=1311654737207943524)
+- **Design Link**: [Academia Design](https://www.figma.com/design/iJBbszKX2h7dBGLDxm01GF/Academia)
 
 # Project Features:
 
