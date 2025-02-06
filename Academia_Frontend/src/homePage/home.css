@@ -1,0 +1,155 @@
+/* Background and Layout */
+.home-container {
+    background: linear-gradient(to bottom, #FFFDF1, #FFDAFA);
+  }
+  
+  /* Content Section */
+  .content {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    
+  }
+  
+  /* Info Box */
+  .info-box {
+    margin-top: 30px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow:  1px 1px #BB5BB5;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+  
+  /* Notice Board */
+  .notice-board {
+   
+    background: #fff;
+    padding: 15px; 
+    margin: 20px auto;
+    width: 80%; 
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ffffff;
+  }
+  
+  .notice-board h2 {
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .notice-board table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;  
+  }
+  
+  .notice-board th, .notice-board td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd; 
+  }
+  
+  .notice-board th {
+    background: #f9f6f1; 
+  }
+  
+  .notice-board td {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  .notice-board td a {
+    color: #bb5bb5;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .notice-board td a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Profile Section */
+  .profile-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+  }
+  
+  .profile-box {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 45%;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Routine and Graph Section */
+  .routine-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+  }
+  
+  .routine-box, .graph-box {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 45%;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  /* Class Routine Table */
+  .routine-box table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;  
+  }
+  
+  .routine-box th, .routine-box td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd; 
+  }
+  
+  .routine-box th {
+    background: #f9f6f1; 
+    font-weight: bold;
+  }
+  .routine-box {
+    position: relative; 
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 45%;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .see-more {
+    position: absolute;
+    bottom: 2px;
+    right: 10px;
+    color: #BB5BB5;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  
+  .see-more:hover {
+    text-decoration: underline;
+  }
+  
+  
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 20px;
+    background: #FFDAFA;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+  }
+  
