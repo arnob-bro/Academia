@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../../navbar/navbar";
-import chartAt from "./chartAt";
+import ChartAt from "./chartAt";
 import "./home.css";
 
 const Home = () => {
@@ -141,7 +141,7 @@ const Home = () => {
 
           <div className="graph-box">
             <h3>Attendance Tracker</h3>
-            <chartAt />
+            <ChartAt />
           </div>
         </div>
 
