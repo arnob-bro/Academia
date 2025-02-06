@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "./navbar";
+import Navbar from "../../navbar/navbar";
 import chartAt from "./chartAt";
 import "./home.css";
 
@@ -19,7 +19,9 @@ const Home = () => {
             <p>Current Semester: 1st</p>
           </div>
           <div className="info-box">
-            <p>For Online Payment: <a href="#">Click me!</a></p>
+            <p>
+              For Online Payment: <a href="#">Click me!</a>
+            </p>
           </div>
         </div>
 
@@ -36,9 +38,16 @@ const Home = () => {
               <tr>
                 <td>01.01.2025</td>
                 <td>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                  <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                  <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ... 
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  </p>
+                  <p>
+                    Sed do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua.
+                  </p>
+                  <p>
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                    laboris nisi ...
                     <a href="#"> Read More</a>
                   </p>
                 </td>
@@ -46,9 +55,16 @@ const Home = () => {
               <tr>
                 <td>01.01.2025</td>
                 <td>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                  <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                  <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ... 
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  </p>
+                  <p>
+                    Sed do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua.
+                  </p>
+                  <p>
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                    laboris nisi ...
                     <a href="#"> Read More</a>
                   </p>
                 </td>
@@ -56,9 +72,16 @@ const Home = () => {
               <tr>
                 <td>01.01.2025</td>
                 <td>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                  <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                  <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ... 
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  </p>
+                  <p>
+                    Sed do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua.
+                  </p>
+                  <p>
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                    laboris nisi ...
                     <a href="#"> Read More</a>
                   </p>
                 </td>
@@ -87,38 +110,35 @@ const Home = () => {
         </div>
 
         <div className="routine-container">
-        <div className="routine-box">
-  <h3>Today's Class Routine</h3>
-  <p>Day: Tuesday</p>
-  <p>Date: 14.01.2025</p>
-  <table>
-    <thead>
-      <tr>
-        <th>Subject</th>
-        <th>Time</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>CSE3100</td>
-        <td>10:00 AM - 11:00 AM</td>
-      </tr>
-      <tr>
-        <td>CSE3101</td>
-        <td>11:00 AM - 12:00 PM</td>
-      </tr>
-      <tr>
-        <td>CSE3102</td>
-        <td>12:00 PM - 1:00 PM</td>
-      </tr>
-    </tbody>
-  </table>
-  <div className="see-more">
-     More →
-  </div>
-</div>
+          <div className="routine-box">
+            <h3>Today's Class Routine</h3>
+            <p>Day: Tuesday</p>
+            <p>Date: 14.01.2025</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Subject</th>
+                  <th>Time</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>CSE3100</td>
+                  <td>10:00 AM - 11:00 AM</td>
+                </tr>
+                <tr>
+                  <td>CSE3101</td>
+                  <td>11:00 AM - 12:00 PM</td>
+                </tr>
+                <tr>
+                  <td>CSE3102</td>
+                  <td>12:00 PM - 1:00 PM</td>
+                </tr>
+              </tbody>
+            </table>
+            <div className="see-more">More →</div>
+          </div>
 
-          
           <div className="graph-box">
             <h3>Attendance Tracker</h3>
             <chartAt />
