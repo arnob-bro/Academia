@@ -4,7 +4,7 @@ import LoginPage from "./components/Login/LoginPage";
 import Home from "./components/student pages/studentDashboard/home";
 import StudentAdvisingPage from "./components/student pages/studentAdvisingPage/studentAdvisingPage";
 import StudentCourseEnrollment from "./components/student pages/studentCourseEnrollment/studentCourseEnrollment.jsx";
-
+import StudentAdmission from "./components/Admin Pages/Student Admission Page/StudentAdmission.jsx"
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
         <Route path="/Login" element={<LoginPage />} />
 
         <Route path="/course-enrollment" element={<StudentCourseEnrollment />} />
-
+        <Route path="/Student-Admission" element={<StudentAdmission/>}/>
  
       </Routes>
     </Router>

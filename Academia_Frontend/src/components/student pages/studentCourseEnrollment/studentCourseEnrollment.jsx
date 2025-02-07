@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Navbar from "../../navbar/navbar";
 import Footer from "../../footer/footer";
 import './studentCourseEnrollment.css';
-import { FaTrash } from "react-icons/fa"; 
+
 
 const initialEnrolledCourses = [
   { id: "CSE101", name: "Introduction to Programming", semester: "Spring 2025", credit: 3, faculty: "Dr. Smith" },
