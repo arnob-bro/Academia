@@ -71,11 +71,11 @@ const StudentCourseEnrollment = () => {
           placeholder="Search by Course ID or Name..."
           value={searchTerm}
           onChange={handleSearchChange}
-          className="search-bar"
+          className="student-course-enrollment-search-bar"
         />
 
         {/* Enrolled Courses Table */}
-        <table className="enrollment-table">
+        <table className="student-course-enrollment-enrollment-table">
           <thead>
             <tr>
               <th>Course ID</th>
@@ -97,7 +97,7 @@ const StudentCourseEnrollment = () => {
                   <td>{course.faculty}</td>
                   <td>
                     <button
-                      className="delete-btn"
+                      className="student-course-enrollment-delete-btn"
                       onClick={() => handleDelete(course.id)}
                     >
                       Delete
@@ -107,6 +107,12 @@ const StudentCourseEnrollment = () => {
               ))
             ) : (
               <tr>
+                <td
+                  colSpan="6"
+                  className="student-course-enrollment-no-results"
+                >
+                  No enrolled courses found.
+                </td>
                 <td colSpan="6" className="no-results">
                   No enrolled courses found.
                 </td>
