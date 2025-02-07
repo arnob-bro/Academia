@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./navbar.css";
 
 const Navbar = () => {
@@ -7,7 +8,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="nav-top">
-        <img src="Academia_Frontend\src\assets\logo.png" className="logo"/>
+        <img src="/assets/logo.png" className="logo" alt="Logo" />
         <h1>Academia</h1>
         <div className="session-info">
           <p>Session: Spring 2024</p>
@@ -17,15 +18,25 @@ const Navbar = () => {
       </div>
 
       <div className="nav-bottom">
-        {["Home", "Student Profile", "Class Routine", "Result", "Notice", "Registration", "Payment", "Certificate"].map((item) => (
-          <a 
-            key={item} 
-            href="#" 
-            className={activeLink === item ? "active" : ""} 
-            onClick={() => setActiveLink(item)}
+        {[
+          { name: "Home", path: "/" },
+          { name: "Student Profile", path: "/student-profile" },
+          { name: "Course Advising", path: "/course-advising" },
+          { name: "Class Routine", path: "/class-routine" },
+          { name: "Result", path: "/result" },
+          { name: "Notice", path: "/notice" },
+          { name: "Registration", path: "/registration" },
+          { name: "Payment", path: "/payment" },
+          { name: "Certificate", path: "/certificate" },
+        ].map((item) => (
+          <Link
+            key={item.name}
+            to={item.path}
+            className={activeLink === item.name ? "active" : ""}
+            onClick={() => setActiveLink(item.name)}
           >
-            {item}
-          </a>
+            {item.name}
+          </Link>
         ))}
       </div>
     </nav>

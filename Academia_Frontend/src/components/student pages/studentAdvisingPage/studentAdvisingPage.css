@@ -1,0 +1,58 @@
+.student-advising-page-container {
+  background: linear-gradient(to bottom, #fffdf1, #ffdafa);
+  padding: 20px;
+}
+
+.student-info-section {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.info-box {
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 200px;
+}
+
+.course-selection table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.course-selection th,
+.course-selection td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.warning {
+  color: red;
+  font-weight: bold;
+}
+
+button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.selected {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.submit-btn {
+  background-color: #27ae60;
+  color: white;
+  padding: 10px 15px;
+  margin-top: 10px;
+}
