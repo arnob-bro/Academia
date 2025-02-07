@@ -71,7 +71,6 @@ h3 {
 /* Buttons */
 .approve-btn,
 .reject-btn {
-  /* padding: 12px 18px; */
   border: none;
   cursor: pointer;
   font-size: 16px;

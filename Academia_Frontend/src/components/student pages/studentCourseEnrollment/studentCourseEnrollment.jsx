@@ -1,19 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import Navbar from "../../navbar/navbar";
 import Footer from "../../footer/footer";
-import './studentCourseEnrollment.css';
-import { FaTrash } from "react-icons/fa"; 
+import "./studentCourseEnrollment.css";
 
 const initialEnrolledCourses = [
-  { id: "CSE101", name: "Introduction to Programming", semester: "Spring 2025", credit: 3, faculty: "Dr. Smith" },
-  { id: "CSE102", name: "Data Structures", semester: "Spring 2025", credit: 3, faculty: "Prof. Johnson" },
-  { id: "CSE201", name: "Algorithms", semester: "Spring 2025", credit: 3, faculty: "Dr. Brown" },
-  { id: "CSE202", name: "Database Systems", semester: "Spring 2025", credit: 3, faculty: "Prof. White" }
+  {
+    id: "CSE101",
+    name: "Introduction to Programming",
+    semester: "Spring 2025",
+    credit: 3,
+    faculty: "Dr. Smith",
+  },
+  {
+    id: "CSE102",
+    name: "Data Structures",
+    semester: "Spring 2025",
+    credit: 3,
+    faculty: "Prof. Johnson",
+  },
+  {
+    id: "CSE201",
+    name: "Algorithms",
+    semester: "Spring 2025",
+    credit: 3,
+    faculty: "Dr. Brown",
+  },
+  {
+    id: "CSE202",
+    name: "Database Systems",
+    semester: "Spring 2025",
+    credit: 3,
+    faculty: "Prof. White",
+  },
 ];
 
 const StudentCourseEnrollment = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [enrolledCourses, setEnrolledCourses] = useState(initialEnrolledCourses);
+  const [enrolledCourses, setEnrolledCourses] = useState(
+    initialEnrolledCourses
+  );
 
   // Function to handle search input change
   const handleSearchChange = (event) => {
@@ -22,21 +47,24 @@ const StudentCourseEnrollment = () => {
 
   // Function to remove a course from enrollment
   const handleDelete = (courseId) => {
-    setEnrolledCourses(enrolledCourses.filter(course => course.id !== courseId));
+    setEnrolledCourses(
+      enrolledCourses.filter((course) => course.id !== courseId)
+    );
   };
 
   // Filtered courses based on search input
-  const filteredCourses = enrolledCourses.filter(course =>
-    course.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    course.name.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredCourses = enrolledCourses.filter(
+    (course) =>
+      course.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      course.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
     <>
       <Navbar />
-      <div className='student-course-enrollment-container'>
+      <div className="student-course-enrollment-container">
         <h2>Course Enrollment</h2>
-        
+
         {/* Search Bar */}
         <input
           type="text"
@@ -60,7 +88,7 @@ const StudentCourseEnrollment = () => {
           </thead>
           <tbody>
             {filteredCourses.length > 0 ? (
-              filteredCourses.map(course => (
+              filteredCourses.map((course) => (
                 <tr key={course.id}>
                   <td>{course.id}</td>
                   <td>{course.name}</td>
@@ -68,7 +96,10 @@ const StudentCourseEnrollment = () => {
                   <td>{course.credit}</td>
                   <td>{course.faculty}</td>
                   <td>
-                    <button className="delete-btn" onClick={() => handleDelete(course.id)}>
+                    <button
+                      className="delete-btn"
+                      onClick={() => handleDelete(course.id)}
+                    >
                       Delete
                     </button>
                   </td>
@@ -76,7 +107,9 @@ const StudentCourseEnrollment = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="6" className="no-results">No enrolled courses found.</td>
+                <td colSpan="6" className="no-results">
+                  No enrolled courses found.
+                </td>
               </tr>
             )}
           </tbody>
