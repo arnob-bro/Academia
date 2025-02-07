@@ -26,6 +26,7 @@ const Navbar = () => {
           { name: "Result", path: "/result" },
           { name: "Notice", path: "/notice" },
           { name: "Registration", path: "/registration" },
+          { name: "Enrollment Details", path: "/course-enrollment" },
           { name: "Payment", path: "/payment" },
           { name: "Certificate", path: "/certificate" },
         ].map((item) => (
