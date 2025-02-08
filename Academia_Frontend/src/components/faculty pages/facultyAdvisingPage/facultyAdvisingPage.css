@@ -1,0 +1,117 @@
+/* General Styles */
+.faculty-advising-container {
+  background: linear-gradient(to bottom right, #ffebf3, #fffdf1);
+  padding: 30px;
+  min-height: 100vh;
+  border-radius: 12px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Headings */
+h1,
+h2,
+h3 {
+  text-align: center;
+  color: #0e0e53;
+  font-weight: 600;
+}
+
+/* Student List */
+.student-list {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+}
+
+.student-list:hover {
+  transform: scale(1.02);
+}
+
+.student-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.student-list li {
+  padding: 12px;
+  border-bottom: 1px solid #e0e0e0;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+  border-radius: 5px;
+}
+
+.student-list li:hover {
+  background: #f7d6ff;
+}
+
+.student-list .selected {
+  background: #007bff;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+/* Student Details */
+.student-details {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  transition: 0.3s;
+}
+
+.student-details:hover {
+  transform: scale(1.02);
+}
+
+/* Buttons */
+.approve-btn,
+.reject-btn {
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: 0.3s;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.approve-btn {
+  background: #28a745;
+  color: white;
+}
+
+.approve-btn:hover {
+  background: #218838;
+}
+
+.reject-btn {
+  background: #dc3545;
+  color: white;
+}
+
+.reject-btn:hover {
+  background: #c82333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .faculty-advising-container {
+    padding: 20px;
+  }
+
+  .student-list,
+  .student-details {
+    padding: 15px;
+  }
+
+  .approve-btn,
+  .reject-btn {
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+}
