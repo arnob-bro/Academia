@@ -8,6 +8,9 @@ import StudentAdmission from "./components/Admin Pages/Student Admission Page/St
 import FacultyAdvisingPage from "./components/faculty pages/facultyAdvisingPage/facultyAdvisingPage";
 import FacultyManagement from "./components/admin pages/Faculty Management/FacultyManagement.jsx"; 
 import FacultyRecruitment from "./components/Admin Pages/Faculty Recruitment/FacultyRecruitment.jsx";
+import StudentResultPage from "./components/student pages/studentResultPage/studentResultPage.jsx";
+
+
 function App() {
   return (
     <Router>
@@ -25,6 +28,11 @@ function App() {
         <Route
           path="/course-enrollment"
           element={<StudentCourseEnrollment />}
+        />
+
+        <Route
+          path="/student-result-page"
+          element={<StudentResultPage />}
         />
         <Route
           path="/faculty-advising-page"

@@ -23,7 +23,7 @@ const Navbar = () => {
           { name: "Student Profile", path: "/student-profile" },
           { name: "Course Advising", path: "/course-advising" },
           { name: "Class Routine", path: "/class-routine" },
-          { name: "Result", path: "/result" },
+          { name: "Result", path: "/student-result-page" },
           { name: "Notice", path: "/notice" },
           { name: "Registration", path: "/registration" },
           { name: "Enrollment Details", path: "/course-enrollment" },
