@@ -6,7 +6,8 @@ import StudentAdvisingPage from "./components/student pages/studentAdvisingPage/
 import StudentCourseEnrollment from "./components/student pages/studentCourseEnrollment/studentCourseEnrollment.jsx";
 import StudentAdmission from "./components/Admin Pages/Student Admission Page/StudentAdmission.jsx";
 import FacultyAdvisingPage from "./components/faculty pages/facultyAdvisingPage/facultyAdvisingPage";
-import FacultyManagement from "./components/admin pages/Faculty Management/FacultyManagement.jsx";
+import FacultyManagement from "./components/admin pages/Faculty Management/FacultyManagement.jsx"; 
+import FacultyRecruitment from "./components/Admin Pages/Faculty Recruitment/FacultyRecruitment.jsx";
 function App() {
   return (
     <Router>
@@ -32,7 +33,10 @@ function App() {
         <Route
           path="/faculty-management"
           element={<FacultyManagement />}
-        />
+        /> 
+        <Route path="/faculty-recruitment" 
+          element={<FacultyRecruitment/>} 
+          />
       </Routes>
       
     </Router>
