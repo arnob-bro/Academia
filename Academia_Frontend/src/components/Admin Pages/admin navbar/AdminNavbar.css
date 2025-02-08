@@ -1,0 +1,89 @@
+.admin-navbar {
+    width: 100%;
+}
+
+.admin-nav-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right, #FAF3C4, #D07CE1);
+    padding: 6px 30px;
+}
+
+.admin-logo {
+    width: 50px;
+    height: 50px;
+    gap: 10 px;
+    border-radius: 50px;
+}
+
+.admin-nav-bottom a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.admin-nav-bottom a:hover,
+.admin-nav-bottom a.active {
+    color: #f8e35d;
+    /* Highlight active link */
+    font-weight: bold;
+    
+}
+
+
+h1 {
+    font-size: 50px;
+    font-weight: bold;
+    color: black;
+    font-family: "Times New Roman";
+}
+
+
+.admin-session-info {
+    text-align: right;
+}
+
+.admin-logout {
+    background: #FAF3C4;
+    border: none;
+    padding: 5px 12px;
+    color: #BB5BB5;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 15px;
+    transition: background 0.3s, color 0.3s;
+}
+
+.admin-login {
+    background: #e64c4c;
+    border: none;
+    padding: 5px 12px;
+    color: #FAF3C4;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 15px;
+    transition: background 0.3s, color 0.3s;
+}
+
+.admin-nav-bottom {
+    display: flex;
+    justify-content: space-around;
+    background: #BB5BB5;
+    padding: 10px 0;
+}
+
+.admin-nav-bottom a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.admin-nav-bottom a:hover,
+.admin-nav-bottom a.active {
+    color: #f8e35d;
+}

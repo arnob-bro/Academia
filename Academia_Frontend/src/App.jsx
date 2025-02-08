@@ -5,6 +5,7 @@ import Home from "./components/student pages/studentDashboard/home";
 import StudentAdvisingPage from "./components/student pages/studentAdvisingPage/studentAdvisingPage";
 import StudentCourseEnrollment from "./components/student pages/studentCourseEnrollment/studentCourseEnrollment.jsx";
 import StudentAdmission from "./components/Admin Pages/Student Admission Page/StudentAdmission.jsx"
+import FacultyManagement from "./components/admin pages/Faculty Management/FacultyManagement.jsx";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
 
         <Route path="/course-enrollment" element={<StudentCourseEnrollment />} />
         <Route path="/Student-Admission" element={<StudentAdmission/>}/>
+        <Route path="/faculty-management" element={<FacultyManagement/>}/>
  
       </Routes>
     </Router>
