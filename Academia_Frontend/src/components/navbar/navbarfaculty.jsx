@@ -46,7 +46,7 @@ import "./navbarfaculty.css";
            {profileDropdownOpen && (
              <div className="dropdown-menu">
                <Link to="/student-profile" className="dropdown-item">
-                 Profile
+                 Faculty Profile
                </Link>
                <hr className="dropdown-divider" /> {/* Divider Line */}
                <button className="dropdown-item logout">Logout</button>

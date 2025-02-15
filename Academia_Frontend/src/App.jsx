@@ -9,8 +9,8 @@ import FacultyAdvisingPage from "./components/faculty pages/facultyAdvisingPage/
 import FacultyManagement from "./components/admin pages/Faculty Management/FacultyManagement.jsx"; 
 import FacultyRecruitment from "./components/admin Pages/Faculty Recruitment/FacultyRecruitment.jsx";
 import StudentResultPage from "./components/student pages/studentResultPage/studentResultPage.jsx";
-import FacultyHomePage from "./components/faculty pages/facultyAdvisingPage/facultyDashboard/facultyHomePage.jsx";
-
+import FacultyHomePage from "./components/faculty pages/facultyAdvisingPage/faculty Dashboard/facultyHomePage.jsx";
+import AdminHomePage from "./components/Admin Pages/admin dashboard/adminHomePage.jsx";
 
 function App() {
   return (
@@ -46,9 +46,11 @@ function App() {
         <Route path="/faculty-recruitment" 
           element={<FacultyRecruitment/>} 
           />
-           <Route
-          path="/faculty-homepage"
+        <Route path="/faculty-homepage"
           element={<FacultyHomePage />}
+        /> 
+        <Route path="/admin-homepage"
+          element={<AdminHomePage />}
         /> 
       </Routes>
       

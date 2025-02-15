@@ -1,19 +1,56 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./AdminNavbar.css";
 
 const AdminNavbar = () => {
   const location = useLocation(); // Get the current path
+  const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
+  const profileDropdownRef = useRef(null);
+
+  // Toggle Profile Dropdown
+  const toggleProfileDropdown = () => {
+    setProfileDropdownOpen(!profileDropdownOpen);
+  };
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        profileDropdownRef.current &&
+        !profileDropdownRef.current.contains(event.target)
+      ) {
+        setProfileDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <nav className="admin-navbar">
       <div className="admin-nav-top">
         <img src="/assets/logo.png" className="admin-logo" alt="Logo" />
         <h1>Academia</h1>
-        <div className="admin-session-info">
-          <p>Session: Spring 2024</p>
-          <p>Id: XXXXXXXXXX</p>
-          <button className="admin-logout">Logout</button>
+
+        {/* Profile Section */}
+        <div className="admin-profile" ref={profileDropdownRef}>
+          <span className="profile-icon" onClick={toggleProfileDropdown}>
+            👤
+          </span>
+
+          {/* Dropdown Menu */}
+          {profileDropdownOpen && (
+            <div className="dropdown-menu">
+              <Link to="/admin-profile" className="dropdown-item">
+                Admin Profile
+              </Link>
+              <hr className="dropdown-divider" />
+              <button className="dropdown-item logout">Logout</button>
+            </div>
+          )}
         </div>
       </div>
 

@@ -53,10 +53,9 @@ h1 {
   display: block;
   padding: 10px;
   text-decoration: none;
-  color: black;
+  color: rgb(0, 0, 0);
   font-size: 17px;
 }
-
 .dropdown-item:first-child {
   font-weight: 500;
 }
@@ -135,9 +134,8 @@ h1 {
   overflow: hidden;
   z-index: 1000;
 }
-
 .dropdown-content a {
-  color: rgb(0, 0, 0);
+  color: black  !important;  
   font-weight: 500;
   padding: 10px;
   display: block;
@@ -146,8 +144,10 @@ h1 {
 }
 
 .dropdown-content a:hover {
-  background-color: #ffffff;
+  background-color: #ebe3e3;
+  padding: 10px;
 }
+
 
 /* Show dropdown when active */
 .dropdown:hover .dropdown-content {
