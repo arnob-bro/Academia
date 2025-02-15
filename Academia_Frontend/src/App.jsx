@@ -16,6 +16,7 @@ import FacultyRecruitment from "./components/admin Pages/Faculty Recruitment/Fac
 import StudentResultPage from "./components/student pages/studentResultPage/studentResultPage.jsx";
 import FacultyHomePage from "./components/faculty pages/facultyAdvisingPage/faculty Dashboard/facultyHomePage.jsx";
 import AdminHomePage from "./components/admin Pages/admin dashboard/adminHomePage.jsx";
+import ResetPassword from "./components/Login/ResetPassword.jsx";
 
 function App() {
   const userData = JSON.parse(localStorage.getItem("userData"));
@@ -24,6 +25,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/Login" element={<LoginPage />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
 
         {!userData ? (
           <Route path="*" element={<Navigate to="/Login" replace />} />
