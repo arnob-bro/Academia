@@ -1,0 +1,83 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #f8e8f8, #fefefe);
+    padding: 20px;
+    color: #333;
+  }
+  
+  .faculty-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .faculty-profile, .faculty-info-section, .notice-board {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  .profile-content {
+    display: flex;
+    align-items: center;
+  }
+  
+  .profile-image {
+    width: 100px;
+    height: 100px;
+    background: lightgray;
+    margin-right: 20px;
+  }
+  
+  .schedule table, .notice-board table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .schedule th, .schedule td, .notice-board th, .notice-board td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .faculty-info-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  .schedule, .leave-tracker {
+    flex: 1;
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .leave-tracker {
+    text-align: center;
+  }
+  
+  .request-leave {
+    background: #d48efc;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
+  .request-leave:hover {
+    background: #b46cdb;
+  }
+  
+  footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: gray;
+  }
+  

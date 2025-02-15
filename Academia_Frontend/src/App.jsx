@@ -4,11 +4,12 @@ import LoginPage from "./components/Login/LoginPage";
 import Home from "./components/student pages/studentDashboard/home";
 import StudentAdvisingPage from "./components/student pages/studentAdvisingPage/studentAdvisingPage";
 import StudentCourseEnrollment from "./components/student pages/studentCourseEnrollment/studentCourseEnrollment.jsx";
-import StudentAdmission from "./components/Admin Pages/Student Admission Page/StudentAdmission.jsx";
+import StudentAdmission from "./components/admin Pages/Student Admission Page/StudentAdmission.jsx";
 import FacultyAdvisingPage from "./components/faculty pages/facultyAdvisingPage/facultyAdvisingPage";
 import FacultyManagement from "./components/admin pages/Faculty Management/FacultyManagement.jsx"; 
-import FacultyRecruitment from "./components/Admin Pages/Faculty Recruitment/FacultyRecruitment.jsx";
+import FacultyRecruitment from "./components/admin Pages/Faculty Recruitment/FacultyRecruitment.jsx";
 import StudentResultPage from "./components/student pages/studentResultPage/studentResultPage.jsx";
+import FacultyHomePage from "./components/faculty pages/facultyAdvisingPage/facultyDashboard/facultyHomePage.jsx";
 
 
 function App() {
@@ -45,6 +46,10 @@ function App() {
         <Route path="/faculty-recruitment" 
           element={<FacultyRecruitment/>} 
           />
+           <Route
+          path="/faculty-homepage"
+          element={<FacultyHomePage />}
+        /> 
       </Routes>
       
     </Router>
