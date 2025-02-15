@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TestController;
 
 /*
@@ -14,4 +15,5 @@ use App\Http\Controllers\TestController;
 */
 Route::get('/test', [TestController::class, 'getTestHuman'])->middleware('test.middleware');
 Route::get('/test/{id}', [TestController::class, 'getTestHumanWithId']);
+Route::post('/Login', [AuthController::class, 'Login']);
 

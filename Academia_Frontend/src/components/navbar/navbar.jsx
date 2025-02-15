@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./navbar.css";
+import { logout } from "../../Api/auth";
 
 const Navbar = () => {
   const [activeLink, setActiveLink] = useState("Home");
+  const handleLogout = (e) => {
+    e.preventDefault();
+    logout();
+  };
 
   return (
     <nav className="navbar">
@@ -13,7 +18,9 @@ const Navbar = () => {
         <div className="session-info">
           <p>Session: Spring 2024</p>
           <p>Id: XXXXXXXXXX</p>
-          <button className="logout">Logout</button>
+          <button className="logout" onClick={handleLogout}>
+            Logout
+          </button>
         </div>
       </div>
 
