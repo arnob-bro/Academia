@@ -11,7 +11,7 @@ import FacultyRecruitment from "./components/admin Pages/Faculty Recruitment/Fac
 import StudentResultPage from "./components/student pages/studentResultPage/studentResultPage.jsx";
 import FacultyHomePage from "./components/faculty pages/facultyAdvisingPage/faculty Dashboard/facultyHomePage.jsx";
 import AdminHomePage from "./components/Admin Pages/admin dashboard/adminHomePage.jsx";
-
+import ResetPassword from "./components/Login/ResetPassword.jsx";
 function App() {
   return (
     <Router>
@@ -19,7 +19,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/course-advising" element={<StudentAdvisingPage />} />
         <Route path="/Login" element={<LoginPage />} />
-
+        <Route path="/reset-password" element={<ResetPassword/>}></Route>
         <Route
           path="/course-enrollment"
           element={<StudentCourseEnrollment />}
