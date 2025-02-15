@@ -14,6 +14,8 @@ import FacultyAdvisingPage from "./components/faculty pages/facultyAdvisingPage/
 import FacultyManagement from "./components/admin pages/Faculty Management/FacultyManagement.jsx";
 import FacultyRecruitment from "./components/admin Pages/Faculty Recruitment/FacultyRecruitment.jsx";
 import StudentResultPage from "./components/student pages/studentResultPage/studentResultPage.jsx";
+import FacultyHomePage from "./components/faculty pages/facultyAdvisingPage/faculty Dashboard/facultyHomePage.jsx";
+import AdminHomePage from "./components/admin Pages/admin dashboard/adminHomePage.jsx";
 
 function App() {
   const userData = JSON.parse(localStorage.getItem("userData"));
@@ -27,10 +29,9 @@ function App() {
           <Route path="*" element={<Navigate to="/Login" replace />} />
         ) : (
           <>
-            <Route path="/" element={<Home />} />
-
             {userData.Role === "student" && (
               <>
+                <Route path="/" element={<Home />} />
                 <Route
                   path="/course-advising"
                   element={<StudentAdvisingPage />}
@@ -52,14 +53,7 @@ function App() {
                   path="/faculty-advising-page"
                   element={<FacultyAdvisingPage />}
                 />
-                <Route
-                  path="/faculty-management"
-                  element={<FacultyManagement />}
-                />
-                <Route
-                  path="/faculty-recruitment"
-                  element={<FacultyRecruitment />}
-                />
+                <Route path="/" element={<FacultyHomePage />} />
               </>
             )}
 
@@ -77,6 +71,7 @@ function App() {
                   path="/faculty-recruitment"
                   element={<FacultyRecruitment />}
                 />
+                <Route path="/" element={<AdminHomePage />} />
               </>
             )}
           </>

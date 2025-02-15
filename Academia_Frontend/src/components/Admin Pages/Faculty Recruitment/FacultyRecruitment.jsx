@@ -1,6 +1,6 @@
 import React from "react";
 import "./FacultyRecruitment.css";
-import AdminNavbar from "../AdminNavbar/AdminNavbar";
+import AdminNavbar from "../../navbar/AdminNavbar";
 import Footer from "../../footer/footer";
 
 const FacultyRecruitment = () => {

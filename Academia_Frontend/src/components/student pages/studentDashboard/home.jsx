@@ -3,6 +3,7 @@ import Navbar from "../../navbar/navbar";
 import ChartAt from "./chartAt";
 import "./home.css";
 
+
 const data = [
   { name: "CSE3100", Present: 60, Absent: 10, Remaining: 30 },
   { name: "CSE3101", Present: 65, Absent: 15, Remaining: 20 },
@@ -19,17 +20,17 @@ const Home = () => {
       <div className="home-container">
         <div className="content">
           <div className="info-box">
-            <p>Cgpa: 3.5</p>
+            <p><strong>Cgpa:</strong> 3.5</p>
           </div>
           <div className="info-box">
-            <p>Completed Credit: 60</p>
+            <p><strong>Completed Credit:</strong> 60</p>
           </div>
           <div className="info-box">
-            <p>Current Semester: 1st</p>
+            <p><strong>Current Semester:</strong> 1st</p>
           </div>
           <div className="info-box">
-            <p>
-              For Online Payment: <a href="#">Click me!</a>
+            <p><strong>For Online Payment: </strong>
+              <a href="#">Click me!</a>
             </p>
           </div>
         </div>

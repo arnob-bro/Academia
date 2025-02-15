@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Navbar from "../../navbar/navbar";
+import Navbarfaculty from "../../navbar/navbarfaculty";
 import Footer from "../../footer/footer";
 import "./facultyAdvisingPage.css";
 
@@ -96,7 +96,7 @@ const FacultyAdvisingPage = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbarfaculty/>
       <div className="faculty-advising-container">
         <h1>Faculty Advising Panel</h1>
 

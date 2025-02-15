@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./FacultyManagement.css";
-import AdminNavbar from "../AdminNavbar/AdminNavbar.jsx";
+import AdminNavbar from "../../navbar/AdminNavbar.jsx";
 import Footer from "../../footer/footer.jsx";
 
 export const FacultyManagement = () => {

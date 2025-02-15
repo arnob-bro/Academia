@@ -1,12 +1,12 @@
 import React from "react";
 import Footer from "../../footer/footer";
 import "./StudentAdmission.css";
-import Navbar from "../../navbar/navbar";
+import AdminNavbar from "../../navbar/AdminNavbar";
 
 const StudentAdmission = () => {
   return (
     <>
-      <Navbar />
+      <AdminNavbar />
       <div className="student-admission-container">
         <div className="student-admission-form-wrapper">
           <h2 className="student-admission-form-title">
