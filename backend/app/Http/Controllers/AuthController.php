@@ -15,9 +15,9 @@ class AuthController extends Controller
     }
 
     public function Login(Request $req){
-        $Id = $req->input('Id');
-        $Password = $req->input('Password');
-        $data = $this->authService->Login($Id, $Password);
+        $userID = $req->input('userID');
+        $enteredPassword = $req->input('password');
+        $data = $this->authService->Login($userID, $enteredPassword);
         return response()->json($data);
     }
 }
