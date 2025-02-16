@@ -1,0 +1,72 @@
+/* Student Course Enrollment CSS */
+.student-course-enrollment-container {
+    background: linear-gradient(to bottom, #fffdf1, #ffdafa);
+    padding: 20px;
+}
+
+.student-course-enrollment-search-bar {
+    padding: 10px;
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #e6ade2;
+    font-size: 16px;
+}
+
+.student-course-enrollment-search-bar:focus {
+    border-color: #BB5BB5;
+    box-shadow: #BB5BB5;
+    /* Purple color when focused */
+    outline: none;
+    /* Remove the default outline */
+}
+
+.student-course-enrollment-enrollment-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.student-course-enrollment-enrollment-table th,
+.student-course-enrollment-enrollment-table td {
+    border: 1px solid #e6ade2;
+    padding: 10px;
+    text-align: center;
+}
+
+.student-course-enrollment-delete-btn {
+    padding: 6px 12px;
+    background-color: #ff6347;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.student-course-enrollment-delete-btn:hover {
+    background-color: #e5533d;
+}
+
+.student-course-enrollment-no-results {
+    text-align: center;
+    font-size: 18px;
+    color: #777;
+}
+
+@media (max-width: 768px) {
+    .student-course-enrollment-student-course-enrollment-container {
+        padding: 15px;
+    }
+
+    .student-course-enrollment-search-bar {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .student-course-enrollment-enrollment-table th,
+    .student-course-enrollment-enrollment-table td {
+        padding: 8px;
+    }
+}
+

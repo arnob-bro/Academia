@@ -1,0 +1,40 @@
+.student-result-page-container {
+    background: linear-gradient(to bottom, #fffdf1, #ffdafa);
+    padding: 20px;
+    text-align: center;
+}
+
+.student-result-page-result-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.student-result-page-student-info-table,
+.student-result-page-semester-info-table,
+.student-result-page-result-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.student-result-page-student-info-table td,
+.student-result-page-semester-info-table td,
+.student-result-page-result-table th,
+.student-result-page-result-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.student-result-page-result-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.student-result-page-result-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
