@@ -33,8 +33,8 @@ This system is intended for use by university administrators, faculty members, a
      - Assign faculty to courses and departments.
    - **Tuition Fee Management:**
      - Oversee tuition fee payments and records.
-   - **Budget Tracking:**
-     - Monitor and manage the university's budget.
+   - **Faculty Leave Review:**
+     - Review and manage the leave applications of faculties.
    - **Reporting:**
      - Generate reports on academic performance and resource utilization.
 
@@ -47,6 +47,10 @@ This system is intended for use by university administrators, faculty members, a
      - Access academic performance and transcripts.
    - **Results:**
      - View examination results.
+   - **Performance Tracker:**
+     - View assessment performance.
+      - **Attendance Tracking:**
+     - Monitor course-wise attendance.
 
 3. **Faculty Panel:**
    - **Course Materials:**
@@ -56,11 +60,9 @@ This system is intended for use by university administrators, faculty members, a
    - **Academic Performance Tracking:**
      - Assess and track student academic performance.
    - **Scheduling:**
-     - Manage personal teaching schedules.
-   - **Assignments and Exams:**
-     - Create and grade assignments and exams.
-   - **Collaboration:**
-     - Collaborate with other faculty members and departments.
+     - Reschedule personal teaching schedules.
+   - **Assessment Results:**
+     - Update marks of assessments and exams for each students.
 
 4. **Resource Management:**
    - **Scheduling and Allocation:**
@@ -133,9 +135,13 @@ This system is intended for use by university administrators, faculty members, a
    - Implement class routine and scheduling features:
       - Allow students to view personalized class schedules.
       - Enable faculty to manage teaching schedules.
+      - Course schedule management by admin.
    - Develop academic record and performance tracking:
-      - Allow students to access academic records and results.
-      - Enable faculty to track student performance.
+      - Allow students to access academic records and performance tracking.
+      - Enable faculty to track students' performance.
+   - Implement leave applications of faculties.
+      - Enable faculty to apply for leaves.
+      - Enable admin to review faculties' leaves.
    - Integrate API endpoints for academic management and scheduling.
    - Enhance UI/UX for academic interactions with improved designs and responsiveness.
 
@@ -146,7 +152,6 @@ This system is intended for use by university administrators, faculty members, a
       - Manage library resources and track usage.
       - Organize events and extracurricular activities.
    - Develop administrative features:
-      - Manage student admissions and faculty assignments.
       - Oversee tuition fee payments and budget tracking.
       - Generate reports on academic performance and resource utilization.
    - Finalize UI/UX designs and optimize for performance.
@@ -160,4 +165,4 @@ This system is intended for use by university administrators, faculty members, a
 | 20200204058 | Mahdi Mubassera        | mubasseramahdi@gmail.com | Frontend |
 | 20220104064 | Abdul Mohaimen Khan Arnob | abdulmohaimenkhanarnob@gmail.com | Lead + Frontend + Backend |
 | 20220104068 | Samira Ahmed Fiha  | fihaahmed@outlook.com | Frontend          |
-| 20220104075 | Sayeb Mohaimen          | muhaimen360@gmail.com           | Backend           |
+| 20220104075 | Sayeb Mohaimen          | muhaimen360@gmail.com           | Frontend           |
