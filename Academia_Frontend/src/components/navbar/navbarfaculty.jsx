@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./navbarfaculty.css";
 import { logout } from "../../Api/auth";
 
 const Navbarfaculty = () => {
+  const navigate = useNavigate();
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
 
   const profileDropdownRef = useRef(null);
@@ -32,7 +33,13 @@ const Navbarfaculty = () => {
 
   const handleLogout = (e) => {
     e.preventDefault();
-    logout();
+    try {
+      logout();
+      // navigate("/login");
+      // window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

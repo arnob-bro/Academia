@@ -3,10 +3,11 @@
 namespace App\Services;
 
 use App\Models\User;
+use DB;
 use Illuminate\Support\Facades\Hash;
 class AuthService
 {
-    public function Login($userID, $enteredPassword)
+    public function loginUser($userID, $enteredPassword)
     {
         
         // if($id=="20220104064" && $password=="123456")
@@ -54,23 +55,26 @@ class AuthService
         // $data = [
         // 'Status' => 'failed'
         // ];
+        
         try{
-            $user = User::where("userID", $userID)->first();
-            if (!$user) {
-                return ['Status'=> 'no user found'];
+            // $user = User::where("userID", $userID)->first();
+            $user = DB::select('select * from users where userID=?',[$userID]);
+            
+            if (empty($user)) {
+                return ['status'=> 'no user found'];
             }
-            else{
-                $password = $user->password;
-                if (Hash::check($enteredPassword, $user->password)) {
-                return [
-                    'userId' => $user->userID,
-                    'role' => $user->role
-                ];
+            $user = $user[0];
+            $password = $user->password;
+            if (Hash::check($enteredPassword, $password)) {
+            return [
+                'userID' => $user->userID,
+                'role' => $user->role
+            ];
             } 
             else{
-                return ['Status'=> 'Wrong Password'];
+                return ['status'=> 'Wrong Password'];
             }
-            }
+            
         }catch(\Exception $e){
             $data = ['error'=> $e];
 

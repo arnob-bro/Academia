@@ -31,7 +31,7 @@ function App() {
           <Route path="*" element={<Navigate to="/Login" replace />} />
         ) : (
           <>
-            {userData.Role === "student" && (
+            {userData.role === "student" && (
               <>
                 <Route path="/" element={<Home />} />
                 <Route
@@ -49,7 +49,7 @@ function App() {
               </>
             )}
 
-            {userData.Role === "faculty" && (
+            {userData.role === "faculty" && (
               <>
                 <Route
                   path="/faculty-advising-page"
@@ -59,7 +59,7 @@ function App() {
               </>
             )}
 
-            {userData.Role === "admin" && (
+            {userData.role === "admin" && (
               <>
                 <Route
                   path="/Student-Admission"
