@@ -22,37 +22,20 @@ class AuthController extends Controller
         return response()->json($data);
     }
     public function registerStudent(Request $request)
-{
+    {
     $profilePhotoPath = '';  
 
-    try {
-        
-        $studentID = $request->studentID;
-        $name = $request->name;
-        $department = $request->department;
-        $currentSemester = $request->current_semester;
-        $enrollmentSemester = $request->enrollment_semester;
-        $password = bcrypt($request->studentID); 
-
-        // Call the stored procedure
-        DB::statement("CALL RegisterStudent(?, ?, ?, ?, ?, ?, ?)", [
-            $name,
-            $profilePhotoPath,  
-            $department,
-            $studentID,
-            $currentSemester,
-            $enrollmentSemester,
-            $password,
-        ]);
-
-        return response()->json([
-            'message' => 'Student registered successfully!',
-        ], 201);
-    } catch (\Exception $e) {
-        return response()->json([
-            'error' => 'Registration failed!',
-            'message' => $e->getMessage(),
-        ], 500);
+     $data = $this->authService->registerStudent($request->name,$profilePhotoPath, $request->department,$request->studentID, $request->current_semester,$request->enrollment_semester,bcrypt($request->studentID));
+        return response()->json($data);
+    
     }
-}
+
+    public function registerFaculty(Request $request)
+    {
+    $profilePhotoPath = '';  
+
+     $data = $this->authService->registerFaculty($request->name,$profilePhotoPath, $request->department,$request->facultyID, $request->rank,$request->administrative_role,bcrypt($request->facultyID));
+        return response()->json($data);
+    
+    }
 }

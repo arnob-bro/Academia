@@ -83,4 +83,64 @@ class AuthService
         
         
     }
+
+
+    public function registerStudent($name,$profile_photo,$department,$studentID,$currentSemester, $enrollmentSemester,$password) 
+    {
+         $profilePhotoPath = '';  
+
+    try {
+        
+
+        // Call the stored procedure
+        DB::statement("CALL RegisterStudent(?, ?, ?, ?, ?, ?, ?)", [
+            $name,
+            $profile_photo,  
+            $department,
+            $studentID,
+            $currentSemester,
+            $enrollmentSemester,
+            $password,
+        ]);
+
+        return [
+            'message' => 'Student registered successfully!',
+        ];
+    } catch (\Exception $e) {
+        return [
+            'error' => 'Registration failed!',
+            'message' => $e->getMessage(),
+        ];
+    }
+
+    }
+
+    public function registerFaculty($name,$profile_photo,$department,$facultyID,$rank, $administrative_role,$password) 
+    {
+
+    try {
+        
+
+        // Call the stored procedure
+        DB::statement("CALL RegisterFaculty(?, ?, ?, ?, ?, ?, ?)", [
+            $name,
+            $profile_photo,  
+            $department,
+            $facultyID,
+            $rank,
+            $administrative_role,
+            $password,
+        ]);
+
+        return [
+            'message' => 'Faculty registered successfully!',
+        ];
+    } catch (\Exception $e) {
+        return [
+            'error' => 'Registration failed!',
+            'message' => $e->getMessage(),
+        ];
+    }
+
+    }
 }
