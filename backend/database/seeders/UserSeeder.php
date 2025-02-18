@@ -44,11 +44,64 @@ $adminPassword = bcrypt('123456');
 $studentPassword = bcrypt('123456');
 $facultyPassword = bcrypt('123456');
 
-DB::statement("INSERT INTO users (userID, password, role, created_at, updated_at) VALUES
-    ('admin', '$adminPassword', 'admin', NOW(), NOW()),
-    ('20220104064', '$studentPassword', 'student', NOW(), NOW()),
-    ('CSE2022010', '$facultyPassword', 'faculty', NOW(), NOW())
-");
+        DB::statement("
+            CALL RegisterStudent(?, ?, ?, ?, ?, ?, ?)
+        ", [
+            'arnob',         // Name
+            NULL,            // ProfilePhoto (NULL)
+            'CSE',           // Department
+            '20220104064',   // studentID
+            'Spring24',      // CurrentSemester
+            'Spring22',      // EnrollmentSemester
+            bcrypt('20220104064')        // Hashed password
+        ]);
 
+        DB::statement("
+            CALL RegisterStudent(?, ?, ?, ?, ?, ?, ?)
+        ", [
+            'mahdi',         // Name
+            NULL,            // ProfilePhoto (NULL)
+            'CSE',           // Department
+            '20220104058',   // studentID
+            'Spring24',      // CurrentSemester
+            'Spring22',      // EnrollmentSemester
+            bcrypt('20220104058')        // Hashed password
+        ]);
+
+        DB::statement("
+            CALL RegisterStudent(?, ?, ?, ?, ?, ?, ?)
+        ", [
+            'fiha',         // Name
+            NULL,            // ProfilePhoto (NULL)
+            'CSE',           // Department
+            '20220104068',   // studentID
+            'Spring24',      // CurrentSemester
+            'Spring22',      // EnrollmentSemester
+            bcrypt('20220104068')        // Hashed password
+        ]);
+
+        DB::statement("
+            CALL RegisterFaculty(?, ?, ?, ?, ?, ?, ?)
+        ", [
+            'mr. X',         // Name
+            NULL,            // ProfilePhoto (NULL)
+            'CSE',           // Department
+            'CSE2022001',   // facultyID
+            'professor',      // rank
+            'HOD',      // administrative_role
+            bcrypt('CSE2022001')        // Hashed password
+        ]);
+
+        DB::statement("
+            CALL RegisterFaculty(?, ?, ?, ?, ?, ?, ?)
+        ", [
+            'mr. Y',         // Name
+            NULL,            // ProfilePhoto (NULL)
+            'ME',           // Department
+            'CSE2022002',   // facultyID
+            'professor',      // rank
+            'HOD',      // administrative_role
+            bcrypt('CSE2022002')        // Hashed password
+        ]);
     }
 }

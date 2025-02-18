@@ -87,7 +87,7 @@ class AuthService
 
     public function registerStudent($name,$profile_photo,$department,$studentID,$currentSemester, $enrollmentSemester,$password) 
     {
-         $profilePhotoPath = '';  
+         $profilePhotoPath = NULL;  
 
     try {
         
@@ -119,7 +119,7 @@ class AuthService
     {
 
     try {
-        
+        if ($administrative_role=='') $administrative_role=NULL;
 
         // Call the stored procedure
         DB::statement("CALL RegisterFaculty(?, ?, ?, ?, ?, ?, ?)", [

@@ -23,7 +23,7 @@ class AuthController extends Controller
     }
     public function registerStudent(Request $request)
     {
-    $profilePhotoPath = '';  
+    $profilePhotoPath = NULL;  
 
      $data = $this->authService->registerStudent($request->name,$profilePhotoPath, $request->department,$request->studentID, $request->current_semester,$request->enrollment_semester,bcrypt($request->studentID));
         return response()->json($data);
@@ -32,7 +32,7 @@ class AuthController extends Controller
 
     public function registerFaculty(Request $request)
     {
-    $profilePhotoPath = '';  
+    $profilePhotoPath = NULL;  
 
      $data = $this->authService->registerFaculty($request->name,$profilePhotoPath, $request->department,$request->facultyID, $request->rank,$request->administrative_role,bcrypt($request->facultyID));
         return response()->json($data);
