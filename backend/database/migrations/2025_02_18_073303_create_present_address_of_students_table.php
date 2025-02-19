@@ -15,14 +15,14 @@ return new class extends Migration
     {
         
         DB::statement('
-            CREATE TABLE Present_Address_of_Students (
+            CREATE TABLE present_address_of_students (
                 log_id INT AUTO_INCREMENT PRIMARY KEY ,
                 studentID VARCHAR(15) NOT NULL,
-                Road_House_Flat_No VARCHAR(255),
-                Country VARCHAR(100),
-                Division VARCHAR(100),
-                District VARCHAR(100),
-                Thana VARCHAR(100),
+                road_house_flat_no VARCHAR(255),
+                country VARCHAR(100),
+                division VARCHAR(100),
+                district VARCHAR(100),
+                thana VARCHAR(100),
                 FOREIGN KEY (studentID) REFERENCES students(studentID) ON DELETE CASCADE
                 );
         ');
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        DB::statement('DROP TABLE IF EXISTS personal_information_of_students');
+        DB::statement('DROP TABLE IF EXISTS present_address_of_students');
     }
 };

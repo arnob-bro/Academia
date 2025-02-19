@@ -19,11 +19,11 @@ return new class extends Migration
                 paymentID INT AUTO_INCREMENT PRIMARY KEY,
                 studentID VARCHAR(15) NOT NULL,
                 semester VARCHAR(255) NOT NULL,
-                amount_paid DECIMAL(10,2) NOT NULL,
+                amount_paid DECIMAL(10,2),
                 total_fee DECIMAL(10,2) NOT NULL,
-                payment_date DATE NOT NULL,
+                payment_date DATE,
                 payment_status VARCHAR(20) DEFAULT "Pending" CHECK (payment_status IN ("Pending","Failed","Completed")),
-                payment_method VARCHAR(50) NOT NULL CHECK (payment_method IN ("Bank Transfer", "Credit Card", "Cash", "Online")),
+                payment_method VARCHAR(50) CHECK (payment_method IN ("Bank Transfer", "Credit Card", "Cash", "Online")),
                 FOREIGN KEY (studentID) REFERENCES students(studentID) ON DELETE CASCADE
             );
         ');
