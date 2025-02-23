@@ -17,6 +17,7 @@ return new class extends Migration
                 IN Name VARCHAR(255),
                 IN ProfilePhoto TEXT,
                 IN Department VARCHAR(100),
+                IN institutional_email VARCHAR(255),
                 IN facultyID VARCHAR(15),
                 IN rank VARCHAR(255),
                 IN administrative_role VARCHAR(255),
@@ -31,8 +32,8 @@ return new class extends Migration
                 START TRANSACTION;
 
                 -- Use parameters directly without @
-                INSERT INTO faculties (facultyID, name, profile_photo, department, rank, administrative_role)
-                VALUES (facultyID, Name, ProfilePhoto, Department, rank, administrative_role);
+                INSERT INTO faculties (facultyID, name, profile_photo, department, institutional_email, rank, administrative_role)
+                VALUES (facultyID, Name, ProfilePhoto, Department,institutional_email, rank, administrative_role);
 
                 INSERT INTO users (userID, password, role)
                 VALUES (facultyID, Password, "faculty");

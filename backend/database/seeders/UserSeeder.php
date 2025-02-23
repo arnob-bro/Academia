@@ -40,16 +40,14 @@ class UserSeeder extends Seeder
         //     ],
         // ]);
 
-$adminPassword = bcrypt('123456');
-$studentPassword = bcrypt('123456');
-$facultyPassword = bcrypt('123456');
 
         DB::statement("
-            CALL RegisterStudent(?, ?, ?, ?, ?, ?, ?)
+            CALL RegisterStudent(?, ?, ?, ?, ?, ?, ?, ?)
         ", [
             'arnob',         // Name
             NULL,            // ProfilePhoto (NULL)
-            'CSE',           // Department
+            'CSE',
+            'arnob.cse.20220104064@aust.edu',           // Department
             '20220104064',   // studentID
             'Spring24',      // CurrentSemester
             'Spring22',      // EnrollmentSemester
@@ -57,11 +55,12 @@ $facultyPassword = bcrypt('123456');
         ]);
 
         DB::statement("
-            CALL RegisterStudent(?, ?, ?, ?, ?, ?, ?)
+            CALL RegisterStudent(?, ?, ?, ?, ?, ?, ?, ?)
         ", [
             'mahdi',         // Name
             NULL,            // ProfilePhoto (NULL)
             'CSE',           // Department
+            'mahdi.cse.20220104058@aust.edu',
             '20220104058',   // studentID
             'Spring24',      // CurrentSemester
             'Spring22',      // EnrollmentSemester
@@ -69,11 +68,12 @@ $facultyPassword = bcrypt('123456');
         ]);
 
         DB::statement("
-            CALL RegisterStudent(?, ?, ?, ?, ?, ?, ?)
+            CALL RegisterStudent(?, ?, ?, ?, ?, ?, ?, ?)
         ", [
             'fiha',         // Name
             NULL,            // ProfilePhoto (NULL)
             'CSE',           // Department
+            'fiha.cse.20220104068@aust.edu',
             '20220104068',   // studentID
             'Spring24',      // CurrentSemester
             'Spring22',      // EnrollmentSemester
@@ -81,11 +81,12 @@ $facultyPassword = bcrypt('123456');
         ]);
 
         DB::statement("
-            CALL RegisterFaculty(?, ?, ?, ?, ?, ?, ?)
+            CALL RegisterFaculty(?, ?, ?, ?, ?, ?, ?, ?)
         ", [
             'mr. X',         // Name
             NULL,            // ProfilePhoto (NULL)
             'CSE',           // Department
+            'X.cse.CSE2022001@aust.edu',
             'CSE2022001',   // facultyID
             'professor',      // rank
             'HOD',      // administrative_role
@@ -93,12 +94,13 @@ $facultyPassword = bcrypt('123456');
         ]);
 
         DB::statement("
-            CALL RegisterFaculty(?, ?, ?, ?, ?, ?, ?)
+            CALL RegisterFaculty(?, ?, ?, ?, ?, ?, ?, ?)
         ", [
             'mr. Y',         // Name
             NULL,            // ProfilePhoto (NULL)
             'ME',           // Department
-            'CSE2022002',   // facultyID
+            'Y.me.ME2022002@aust.edu',
+            'ME2022002',   // facultyID
             'professor',      // rank
             'HOD',      // administrative_role
             bcrypt('CSE2022002')        // Hashed password

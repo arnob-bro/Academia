@@ -17,6 +17,7 @@ return new class extends Migration
                 IN Name VARCHAR(255),
                 IN ProfilePhoto TEXT,
                 IN Department VARCHAR(100),
+                IN institutional_email VARCHAR(255),
                 IN studentID VARCHAR(15),
                 IN CurrentSemester VARCHAR(255),
                 IN EnrollmentSemester VARCHAR(255),
@@ -31,8 +32,8 @@ return new class extends Migration
                 START TRANSACTION;
 
                 -- Use parameters directly without @
-                INSERT INTO students (studentID, name, profile_photo, department, current_semester, enrollment_semester)
-                VALUES (studentID, Name, ProfilePhoto, Department, CurrentSemester, EnrollmentSemester);
+                INSERT INTO students (studentID, name, profile_photo, department, institutional_email, current_semester, enrollment_semester)
+                VALUES (studentID, Name, ProfilePhoto, Department,institutional_email, CurrentSemester, EnrollmentSemester);
 
                 INSERT INTO users (userID, password, role)
                 VALUES (studentID, Password, "student");

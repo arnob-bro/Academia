@@ -16,7 +16,7 @@ return new class extends Migration
         DB::statement('
             CREATE TABLE personal_information_of_students (
                 log_id INT AUTO_INCREMENT PRIMARY KEY,
-                studentID VARCHAR(15) NOT NULL,
+                studentID VARCHAR(15)  UNIQUE NOT NULL,
                 first_name VARCHAR(100) NOT NULL,
                 last_name VARCHAR(100) NOT NULL,
                 father_name VARCHAR(255) NULL,

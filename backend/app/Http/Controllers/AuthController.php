@@ -25,7 +25,7 @@ class AuthController extends Controller
     {
     $profilePhotoPath = NULL;  
 
-     $data = $this->authService->registerStudent($request->name,$profilePhotoPath, $request->department,$request->studentID, $request->current_semester,$request->enrollment_semester,bcrypt($request->studentID));
+     $data = $this->authService->registerStudent($request->name,$profilePhotoPath, $request->department, $request->institutional_email,$request->studentID, $request->current_semester,$request->enrollment_semester,bcrypt($request->studentID));
         return response()->json($data);
     
     }
@@ -34,7 +34,7 @@ class AuthController extends Controller
     {
     $profilePhotoPath = NULL;  
 
-     $data = $this->authService->registerFaculty($request->name,$profilePhotoPath, $request->department,$request->facultyID, $request->rank,$request->administrative_role,bcrypt($request->facultyID));
+     $data = $this->authService->registerFaculty($request->name,$profilePhotoPath, $request->department,$request->institutional_email,$request->facultyID, $request->rank,$request->administrative_role,bcrypt($request->facultyID));
         return response()->json($data);
     
     }

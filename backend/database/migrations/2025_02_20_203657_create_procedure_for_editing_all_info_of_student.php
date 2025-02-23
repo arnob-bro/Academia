@@ -13,7 +13,7 @@ return new class extends Migration
     public function up()
     {
         DB::unprepared('
-            CREATE PROCEDURE StoreAllInformationsOfStudent(
+            CREATE PROCEDURE editAllInformationOfStudent(
                 IN studentID VARCHAR(15),
                 IN first_name VARCHAR(100),
                 IN last_name VARCHAR(100),
@@ -50,21 +50,46 @@ return new class extends Migration
 
                 START TRANSACTION;
 
-                INSERT INTO personal_information_of_students(studentID, first_name, last_name, father_name, mother_name, birth_date, nid, birth_registration_No, gender, religion, blood_group)
-                VALUES (studentID, first_name, last_name, father_name, mother_name, birth_date, nid, birth_registration_No, gender, religion, blood_group);
+                UPDATE personal_information_of_students
+                SET first_name = first_name,
+                    last_name = last_name,
+                    father_name = father_name,
+                    mother_name = mother_name,
+                    birth_date = birth_date,
+                    nid = nid,
+                    birth_registration_No = birth_registration_No,
+                    gender = gender,
+                    religion = religion,
+                    blood_group = blood_group
+                WHERE studentID = studentID;
 
-                INSERT INTO present_address_of_students(studentID, road_house_flat_no, country, division, district, thana)
-                VALUES (studentID, road_house_flat_no, country, division, district, thana);
+                UPDATE present_address_of_students
+                SET road_house_flat_no = road_house_flat_no,
+                    country = country,
+                    division = division,
+                    district = district,
+                    thana = thana
+                WHERE studentID = studentID;
 
-                INSERT INTO permanent_address_of_students(studentID, road_house_flat_no, country, division, district, thana)
-                VALUES (studentID, road_house_flat_no_permanent, country_permanent, division_permanent, district_permanent, thana_permanent);
+                UPDATE permanent_address_of_students
+                SET road_house_flat_no = road_house_flat_no_permanent,
+                    country = country_permanent,
+                    division = division_permanent,
+                    district = district_permanent,
+                    thana = thana_permanent
+                WHERE studentID = studentID;
 
-                INSERT INTO guardian_information_of_students(studentID, guardian_name, guardian_mobile, guardian_email)
-                VALUES (studentID, guardian_name, guardian_mobile, guardian_email);
+                UPDATE guardian_information_of_students
+                SET guardian_name = guardian_name,
+                    guardian_mobile = guardian_mobile,
+                    guardian_email = guardian_email
+                WHERE studentID = studentID;
 
-                INSERT INTO contact_details_of_students(studentID, mobile_number, phone_number, personal_email)
-                VALUES (studentID, mobile_number, phone_number, personal_email);
-
+                UPDATE contact_details_of_students
+                SET mobile_number = mobile_number,
+                    phone_number = phone_number,
+                    personal_email = personal_email
+                WHERE studentID = studentID;
 
                 COMMIT;
             END;
@@ -78,6 +103,6 @@ return new class extends Migration
      */
     public function down()
     {
-        DB::unprepared('DROP PROCEDURE IF EXISTS StoreAllInformationsOfStudent');
+        DB::unprepared('DROP PROCEDURE IF EXISTS editAllInformationOfStudent');
     }
 };

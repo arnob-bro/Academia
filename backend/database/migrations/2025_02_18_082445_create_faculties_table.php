@@ -20,6 +20,7 @@ return new class extends Migration
                 name VARCHAR(255) NOT NULL,
                 profile_photo VARCHAR(255),
                 department VARCHAR(100) NOT NULL,
+                institutional_email VARCHAR(255),
                 rank VARCHAR(100),
                 administrative_role VARCHAR(100)
                 );

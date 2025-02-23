@@ -24,6 +24,7 @@ return new class extends Migration
                 name VARCHAR(255) NOT NULL,
                 profile_photo TEXT,
                 department VARCHAR(100) NOT NULL,
+                institutional_email VARCHAR(255),
                 current_semester VARCHAR(255) NOT NULL,
                 enrollment_semester VARCHAR(255) NOT NULL
             );

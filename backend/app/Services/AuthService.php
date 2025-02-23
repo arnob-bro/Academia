@@ -85,7 +85,7 @@ class AuthService
     }
 
 
-    public function registerStudent($name,$profile_photo,$department,$studentID,$currentSemester, $enrollmentSemester,$password) 
+    public function registerStudent($name,$profile_photo,$department,$institutional_email,$studentID,$currentSemester, $enrollmentSemester,$password) 
     {
          $profilePhotoPath = NULL;  
 
@@ -93,10 +93,11 @@ class AuthService
         
 
         // Call the stored procedure
-        DB::statement("CALL RegisterStudent(?, ?, ?, ?, ?, ?, ?)", [
+        DB::statement("CALL RegisterStudent(?, ?, ?, ?, ?, ?, ?, ?)", [
             $name,
             $profile_photo,  
             $department,
+            $institutional_email,
             $studentID,
             $currentSemester,
             $enrollmentSemester,
@@ -115,17 +116,18 @@ class AuthService
 
     }
 
-    public function registerFaculty($name,$profile_photo,$department,$facultyID,$rank, $administrative_role,$password) 
+    public function registerFaculty($name,$profile_photo,$department,$institutional_email,$facultyID,$rank, $administrative_role,$password) 
     {
 
     try {
         if ($administrative_role=='') $administrative_role=NULL;
 
         // Call the stored procedure
-        DB::statement("CALL RegisterFaculty(?, ?, ?, ?, ?, ?, ?)", [
+        DB::statement("CALL RegisterFaculty(?, ?, ?, ?, ?, ?, ?, ?)", [
             $name,
             $profile_photo,  
             $department,
+            $institutional_email,
             $facultyID,
             $rank,
             $administrative_role,

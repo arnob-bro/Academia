@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\FacultyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +25,15 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 Route::post('/login', [AuthController::class, 'loginUser']);
 Route::post('/admin/student-admission', [AuthController::class, 'registerStudent']);
 Route::post('/admin/faculty-registration', [AuthController::class, 'registerFaculty']);
+Route::post('/admin/create-new-course', [AdminController::class, 'createNewCourse']);
+Route::post('/admin/edit-an-existing-course', [AdminController::class, 'editAnExistingCourse']);
+Route::post('/admin/course-schedule', [AdminController::class, 'assignScheduleForCourses']);
+
+
+
+Route::post('/faculty/course-reschedule', [FacultyController::class, 'rescheduleClass']);
+
+
+
+Route::post('/student/AllInformationsOfStudent', [StudentController::class, 'storeAllInformationsOfStudent']);
+Route::post('/student/edit-all-information-of-student', [StudentController::class, 'editAllInformationOfStudent']);
