@@ -32,8 +32,10 @@ Route::post('/admin/course-schedule', [AdminController::class, 'assignScheduleFo
 
 
 Route::post('/faculty/course-reschedule', [FacultyController::class, 'rescheduleClass']);
+Route::get('/faculty/room-schedule', [FacultyController::class, 'getAllScheduleOfASpecificRoomOfASpecificWeek']);
 
 
 
 Route::post('/student/AllInformationsOfStudent', [StudentController::class, 'storeAllInformationsOfStudent']);
 Route::post('/student/edit-all-information-of-student', [StudentController::class, 'editAllInformationOfStudent']);
+Route::get('/student/weekly-schedule', [StudentController::class, 'getScheduleOfAStudent']);

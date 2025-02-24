@@ -21,4 +21,11 @@ class FacultyController extends Controller
 
         return response()->json($data);
     }
+
+    public function getAllScheduleOfASpecificRoomOfASpecificWeek(Request $request)
+    {
+        $schedules = $this->scheduleService->getAllScheduleOfASpecificRoomOfASpecificWeek($request->week_no , $request->room_no);
+
+        return response()->json($schedules);
+    }
 }

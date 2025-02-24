@@ -14,24 +14,24 @@ return new class extends Migration
     {
         DB::unprepared('
             CREATE PROCEDURE CreateNewCourse(
-                IN course_code VARCHAR(50),
-                IN course_name VARCHAR(255),
-                IN department VARCHAR(100),
-                IN description TEXT,
-                IN credits INT,
-                IN section VARCHAR(10),
-                IN facultyID VARCHAR(15)
+                IN p_course_code VARCHAR(50),
+                IN p_course_name VARCHAR(255),
+                IN p_department VARCHAR(100),
+                IN p_description TEXT,
+                IN p_credits INT,
+                IN p_section VARCHAR(10),
+                IN p_facultyID VARCHAR(15)
             )
             BEGIN
                 
                 -- Check if course_code and section combination is unique (excluding current course)
-                IF (SELECT COUNT(*) FROM courses WHERE course_code = course_code AND section = section) > 0 THEN
+                IF (SELECT COUNT(*) FROM courses WHERE course_code = p_course_code AND section = p_section) > 0 THEN
                     SIGNAL SQLSTATE "45000" 
                     SET MESSAGE_TEXT = "Another course with the same course_code and section already exists";
                 END IF;
 
                 INSERT INTO courses (course_code, course_name, department, description, credits, section, facultyID)
-                VALUES (course_code, course_name, department, description, credits, section, facultyID);
+                VALUES (p_course_code, p_course_name, p_department, p_description, p_credits, p_section, p_facultyID);
 
                 
             END;

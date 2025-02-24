@@ -24,8 +24,10 @@ return new class extends Migration
                 credits INT NOT NULL,
                 section VARCHAR(10) NOT NULL,
                 facultyID VARCHAR(15) NOT NULL,
+                prerequisite_courseID INT,
                 UNIQUE (course_code, section),
-                FOREIGN KEY (facultyID) REFERENCES faculties(facultyID) ON DELETE CASCADE
+                FOREIGN KEY (facultyID) REFERENCES faculties(facultyID) ON DELETE CASCADE,
+                FOREIGN KEY (prerequisite_courseID) REFERENCES courses(courseID)
             );
         ');
     }

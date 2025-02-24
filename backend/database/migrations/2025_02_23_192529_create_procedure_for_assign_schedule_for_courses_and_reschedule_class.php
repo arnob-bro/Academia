@@ -27,6 +27,7 @@ return new class extends Migration
                 IF EXISTS (
                     SELECT 1 FROM schedules
                     WHERE facultyID = p_facultyID
+                    AND week_no = p_week_no
                     AND day_of_week = p_day_of_week
                     AND (
                         (p_start_time >= start_time AND p_start_time < end_time) OR
@@ -40,6 +41,7 @@ return new class extends Migration
                 IF EXISTS (
                     SELECT 1 FROM schedules
                     WHERE room_no = p_room_no
+                    AND week_no = p_week_no
                     AND day_of_week = p_day_of_week
                     AND (
                         (p_start_time >= start_time AND p_start_time < end_time) OR

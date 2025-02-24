@@ -45,4 +45,43 @@ class ScheduleService
             ];
         }
     }
+
+
+    public function getAllScheduleOfASpecificRoomOfASpecificWeek($p_week_no,$p_room_no )
+    {
+        try{
+            $schedules = DB::select("CALL getAllScheduleOfASpecificRoomOfASpecificWeek(?, ?)", [
+                $p_week_no, $p_room_no
+        ]);
+
+        return [
+            $schedules
+            ];
+
+        }catch(\Exception $e){
+            return [
+            'error' => 'room schedule fetching failed!',
+            'message' => $e->getMessage(),
+            ];
+        }
+    }
+
+    public function getScheduleOfAStudent($p_studentID,$p_week_no )
+    {
+        try{
+            $schedules = DB::select("CALL getScheduleOfAStudent(?, ?)", [
+                $p_studentID,$p_week_no
+        ]);
+
+        return [
+            $schedules
+            ];
+
+        }catch(\Exception $e){
+            return [
+            'error' => 'students weekly schedule fetching failed!',
+            'message' => $e->getMessage(),
+            ];
+        }
+    }
 }
