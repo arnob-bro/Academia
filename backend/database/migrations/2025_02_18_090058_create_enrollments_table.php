@@ -18,6 +18,7 @@ return new class extends Migration
             CREATE TABLE enrollments (
                 enrollmentID INT AUTO_INCREMENT PRIMARY KEY,
                 enrollment_date DATE NOT NULL,
+                enrollment_type VARCHAR(15) DEFAULT "Normal" CHECK (enrollment_type IN ("Normal","Retake")),
                 enrollment_semester VARCHAR(255) NOT NULL,
                 studentID VARCHAR(15) NOT NULL,
                 courseID INT NOT NULL,

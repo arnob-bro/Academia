@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Services\UserInfoService;
 use App\Services\ScheduleService;
+use App\Services\EnrollmentService;
 
 use Illuminate\Http\Request;
 
@@ -11,11 +12,13 @@ class StudentController extends Controller
 
     private $userInfoService;
     private $scheduleService;
+    private $enrollmentService;
 
-    public function __construct(UserInfoService $userInfoService, ScheduleService $scheduleService)
+    public function __construct(UserInfoService $userInfoService, ScheduleService $scheduleService,EnrollmentService  $enrollmentService)
     {
         $this->userInfoService = $userInfoService;
         $this->scheduleService = $scheduleService;
+        $this->enrollmentService = $enrollmentService;
     }
 
     public function storeAllInformationsOfStudent(Request $request)
@@ -54,6 +57,16 @@ class StudentController extends Controller
 
      $data = $this->scheduleService->getDailyScheduleOfAStudent(
         $request->studentID,$request->week_no , $request->day_of_week
+     );
+        return response()->json($data);
+    
+    }
+
+    public function enrollInCourse(Request $request)
+    {
+
+     $data = $this->enrollmentService->enrollInCourse(
+        $request->studentID,$request->courseID, $request->enrollment_semester
      );
         return response()->json($data);
     

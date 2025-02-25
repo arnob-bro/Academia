@@ -35,7 +35,7 @@ return new class extends Migration
                 JOIN faculties f ON s.facultyID = f.facultyID
                 WHERE s.week_no = p_week_no
                 AND s.room_no = p_room_no
-                ORDER BY s.day_of_week, s.start_time;
+                ORDER BY s.start_time;
             END;
         ');
     }

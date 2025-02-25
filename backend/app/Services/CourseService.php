@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\Hash;
 
 class CourseService 
 {
-    public function createNewCourse($course_code, $course_name, $department, $description, $credit, $section, $facultyID)
+    public function createNewCourse($course_code, $course_name, $department, $description, $credit, $section, $facultyID, $number_of_vacant_seats, $prerequisite_course_code)
     {
         try{
             DB::statement("CALL CreateNewCourse(?, ?, ?, ?, ?, ?, ?)", [
-            $course_code, $course_name, $department, $description, $credit, $section, $facultyID
+            $course_code, $course_name, $department, $description, $credit, $section, $facultyID, $number_of_vacant_seats, $prerequisite_course_code
         ]);
 
         return [
@@ -27,11 +27,11 @@ class CourseService
         }
     }
 
-    public function editAnExistingCourse($course_code, $course_name, $department, $description, $credit, $section, $facultyID)
+    public function editAnExistingCourse($course_code, $course_name, $department, $description, $credit, $section, $facultyID, $number_of_vacant_seats, $prerequisite_course_code)
     {
         try{
             DB::statement("CALL EditAnExistingCourse(?, ?, ?, ?, ?, ?, ?)", [
-            $course_code, $course_name, $department, $description, $credit, $section, $facultyID
+            $course_code, $course_name, $department, $description, $credit, $section, $facultyID, $number_of_vacant_seats, $prerequisite_course_code
         ]);
 
         return [

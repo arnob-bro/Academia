@@ -40,3 +40,4 @@ Route::post('/student/AllInformationsOfStudent', [StudentController::class, 'sto
 Route::post('/student/edit-all-information-of-student', [StudentController::class, 'editAllInformationOfStudent']);
 Route::get('/student/weekly-schedule', [StudentController::class, 'getScheduleOfAStudent']);
 Route::get('/student/daily-schedule', [StudentController::class, 'getDailyScheduleOfAStudent']);
+Route::post('/student/course_enrollment', [StudentController::class, 'enrollInCourse']);

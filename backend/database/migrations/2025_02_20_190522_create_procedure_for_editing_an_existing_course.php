@@ -20,7 +20,9 @@ return new class extends Migration
                 IN p_description TEXT,
                 IN p_credits INT,
                 IN p_section VARCHAR(10),
-                IN p_facultyID VARCHAR(15)
+                IN p_facultyID VARCHAR(15),
+                IN p_number_of_vacant_seats INT,
+                IN p_prerequisite_course_code VARCHAR(50)
             )
             BEGIN
                 DECLARE courseExists INT;
@@ -42,7 +44,9 @@ return new class extends Migration
                     description = p_description,
                     credits = p_credits,
                     section = p_section,
-                    facultyID = p_facultyID
+                    facultyID = p_facultyID,
+                    number_of_vacant_seats = p_number_of_vacant_seats,
+                    prerequisite_course_code = p_prerequisite_course_code
                 WHERE course_code = p_course_code AND section = p_section;
 
                 SELECT "Course updated successfully" AS status;

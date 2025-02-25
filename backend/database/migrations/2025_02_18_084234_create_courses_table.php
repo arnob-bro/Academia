@@ -23,11 +23,12 @@ return new class extends Migration
                 description TEXT NOT NULL,
                 credits INT NOT NULL,
                 section VARCHAR(10) NOT NULL,
+                number_of_vacant_seats INT,
                 facultyID VARCHAR(15) NOT NULL,
-                prerequisite_courseID INT,
+                prerequisite_course_code VARCHAR(50),
                 UNIQUE (course_code, section),
                 FOREIGN KEY (facultyID) REFERENCES faculties(facultyID) ON DELETE CASCADE,
-                FOREIGN KEY (prerequisite_courseID) REFERENCES courses(courseID) ON DELETE SET NULL
+                FOREIGN KEY (prerequisite_course_code) REFERENCES courses(course_code) ON DELETE SET NULL
             );
         ');
     }

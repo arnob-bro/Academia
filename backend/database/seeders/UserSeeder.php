@@ -274,27 +274,27 @@ class UserSeeder extends Seeder
 
 // Mock courses data with unique course_code and section combinations
 $courses = [
-    ['CSE101', 'Introduction to Computer Science', 'CSE', 'Basic computer science concepts and programming.', 3, 'A', $facultyIDs[0]],
-    ['CSE102', 'Data Structures and Algorithms', 'CSE', 'Introduction to data structures and algorithmic techniques.', 3, 'B', $facultyIDs[3]],
-    ['ME101', 'Introduction to Mechanical Engineering', 'ME', 'Fundamentals of mechanical engineering concepts.', 3, 'A', $facultyIDs[1]],
-    ['BBA101', 'Principles of Management', 'BBA', 'Introduction to management principles and organizational behavior.', 3, 'A', $facultyIDs[2]],
-    ['EEE101', 'Introduction to Electrical Engineering', 'EEE', 'Basic electrical engineering concepts, circuits, and systems.', 3, 'A', $facultyIDs[4]],
-    ['CSE201', 'Discrete Mathematics', 'CSE', 'Mathematical foundations for computer science and engineering.', 3, 'C', $facultyIDs[5]],
-    ['ME201', 'Engineering Mechanics', 'ME', 'Study of forces and their effect on motion of bodies.', 3, 'B', $facultyIDs[6]],
-    ['CSE301', 'Operating Systems', 'CSE', 'Design and implementation of modern operating systems.', 3, 'A', $facultyIDs[7]],
-    ['EEE201', 'Digital Logic Design', 'EEE', 'Fundamentals of digital logic circuits and systems.', 3, 'B', $facultyIDs[8]],
-    ['BBA201', 'Business Economics', 'BBA', 'Basic economic principles and their application to business management.', 3, 'A', $facultyIDs[9]],
-    ['ME301', 'Thermodynamics', 'ME', 'Study of energy conversion and thermodynamic systems.', 3, 'A', $facultyIDs[10]],
-    ['CSE401', 'Computer Networks', 'CSE', 'Introduction to networking protocols and systems.', 3, 'B', $facultyIDs[11]],
-    ['CSE402', 'Database Management Systems', 'CSE', 'Design, implementation, and management of database systems.', 3, 'A', $facultyIDs[12]],
-    ['EEE301', 'Electromagnetic Field Theory', 'EEE', 'Introduction to the principles of electromagnetism and field theory.', 3, 'A', $facultyIDs[13]],
-    ['ME401', 'Fluid Mechanics', 'ME', 'Study of fluid behavior and fluid dynamics in engineering applications.', 3, 'A', $facultyIDs[14]],
+    ['CSE101', 'Introduction to Computer Science', 'CSE', 'Basic computer science concepts and programming.', 3, 'A', $facultyIDs[0], 50, NULL],
+    ['CSE102', 'Data Structures and Algorithms', 'CSE', 'Introduction to data structures and algorithmic techniques.', 3, 'B', $facultyIDs[3], 45, 'CSE101'],
+    ['ME101', 'Introduction to Mechanical Engineering', 'ME', 'Fundamentals of mechanical engineering concepts.', 3, 'A', $facultyIDs[1], 40, NULL],
+    ['BBA101', 'Principles of Management', 'BBA', 'Introduction to management principles and organizational behavior.', 3, 'A', $facultyIDs[2], 50, NULL],
+    ['EEE101', 'Introduction to Electrical Engineering', 'EEE', 'Basic electrical engineering concepts, circuits, and systems.', 3, 'A', $facultyIDs[4], 48, NULL],
+    ['CSE201', 'Discrete Mathematics', 'CSE', 'Mathematical foundations for computer science and engineering.', 3, 'C', $facultyIDs[5], 40, 'CSE101'],
+    ['ME201', 'Engineering Mechanics', 'ME', 'Study of forces and their effect on motion of bodies.', 3, 'B', $facultyIDs[6], 38, 'ME101'],
+    ['CSE301', 'Operating Systems', 'CSE', 'Design and implementation of modern operating systems.', 3, 'A', $facultyIDs[7], 35, 'CSE102'],
+    ['EEE201', 'Digital Logic Design', 'EEE', 'Fundamentals of digital logic circuits and systems.', 3, 'B', $facultyIDs[8], 45, 'EEE101'],
+    ['BBA201', 'Business Economics', 'BBA', 'Basic economic principles and their application to business management.', 3, 'A', $facultyIDs[9], 50, 'BBA101'],
+    ['ME301', 'Thermodynamics', 'ME', 'Study of energy conversion and thermodynamic systems.', 3, 'A', $facultyIDs[10], 37, 'ME201'],
+    ['CSE401', 'Computer Networks', 'CSE', 'Introduction to networking protocols and systems.', 3, 'B', $facultyIDs[11], 30, 'CSE301'],
+    ['CSE402', 'Database Management Systems', 'CSE', 'Design, implementation, and management of database systems.', 3, 'A', $facultyIDs[12], 32, 'CSE201'],
+    ['EEE301', 'Electromagnetic Field Theory', 'EEE', 'Introduction to the principles of electromagnetism and field theory.', 3, 'A', $facultyIDs[13], 42, 'EEE201'],
+    ['ME401', 'Fluid Mechanics', 'ME', 'Study of fluid behavior and fluid dynamics in engineering applications.', 3, 'A', $facultyIDs[14], 40, 'ME301'],
 ];
 
 
         // Loop through courses data and insert each using the stored procedure
         foreach ($courses as $course) {
-            DB::statement("CALL CreateNewCourse(?, ?, ?, ?, ?, ?, ?)", [
+            DB::statement("CALL CreateNewCourse(?, ?, ?, ?, ?, ?, ?, ?, ?)", [
                 $course[0], // course_code
                 $course[1], // course_name
                 $course[2], // department
@@ -302,6 +302,8 @@ $courses = [
                 $course[4], // credits
                 $course[5], // section
                 $course[6], // facultyID
+                $course[7], // number_of_vacant_seats
+                $course[8]  // prerequisite_course_code
             ]);
         }
 
@@ -383,5 +385,30 @@ foreach ($schedules as $schedule) {
         $schedule[6],         // p_courseID
     ]);
 }
+
+
+
+            $enrollments = [
+                // CSE Students
+                ['20220104064', 1],
+                ['20220104058', 1],
+                ['20220104068', 1],
+                ['20220104072', 1],
+                ['20220104075', 1],
+                ['20220104076', 1],
+                ['20220104079', 1],
+                ['20220104082', 1],
+                ['20220104086', 1]
+            ];
+
+            // Loop through enrollments and call stored procedure
+            foreach ($enrollments as $enrollment) {
+                DB::statement("CALL enrollInCourse(?, ?, ?, ?)", [
+                    $enrollment[0],  // Student ID
+                    $enrollment[1],  // Course Code
+                    now(),           // Enrollment Date
+                    'Spring24'       // Semester
+                ]);
+            }
     }
 }
