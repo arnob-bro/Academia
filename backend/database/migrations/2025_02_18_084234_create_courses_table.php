@@ -27,7 +27,7 @@ return new class extends Migration
                 prerequisite_courseID INT,
                 UNIQUE (course_code, section),
                 FOREIGN KEY (facultyID) REFERENCES faculties(facultyID) ON DELETE CASCADE,
-                FOREIGN KEY (prerequisite_courseID) REFERENCES courses(courseID)
+                FOREIGN KEY (prerequisite_courseID) REFERENCES courses(courseID) ON DELETE SET NULL
             );
         ');
     }

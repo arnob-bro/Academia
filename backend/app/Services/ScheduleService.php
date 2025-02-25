@@ -84,4 +84,24 @@ class ScheduleService
             ];
         }
     }
+
+
+    public function getDailyScheduleOfAStudent($p_studentID,$p_week_no, $p_day_of_week )
+    {
+        try{
+            $schedules = DB::select("CALL getDailyScheduleOfAStudent(?, ?, ?)", [
+                $p_studentID,$p_week_no, $p_day_of_week
+        ]);
+
+        return [
+            $schedules
+            ];
+
+        }catch(\Exception $e){
+            return [
+            'error' => 'students daily schedule fetching failed!',
+            'message' => $e->getMessage(),
+            ];
+        }
+    }
 }

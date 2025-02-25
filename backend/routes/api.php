@@ -39,3 +39,4 @@ Route::get('/faculty/room-schedule', [FacultyController::class, 'getAllScheduleO
 Route::post('/student/AllInformationsOfStudent', [StudentController::class, 'storeAllInformationsOfStudent']);
 Route::post('/student/edit-all-information-of-student', [StudentController::class, 'editAllInformationOfStudent']);
 Route::get('/student/weekly-schedule', [StudentController::class, 'getScheduleOfAStudent']);
+Route::get('/student/daily-schedule', [StudentController::class, 'getDailyScheduleOfAStudent']);

@@ -48,4 +48,14 @@ class StudentController extends Controller
         return response()->json($data);
     
     }
+
+    public function getDailyScheduleOfAStudent(Request $request)
+    {
+
+     $data = $this->scheduleService->getDailyScheduleOfAStudent(
+        $request->studentID,$request->week_no , $request->day_of_week
+     );
+        return response()->json($data);
+    
+    }
 }
