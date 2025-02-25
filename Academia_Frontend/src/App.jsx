@@ -9,13 +9,13 @@ import LoginPage from "./components/Login/LoginPage";
 import Home from "./components/student pages/studentDashboard/home";
 import StudentAdvisingPage from "./components/student pages/studentAdvisingPage/studentAdvisingPage";
 import StudentCourseEnrollment from "./components/student pages/studentCourseEnrollment/studentCourseEnrollment.jsx";
-import StudentAdmission from "./components/admin Pages/Student Admission Page/StudentAdmission.jsx";
+import StudentAdmission from "./components/admin pages/Student Admission Page/StudentAdmission.jsx";
 import FacultyAdvisingPage from "./components/faculty pages/facultyAdvisingPage/facultyAdvisingPage";
 import FacultyManagement from "./components/admin pages/Faculty Management/FacultyManagement.jsx";
-import FacultyRecruitment from "./components/admin Pages/Faculty Recruitment/FacultyRecruitment.jsx";
+import FacultyRecruitment from "./components/admin pages/Faculty Recruitment/FacultyRecruitment.jsx";
 import StudentResultPage from "./components/student pages/studentResultPage/studentResultPage.jsx";
-import FacultyHomePage from "./components/faculty pages/facultyAdvisingPage/faculty Dashboard/facultyHomePage.jsx";
-import AdminHomePage from "./components/admin Pages/admin dashboard/adminHomePage.jsx";
+import FacultyHomePage from "./components/faculty pages/facultyDashboard/facultyHomePage.jsx";
+import AdminHomePage from "./components/admin pages/admin dashboard/adminHomePage.jsx";
 import ResetPassword from "./components/Login/ResetPassword.jsx";
 
 function App() {
