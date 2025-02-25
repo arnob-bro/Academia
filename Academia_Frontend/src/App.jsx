@@ -24,11 +24,11 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/Login" element={<LoginPage />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/reset-password" element={<ResetPassword />} />
 
         {!userData ? (
-          <Route path="*" element={<Navigate to="/Login" replace />} />
+          <Route path="*" element={<Navigate to="/login" replace />} />
         ) : (
           <>
             {userData.role === "student" && (

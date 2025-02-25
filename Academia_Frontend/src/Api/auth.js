@@ -17,7 +17,7 @@ export const logout = async () => {
   try {
     localStorage.removeItem("userData");
     // alert("Logout successful");
-    window.location.href = "/login";
+    // window.location.href = "/login";
   } catch (error) {
     throw new Error("Logout failed: " + error.response.data.message);
   }

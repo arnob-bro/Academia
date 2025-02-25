@@ -36,7 +36,7 @@ const AdminNavbar = () => {
     e.preventDefault();
     try {
       logout();
-      // navigate("/login");
+      navigate("/login");
       // window.location.reload();
     } catch (error) {
       console.log(error);

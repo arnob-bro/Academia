@@ -10,8 +10,8 @@ const Navbar = () => {
     e.preventDefault();
     try {
       logout();
-      // navigate("/login");
-      window.location.reload();
+      navigate("/login");
+      // window.location.reload();
     } catch (error) {
       console.log(error);
     }
