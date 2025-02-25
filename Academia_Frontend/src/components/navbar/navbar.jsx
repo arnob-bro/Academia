@@ -4,7 +4,7 @@ import "./navbar.css";
 import { logout } from "../../Api/auth";
 
 const Navbar = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [activeLink, setActiveLink] = useState("Home");
   const handleLogout = (e) => {
     e.preventDefault();
