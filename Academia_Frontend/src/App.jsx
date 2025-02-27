@@ -17,6 +17,7 @@ import StudentResultPage from "./components/studentPages/studentResultPage/stude
 import FacultyHomePage from "./components/facultyPages/facultyDashboard/facultyHomePage.jsx";
 import AdminHomePage from "./components/adminPages/adminDashboard/adminHomePage.jsx";
 import ResetPassword from "./components/Login/ResetPassword.jsx";
+import StudentPerformanceTracker from "./components/student pages/studentPerformanceTracker/studentPerformanceTracker.jsx"
 
 function App() {
   const userData = JSON.parse(localStorage.getItem("userData"));
@@ -42,6 +43,11 @@ function App() {
                   path="/course-enrollment"
                   element={<StudentCourseEnrollment />}
                 />
+                
+                <Route
+                  path="/student-performance-tracker"
+                  element={<StudentPerformanceTracker />}
+                />                
                 <Route
                   path="/student-result-page"
                   element={<StudentResultPage />}
