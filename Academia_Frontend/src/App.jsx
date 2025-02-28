@@ -21,6 +21,7 @@ import StudentPerformanceTracker from "./components/studentPages/studentPerforma
 import StudentClassRoutine from "./components/studentPages/studentClassRoutine/studentClassRoutine.jsx";
 import FacultyRoutine from "./components/facultyPages/facultyRoutine/facultyRoutine.jsx";
 
+import FacultyAvailableSchedule from "./components/facultyPages/facultyAvailableSchedule/facultyAvailableSchedule.jsx";
 
 function App() {
   const userData = JSON.parse(localStorage.getItem("userData"));
@@ -65,6 +66,7 @@ function App() {
               <>
               <Route path="/faculty-advising-page" element={<FacultyAdvisingPage />} />
               <Route path="/faculty-routine" element={<FacultyRoutine />} />
+              <Route path="/faculty-available-schedule" element={<FacultyAvailableSchedule />} />
               </>
             )}
 

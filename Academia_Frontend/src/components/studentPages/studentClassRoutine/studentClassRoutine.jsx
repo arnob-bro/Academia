@@ -15,7 +15,7 @@ const StudentClassRoutine = () => {
         <div className="routine-info">
           <p><strong>Current Semester:</strong> 6th</p>
           <p><strong>Section:</strong> B</p>
-          <p><strong>Week:</strong> 7th</p>
+          <p><strong>Week:</strong> 3th</p>
         </div>
 
         {/* Routine Table */}

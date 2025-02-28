@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(to bottom, #f8e8f8, #fefefe);
+    background: linear-gradient(to bottom,#fffdf1, #ffdafa);
     padding: 20px;
     color: #333;
   }
@@ -61,8 +61,8 @@ body {
   }
   
   .request-leave {
-    background: #d48efc;
-    color: white;
+    background: #a36bd1;
+    color: rgb(238, 234, 236);
     padding: 10px 15px;
     border: none;
     cursor: pointer;
