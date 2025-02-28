@@ -19,6 +19,8 @@ import AdminHomePage from "./components/adminPages/adminDashboard/adminHomePage.
 import ResetPassword from "./components/Login/ResetPassword.jsx";
 import StudentPerformanceTracker from "./components/studentPages/studentPerformanceTracker/studentPerformanceTracker.jsx";
 import StudentClassRoutine from "./components/studentPages/studentClassRoutine/studentClassRoutine.jsx";
+import FacultyRoutine from "./components/facultyPages/facultyRoutine/facultyRoutine.jsx";
+
 
 function App() {
   const userData = JSON.parse(localStorage.getItem("userData"));
@@ -60,7 +62,10 @@ function App() {
 
             {/* Faculty Routes */}
             {userData.role === "faculty" && (
+              <>
               <Route path="/faculty-advising-page" element={<FacultyAdvisingPage />} />
+              <Route path="/faculty-routine" element={<FacultyRoutine />} />
+              </>
             )}
 
             {/* Admin Routes */}

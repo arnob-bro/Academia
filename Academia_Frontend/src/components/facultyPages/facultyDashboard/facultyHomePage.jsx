@@ -4,8 +4,10 @@ import "./facultyHomePage.css";
 
 const FacultyHomePage = () => {
   return (
+    <>
+     <Navbarfaculty />
     <div>
-      <Navbarfaculty />
+     
       <div className="faculty-container">
         {/* Faculty Profile */}
         <div className="faculty-profile">
@@ -122,6 +124,7 @@ const FacultyHomePage = () => {
         </footer>
       </div>
     </div>
+    </>
   );
 };
 
