@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Navbar from "../../navbar/navbar";
-import Footer from "../../footer/footer";
-import "./studentPerformanceTracker.css";
-import { StudentPerformanceChart } from "./StudentPerformanceChart";
+import Navbar from "../../navbar/navbar.jsx";
+import Footer from "../../footer/footer.jsx";
+import "./studentPerformanceTracker.css"
+import StudentPerformanceChart from "./studentPerformanceChart.jsx";
 
 const coursesData = {
   "Mathematics": [

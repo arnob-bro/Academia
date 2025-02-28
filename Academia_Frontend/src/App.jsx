@@ -20,6 +20,7 @@ import ResetPassword from "./components/Login/ResetPassword.jsx";
 import StudentPerformanceTracker from "./components/studentPages/studentPerformanceTracker/studentPerformanceTracker.jsx";
 import StudentClassRoutine from "./components/studentPages/studentClassRoutine/studentClassRoutine.jsx";
 import FacultyRoutine from "./components/facultyPages/facultyRoutine/facultyRoutine.jsx";
+import FacultyPerformanceTracker from "./components/facultyPages/facultyPerformanceTracker/facultyPerformanceTracker.jsx";
 
 
 function App() {
@@ -31,6 +32,8 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         
+
+
         {!userData ? (
           <Route path="*" element={<Navigate to="/login" replace />} />
         ) : (
@@ -65,7 +68,9 @@ function App() {
               <>
               <Route path="/faculty-advising-page" element={<FacultyAdvisingPage />} />
               <Route path="/faculty-routine" element={<FacultyRoutine />} />
+              <Route path="/faculty-performance-tracker" element={<FacultyPerformanceTracker />} />
               </>
+              
             )}
 
             {/* Admin Routes */}

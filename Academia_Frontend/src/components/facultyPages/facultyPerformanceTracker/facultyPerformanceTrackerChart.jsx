@@ -1,17 +1,7 @@
 import React from "react";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
+import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
-
-
-export const StudentPerformanceChart = ({ data }) => {
+const FacultyPerformanceTrackerChart = ({ data, showObtained }) => {
   return (
     <div style={{ width: "100%", height: "300px" }}>
       <ResponsiveContainer width="100%" height="100%">
@@ -21,12 +11,12 @@ export const StudentPerformanceChart = ({ data }) => {
           <Tooltip />
           <Legend />
           <Bar dataKey="Highest" fill="#E74C3C" name="Highest Mark" />
-          <Bar dataKey="MyScore" fill="#92D050" name="My Score" />
           <Bar dataKey="Average" fill="#5B9BD5" name="Average Score" />
+          {showObtained && <Bar dataKey="Obtained" fill="#92D050" name="Obtained Score" />}
         </BarChart>
       </ResponsiveContainer>
     </div>
   );
 };
 
-export default StudentPerformanceChart;
+export default FacultyPerformanceTrackerChart;
