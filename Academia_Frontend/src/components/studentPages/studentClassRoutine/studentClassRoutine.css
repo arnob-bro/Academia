@@ -1,93 +1,80 @@
 /* Full-page layout */
 .routine-page {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    background: linear-gradient(to bottom, #FFFDF1, #FFDAFA);
-  }
-  
-  /* Center content */
-  .routine-container {
-    flex: 1;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-  }
-  
-  /* Navbar and Footer full width */
-  .navbar, .footer {
-    width: 100%;
-  }
-  .show-routine-btn {
-    background-color: #28a745; /* Green color */
-    color: white;
-    padding: 10px 15px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-  
-  .show-routine-btn:hover {
-    background-color: #218838; /* Darker green */
-  }
-  /* Filter Section Styling */
-  .filter-section {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  .filter-section select,
-  .show-routine-btn {
-    padding: 8px;
-    border-radius: 5px;
-    font-size: 14px;
-  }
-  
-  /* Routine Table */
-  .routine-table {
-    width: 100%;
-    overflow-x: auto;
-  }
-  
-  table {
-    width: 90%;
-    border-collapse: collapse;
-    text-align: center;
-  }
-  
-  th, td {
-    border: 1px solid #BB5BB5;
-    padding: 10px;
-  }
-  
-  th {
-    background-color: #f3a8ee;
-  }
-  
-  /* Button Styling */
-  .download-btn {
-    padding: 10px 15px;
-    background-color: #ee5050;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    margin-top: 20px;
-    cursor: pointer;
-  }
-  
-  .download-btn:hover {
-    background-color: #cc2c2c;
-  }
-  
-  /* Ensure the footer sticks to the bottom */
-  .footer {
-     margin-top: auto; 
-  }
-  
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #FFFDF1, #FFDAFA);
+}
+
+/* Center content */
+.routine-container {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+h3{
+  color: #0e0e53;
+}
+/* Navbar and Footer full width */
+.navbar, .footer {
+  width: 100%;
+}
+
+/* Routine Info */
+.routine-info {
+  background-color: #f8e1ff;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 16px;
+  text-align: center;
+  width: 60%;
+  margin-bottom: 20px;
+}
+
+.routine-info p {
+  margin: 5px 0;
+  font-weight: bold;
+}
+
+/* Routine Table */
+.routine-table {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 90%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+th, td {
+  border: 1px solid #BB5BB5;
+  padding: 10px;
+}
+
+th {
+  background-color: #f3a8ee;
+}
+
+/* Button Styling */
+.download-btn {
+  padding: 10px 15px;
+  background-color: #ee5050;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.download-btn:hover {
+  background-color: #cc2c2c;
+}
+
+.footer {
+  margin-top: auto;
+}

@@ -46,7 +46,9 @@ export default function LoginPage() {
 
   return (
     <div className="login-container">
-      <div className="illustration-container"></div>
+      <div className="illustration-container">
+        <img src="\src\assets\illus.png" className="illustration"/>
+      </div>
 
       <div className="login-form-container">
         <h2 className="login-title">Log in with your Institutional ID</h2>
