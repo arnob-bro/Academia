@@ -18,7 +18,7 @@ return new class extends Migration
                 IN p_course_name VARCHAR(255),
                 IN p_department VARCHAR(100),
                 IN p_description TEXT,
-                IN p_credits INT,
+                IN p_credits FLOAT,
                 IN p_section VARCHAR(10),
                 IN p_facultyID VARCHAR(15),
                 IN p_number_of_vacant_seats INT,

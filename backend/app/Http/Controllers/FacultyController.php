@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Services\ScheduleService;
 use App\Services\LeaveApplicationService;
+use App\Services\CourseService;
 
 use Illuminate\Http\Request;
 
@@ -10,11 +11,13 @@ class FacultyController extends Controller
 {
     private $scheduleService;
     private $leaveApplicationService;
+    private $courseService;
 
-    public function __construct(ScheduleService $scheduleService, LeaveApplicationService $leaveApplicationService)
+    public function __construct(ScheduleService $scheduleService, LeaveApplicationService $leaveApplicationService, CourseService $courseService)
     {
         $this->scheduleService = $scheduleService;
         $this->leaveApplicationService = $leaveApplicationService;
+        $this->courseService = $courseService;
 
     }
 
@@ -43,5 +46,12 @@ class FacultyController extends Controller
         $leave_request = $this->leaveApplicationService->getAllLeaveApplicationRequestsOfAFaculty($request->facultyID );
 
         return response()->json($leave_request);
+    }
+
+    public function getAllCoursesOfAFaculty(Request $request)
+    {
+        $courses = $this->courseService->getAllCoursesOfAFaculty($request->facultyID );
+
+        return response()->json($courses);
     }
 }

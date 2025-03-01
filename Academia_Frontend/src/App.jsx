@@ -4,7 +4,8 @@ import {
   Route,
   Routes,
   Navigate,
-} from "react-router-dom";
+} from "react-router-dom"; 
+
 import LoginPage from "./components/Login/LoginPage";
 import Home from "./components/studentPages/studentDashboard/home.jsx";
 import StudentAdvisingPage from "./components/studentPages/studentAdvisingPage/studentAdvisingPage.jsx";
@@ -26,7 +27,9 @@ import FacultyPerformanceTracker from "./components/facultyPages/facultyPerforma
 import FacultyAttendanceTracker from "./components/facultyPages/facultyAttendanceTracker/facultyAttendanceTracker.jsx";
 
 import FacultyLeave from "./components/facultyPages/facultyLeaveApplication/facultyLeave.jsx";
-import FacultyLeaveAdmin from "./components/adminPages/facultyLeaveAdmin/facultyLeaveAdmin.jsx";
+import FacultyLeaveAdmin from "./components/adminPages/facultyLeaveAdmin/facultyLeaveAdmin.jsx"; 
+import CourseManagement from "./components/adminPages/courseManagement/courseManagement.jsx"; 
+
 function App() {
   const userData = JSON.parse(localStorage.getItem("userData"));
 
@@ -34,11 +37,10 @@ function App() {
     <Router>
       <Routes>
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} /> 
         
         
-        
-        
+
         {!userData ? (<><Route path="*" element={<Navigate to="/login" replace />}/> 
             
           </>
@@ -89,7 +91,8 @@ function App() {
               <>
                 <Route path="/Student-Admission" element={<StudentAdmission />} />
                 <Route path="/faculty-management" element={<FacultyManagement />} />
-                <Route path="/faculty-recruitment" element={<FacultyRecruitment />} />
+                <Route path="/faculty-recruitment" element={<FacultyRecruitment />} /> 
+                <Route path="/course-management-admin" element={<CourseManagement/>}/>
               </>
             )}
           </>
