@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Navbar from "../../navbar/navbar";
 import Footer from "../../footer/footer";
 import "./studentAdvisingPage.css";
-
+import { courseEnrollApi } from "../../../Api/student";
 const courses = [
   {
     code: "CSE101",
@@ -44,8 +44,25 @@ const courses = [
 const MAX_CREDITS = 18; // Maximum allowable credits per semester
 
 const StudentAdvisingPage = () => {
-  const [selectedCourses, setSelectedCourses] = useState([]);
+  const [data, setData] = useState({
+      studentID: "",
+      courseID: "",
+      enrollment_semester: "",
+    });
+  const changeHandler = (e) => {
+        setData({ ...data, [e.target.name]: e.target.value });
+      };
+  const courseEnroll = async (e) => {
+        e.preventDefault();
+        try {
+          const response = await courseEnrollApi(data);
+        } catch (error) {
+          alert("Some error has occurred. Please try again later");
+          console.log(error);
+        }
+      };
 
+  const [selectedCourses, setSelectedCourses] = useState([]);
   const toggleCourseSelection = (course) => {
     const isAlreadySelected = selectedCourses.find(
       (c) => c.code === course.code

@@ -28,7 +28,7 @@ const FacultyRecruitment = () => {
   return (
     <>
       <AdminNavbar />
-      <div className="form-container">
+       <div className="form-container">
         <h2 className="form-title">Faculty Recruitment Form</h2>
         <form className="form" onSubmit={registerFaculty}>
           <div className="form-group">

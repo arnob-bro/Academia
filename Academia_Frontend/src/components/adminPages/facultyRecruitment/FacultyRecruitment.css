@@ -1,8 +1,8 @@
-.form-container {
-    width: 80%;
+.form-conatiner{
+    width: 100%;
     margin: auto;
     padding: 20px;
-    background: linear-gradient(to bottom right, #fff, #f8e8ff);
+    background: linear-gradient(to bottom, #e9d5ff, #fbcfe8);
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   }
@@ -10,7 +10,7 @@
   .form-title {
     text-align: center;
     font-size: 24px;
-    color: #9b59b6;
+    color:  #0e0e53;
     font-weight: bold;
     margin-bottom: 20px;
   }
@@ -18,7 +18,7 @@
   .form {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
   }
   
   .form-group {
