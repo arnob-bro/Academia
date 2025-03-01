@@ -10,14 +10,14 @@
     padding: 6px 30px;
 }
 
-.admin-logo {
+.admin-navbar-admin-logo {
     width: 50px;
     height: 50px;
     gap: 10 px;
     border-radius: 50px;
 }
 
-.admin-nav-bottom a {
+.admin-navbar-admin-nav-bottom a {
     color: white;
     text-decoration: none;
     padding: 10px 15px;
@@ -25,8 +25,8 @@
     transition: color 0.3s;
 }
 
-.admin-nav-bottom a:hover,
-.admin-nav-bottom a.active {
+.admin-navbar-admin-nav-bottom a:hover,
+.admin-navbar-admin-nav-bottom a.active {
     color: #f8e35d;
     /* Highlight active link */
     font-weight: bold;
@@ -42,11 +42,11 @@ h1 {
 }
 
 
-.admin-session-info {
+.admin-navbar-admin-session-info {
     text-align: right;
 }
 
-.admin-logout {
+.admin-navbar-admin-logout {
     background: #FAF3C4;
     border: none;
     padding: 5px 12px;
@@ -57,7 +57,7 @@ h1 {
     transition: background 0.3s, color 0.3s;
 }
 
-.admin-login {
+.admin-navbar-admin-login {
     background: #e64c4c;
     border: none;
     padding: 5px 12px;
@@ -89,17 +89,17 @@ h1 {
 }
 
   /* Profile Section */
-  .profile-info {
+  .admin-navbar-profile-info {
     position: relative;
   }
   
-  .profile-icon {
+  .admin-navbar-profile-icon {
     font-size: 40px;
     cursor: pointer;
     margin-right: 35px;
   }
   
-  .dropdown-menu {
+  .admin-navbar-dropdown-menu {
     position: absolute;
     right: 0;
     top: 40px;
@@ -111,7 +111,7 @@ h1 {
     z-index: 1000;
   }
   
-  .dropdown-item {
+  .admin-navbar-dropdown-item {
     display: block;
     padding: 10px;
     text-decoration: none;
@@ -119,17 +119,17 @@ h1 {
     font-size: 17px;
   }
   
-  .dropdown-item:hover {
+  .admin-navbar-dropdown-item:hover {
     background: #f4f4f4;
   }
   
-  .dropdown-divider {
+  .admin-navbar-dropdown-divider {
     height: 1px;
     background: #ccc;
     margin: 5px 0;
   }
   
-  .logout {
+  .admin-navbar-logout {
     width: 100%;
     border: none;
     background: none;
