@@ -21,6 +21,7 @@ import StudentPerformanceTracker from "./components/studentPages/studentPerforma
 import StudentClassRoutine from "./components/studentPages/studentClassRoutine/studentClassRoutine.jsx";
 import FacultyRoutine from "./components/facultyPages/facultyRoutine/facultyRoutine.jsx";
 import FacultyPerformanceTracker from "./components/facultyPages/facultyPerformanceTracker/facultyPerformanceTracker.jsx";
+import FacultyAttendanceTracker from "./components/facultyPages/facultyAttendanceTracker/facultyAttendanceTracker.jsx";
 
 
 function App() {
@@ -32,7 +33,6 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         
-
 
         {!userData ? (
           <Route path="*" element={<Navigate to="/login" replace />} />
@@ -69,6 +69,7 @@ function App() {
               <Route path="/faculty-advising-page" element={<FacultyAdvisingPage />} />
               <Route path="/faculty-routine" element={<FacultyRoutine />} />
               <Route path="/faculty-performance-tracker" element={<FacultyPerformanceTracker />} />
+              <Route path="/faculty-attendance-tracker" element={<FacultyAttendanceTracker />} />
               </>
               
             )}

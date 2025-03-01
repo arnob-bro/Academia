@@ -74,6 +74,7 @@ const Navbarfaculty = () => {
         <Link to=" ">Schedule</Link>
         <Link to=" ">Courses</Link>
         <Link to="/faculty-performance-tracker">Student Performance Tracker</Link>
+        <Link to="/faculty-attendance-tracker">Attendance Tracker</Link>
         <Link to=" ">Materials</Link>
       </div>
     </nav>
