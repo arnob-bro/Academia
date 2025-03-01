@@ -23,6 +23,8 @@ import FacultyRoutine from "./components/facultyPages/facultyRoutine/facultyRout
 
 import FacultyAvailableSchedule from "./components/facultyPages/facultyAvailableSchedule/facultyAvailableSchedule.jsx";
 import FacultyPerformanceTracker from "./components/facultyPages/facultyPerformanceTracker/facultyPerformanceTracker.jsx";
+import FacultyAttendanceTracker from "./components/facultyPages/facultyAttendanceTracker/facultyAttendanceTracker.jsx";
+
 import FacultyLeave from "./components/facultyPages/facultyLeaveApplication/facultyLeave.jsx";
 
 function App() {
@@ -34,7 +36,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         
-
+        <Route path="/faculty-attendance-tracker" element={<FacultyAttendanceTracker />} />
 
         {!userData ? (<><Route path="*" element={<Navigate to="/login" replace />}/>
           </>
@@ -73,6 +75,7 @@ function App() {
               <Route path="/faculty-available-schedule" element={<FacultyAvailableSchedule />} />
               <Route path="/faculty-routine" element={<FacultyRoutine />} /> 
               <Route path="/faculty-performance-tracker" element={<FacultyPerformanceTracker />} />
+              <Route path="/faculty-attendance-tracker" element={<FacultyAttendanceTracker />} />
               <Route path="faculty-leave-application" element={<FacultyLeave/>} />
               </>
               
