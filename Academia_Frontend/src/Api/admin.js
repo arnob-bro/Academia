@@ -16,3 +16,17 @@ export const registerStudentApi = async (data) => {
   );
   return response.data;
 };
+export const registerFacultyApi = async (data) => {
+  const config = {
+    headers: {
+      "Content-type": "application/json",
+    },
+  };
+
+  const response = await axios.post(
+    `${baseURL}/faculty-registration`,
+    data,
+    config
+  );
+  return response.data;
+};

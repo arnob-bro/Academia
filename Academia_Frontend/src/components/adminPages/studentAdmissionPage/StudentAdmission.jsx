@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import React from "react";
 import Footer from "../../footer/footer";
 import "./StudentAdmission.css";
@@ -98,7 +98,7 @@ const StudentAdmission = () => {
               <button  type="submit" className="student-admission-register-button">
                 Register Student
               </button>
-              <button className="student-admission-clear-button">
+              <button type="reset" className="student-admission-clear-button">
                 Clear Form
               </button>
             </div>
