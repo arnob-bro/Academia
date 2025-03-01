@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 use App\Services\ScheduleService;
+use App\Services\LeaveApplicationService;
 
 use Illuminate\Http\Request;
 
 class FacultyController extends Controller
 {
     private $scheduleService;
+    private $leaveApplicationService;
 
-    public function __construct(ScheduleService $scheduleService)
+    public function __construct(ScheduleService $scheduleService, LeaveApplicationService $leaveApplicationService)
     {
         $this->scheduleService = $scheduleService;
+        $this->leaveApplicationService = $leaveApplicationService;
 
     }
 
@@ -27,5 +30,18 @@ class FacultyController extends Controller
         $schedules = $this->scheduleService->getAllScheduleOfASpecificRoomOfASpecificWeek($request->week_no , $request->room_no);
 
         return response()->json($schedules);
+    }
+    public function postLeaveApplicationRequest(Request $request)
+    {
+        $leave_request = $this->leaveApplicationService->postLeaveApplicationRequest($request->facultyID , $request->leave_type,$request->start_date,$request->end_date,$request->remarks );
+
+        return response()->json($leave_request);
+    }
+
+    public function getAllLeaveApplicationRequestsOfAFaculty(Request $request)
+    {
+        $leave_request = $this->leaveApplicationService->getAllLeaveApplicationRequestsOfAFaculty($request->facultyID );
+
+        return response()->json($leave_request);
     }
 }

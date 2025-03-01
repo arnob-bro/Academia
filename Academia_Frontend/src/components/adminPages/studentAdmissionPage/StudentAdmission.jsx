@@ -2,8 +2,28 @@ import React from "react";
 import Footer from "../../footer/footer";
 import "./StudentAdmission.css";
 import AdminNavbar from "../../navbar/AdminNavbar";
+import "../../../Api/admin.js";
 
 const StudentAdmission = () => {
+  const [data, setData] = useState({
+    name: "",
+    department: "",
+    institutional_email: "",
+    studentID: "",
+    current_semester: "",
+    enrollment_semester: "",
+  });
+
+  const registerStudent = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await registerStudentApi(data);
+    } catch (error) {
+      // alert("Some error has occurred. Please try again later");
+      // console.log(error);
+    }
+  };
+
   return (
     <>
       <AdminNavbar />
@@ -12,7 +32,10 @@ const StudentAdmission = () => {
           <h2 className="student-admission-form-title">
             Student Registration Form
           </h2>
-          <form className="student-admission-form-grid">
+          <form
+            className="student-admission-form-grid"
+            onSubmit={registerStudent}
+          >
             <input
               type="text"
               placeholder="First Name"

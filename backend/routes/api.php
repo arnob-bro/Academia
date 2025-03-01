@@ -25,14 +25,20 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 Route::post('/login', [AuthController::class, 'loginUser']);
 Route::post('/admin/student-admission', [AuthController::class, 'registerStudent']);
 Route::post('/admin/faculty-registration', [AuthController::class, 'registerFaculty']);
+
+
 Route::post('/admin/create-new-course', [AdminController::class, 'createNewCourse']);
 Route::post('/admin/edit-an-existing-course', [AdminController::class, 'editAnExistingCourse']);
 Route::post('/admin/course-schedule', [AdminController::class, 'assignScheduleForCourses']);
+Route::post('/admin/all-leave-applications', [AdminController::class, 'getAllLeaveApplicationRequests']);
+Route::get('/admin/leave-application-request', [AdminController::class, 'getAllLeaveApplicationRequests']);
 
 
 
 Route::post('/faculty/course-reschedule', [FacultyController::class, 'rescheduleClass']);
 Route::get('/faculty/room-schedule', [FacultyController::class, 'getAllScheduleOfASpecificRoomOfASpecificWeek']);
+Route::post('/faculty/leave-application-request', [FacultyController::class, 'postLeaveApplicationRequest']);
+Route::get('/faculty/leave-application-request', [FacultyController::class, 'getAllLeaveApplicationRequestsOfAFaculty']);
 
 
 
