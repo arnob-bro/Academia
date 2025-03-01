@@ -43,31 +43,31 @@ const Navbarfaculty = () => {
   };
 
   return (
-    <nav className="navbar">
-      <div className="nav-top">
+    <nav className="faculty-navbar">
+      <div className="faculty-navbar-nav-top">
         <img src="/assets/logo.png" className="logo" alt="Logo" />
         <h1>Academia</h1>
 
-        <div className="profile-info" ref={profileDropdownRef}>
-          <span className="profile-icon" onClick={toggleProfileDropdown}>
+        <div className="faculty-navbar-profile-info" ref={profileDropdownRef}>
+          <span className="faculty-navbar-profile-icon" onClick={toggleProfileDropdown}>
             👤
           </span>
 
           {/* Profile Dropdown Menu */}
           {profileDropdownOpen && (
-            <div className="dropdown-menu">
-              <Link to="/student-profile" className="dropdown-item">
+            <div className="faculty-navbar-dropdown-menu">
+              <Link to="/student-profile" className="faculty-navbar-dropdown-item">
                 Faculty Profile
               </Link>
-              <hr className="dropdown-divider" /> {/* Divider Line */}
-              <button className="dropdown-item logout" onClick={handleLogout}>
+              <hr className="faculty-navbar-dropdown-divider" /> {/* Divider Line */}
+              <button className="faculty-navbar-dropdown-item logout" onClick={handleLogout}>
                 Logout
               </button>
             </div>
           )}
         </div>
       </div>
-      <div className="nav-bottom">
+      <div className="faculty-navbar-nav-bottom">
         <Link to="/">Home</Link>
         <Link to="/faculty-advising-page">Faculty Advising</Link>
         <Link to="/faculty-routine">Class Routine</Link>
