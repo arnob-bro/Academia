@@ -1,0 +1,151 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom right, #fbe6ff, #f7c4ff);
+    margin: 0;
+    padding: 0;
+}
+
+.leave-form {
+    max-width: 700px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right, #f6e6ff, #d99aff);
+    padding: 15px;
+    border-radius: 15px 15px 0 0;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.session-info {
+    text-align: right;
+    font-size: 14px;
+}
+
+.logout {
+    background: #fcd84a;
+    border: none;
+    padding: 7px 15px;
+    cursor: pointer;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.nav-bar {
+    display: flex;
+    background: #c47bcc;
+    padding: 12px;
+    border-radius: 0 0 15px 15px;
+}
+
+.nav-bar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-weight: bold;
+}
+
+.nav-bar .active {
+    background: #8a4f8f;
+    border-radius: 8px;
+}
+
+.form-container {
+    padding: 25px;
+    text-align: center;
+}
+
+h2 {
+    color: #9b4e9b;
+    font-size: 22px;
+}
+
+label {
+    display: block;
+    margin: 12px 0 6px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #5e3162;
+    text-align: left;
+}
+
+select, input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #d8a3e2;
+    border-radius: 8px;
+    font-size: 14px;
+    background: white;
+}
+
+.date-picker {
+    display: flex;
+    justify-content: space-between;
+}
+
+.date-picker div {
+    width: 48%;
+}
+
+.total-days, .leave-status {
+    background: #f5a7f5;
+    padding: 12px;
+    margin: 15px 0;
+    border-radius: 8px;
+    font-weight: bold;
+    color: #4a1f4d;
+    font-size: 16px;
+}
+
+textarea {
+    height: 90px;
+    resize: none;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.request-btn {
+    background: #72d572;
+    border: none;
+    padding: 12px;
+    width: 48%;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+}
+
+.cancel-btn {
+    background: #ff6b6b;
+    border: none;
+    padding: 12px;
+    width: 48%;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    font-size: 13px;
+    color: #5a2c5f;
+}

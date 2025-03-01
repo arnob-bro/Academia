@@ -73,6 +73,7 @@ const Navbarfaculty = () => {
         <Link to="/faculty-routine">Class Routine</Link>
         <Link to="/faculty-available-schedule">Available Schedule</Link>
         <Link to=" ">Courses</Link>
+        <Link to="/faculty-performance-tracker">Student Performance Tracker</Link>
         <Link to=" ">Materials</Link>
       </div>
     </nav>
