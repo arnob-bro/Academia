@@ -1,6 +1,7 @@
 /* Background and Layout */
 .home-container {
     background: linear-gradient(to bottom, #FFFDF1, #FFDAFA);
+    padding: 20px;
   }
   
   /* Content Section */
@@ -148,11 +149,11 @@
   
   
   /* Footer */
-  .footer {
+  /* .footer {
     text-align: center;
     padding: 20px;
     background: #FFDAFA;
     color: rgb(0, 0, 0);
     font-weight: bold;
-  }
+  } */
   

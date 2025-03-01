@@ -1,6 +1,7 @@
 import React from "react";
 import "./adminHomePage.css";
 import AdminNavbar from "../../navbar/AdminNavbar";
+import Footer from "../../footer/footer";
 import {
   BarChart,
   Bar,
@@ -56,7 +57,9 @@ const AdminHomePage = () => {
             </ResponsiveContainer>
           </div>
         </main>
+        <Footer/>
       </div>
+      
     </div>
   );
 };
