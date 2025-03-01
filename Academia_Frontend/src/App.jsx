@@ -26,7 +26,7 @@ import FacultyPerformanceTracker from "./components/facultyPages/facultyPerforma
 import FacultyAttendanceTracker from "./components/facultyPages/facultyAttendanceTracker/facultyAttendanceTracker.jsx";
 
 import FacultyLeave from "./components/facultyPages/facultyLeaveApplication/facultyLeave.jsx";
-
+import FacultyLeaveAdmin from "./components/adminPages/facultyLeaveAdmin/facultyLeaveAdmin.jsx";
 function App() {
   const userData = JSON.parse(localStorage.getItem("userData"));
 
@@ -36,9 +36,11 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         
-        <Route path="/faculty-attendance-tracker" element={<FacultyAttendanceTracker />} />
-
-        {!userData ? (<><Route path="*" element={<Navigate to="/login" replace />}/>
+        
+        
+        
+        {!userData ? (<><Route path="*" element={<Navigate to="/login" replace />}/> 
+            
           </>
         ) : (
           <>
@@ -76,7 +78,8 @@ function App() {
               <Route path="/faculty-routine" element={<FacultyRoutine />} /> 
               <Route path="/faculty-performance-tracker" element={<FacultyPerformanceTracker />} />
               <Route path="/faculty-attendance-tracker" element={<FacultyAttendanceTracker />} />
-              <Route path="faculty-leave-application" element={<FacultyLeave/>} />
+              <Route path="faculty-leave-application" element={<FacultyLeave/>} /> 
+              <Route path="/faculty-leave-admin" element={<FacultyLeaveAdmin/>}/>
               </>
               
             )}
