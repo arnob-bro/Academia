@@ -30,8 +30,9 @@ Route::post('/admin/faculty-registration', [AuthController::class, 'registerFacu
 Route::post('/admin/create-new-course', [AdminController::class, 'createNewCourse']);
 Route::post('/admin/edit-an-existing-course', [AdminController::class, 'editAnExistingCourse']);
 Route::post('/admin/course-schedule', [AdminController::class, 'assignScheduleForCourses']);
-Route::post('/admin/all-leave-applications', [AdminController::class, 'getAllLeaveApplicationRequests']);
+Route::post('/admin/leave-application-request', [AdminController::class, 'reviewALeaveApplicationRequest']);
 Route::get('/admin/leave-application-request', [AdminController::class, 'getAllLeaveApplicationRequests']);
+Route::get('/admin/all-courses', [AdminController::class, 'getAllCourses']);
 
 
 
@@ -39,6 +40,7 @@ Route::post('/faculty/course-reschedule', [FacultyController::class, 'reschedule
 Route::get('/faculty/room-schedule', [FacultyController::class, 'getAllScheduleOfASpecificRoomOfASpecificWeek']);
 Route::post('/faculty/leave-application-request', [FacultyController::class, 'postLeaveApplicationRequest']);
 Route::get('/faculty/leave-application-request', [FacultyController::class, 'getAllLeaveApplicationRequestsOfAFaculty']);
+Route::get('/faculty/my-courses/', [FacultyController::class, 'getAllCoursesOfAFaculty']);
 
 
 

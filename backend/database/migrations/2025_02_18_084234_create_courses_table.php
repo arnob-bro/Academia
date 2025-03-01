@@ -21,7 +21,7 @@ return new class extends Migration
                 course_name VARCHAR(255) NOT NULL,
                 department VARCHAR(100) NOT NULL,
                 description TEXT NOT NULL,
-                credits INT NOT NULL,
+                credits FLOAT NOT NULL,
                 section VARCHAR(10) NOT NULL,
                 number_of_vacant_seats INT,
                 facultyID VARCHAR(15) NOT NULL,

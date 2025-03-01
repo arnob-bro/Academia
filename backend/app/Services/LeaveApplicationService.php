@@ -61,4 +61,24 @@ class LeaveApplicationService
             ];
         }
     }
+
+
+    public function reviewALeaveApplicationRequest($p_leave_id, $p_leave_status )
+    {
+        try{
+            DB::statement("CALL reviewALeaveApplicationRequest(?,?)", [
+            $p_leave_id, $p_leave_status
+        ]);
+
+        return [
+            'message' => 'Leave Request has been reviewed',
+            ];
+
+        }catch(\Exception $e){
+            return [
+            'error' => 'reviewing Leave Request failed ',
+            'message' => $e->getMessage(),
+            ];
+        }
+    }
 }
