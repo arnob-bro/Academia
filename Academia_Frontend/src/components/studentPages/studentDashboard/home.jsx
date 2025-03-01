@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../../navbar/navbar";
 import ChartAt from "./chartAt";
 import "./home.css";
@@ -14,6 +15,11 @@ const data = [
 ];
 
 const Home = () => {
+  const navigate = useNavigate(); // Initialize navigate function
+
+  const handleNavigate = () => {
+    navigate("/student-class-routine"); // Navigate to the desired route
+  };
   return (
     <>
       <Navbar />
@@ -146,7 +152,7 @@ const Home = () => {
                 </tr>
               </tbody>
             </table>
-            <div className="see-more">More →</div>
+            <div className="see-more" onClick={handleNavigate}>More →</div>
           </div>
 
           <div className="graph-box">

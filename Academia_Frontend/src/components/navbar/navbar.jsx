@@ -100,7 +100,8 @@ const Navbar = () => {
           )}
         </div>
 
-        <Link to=" ">Class Routine</Link>
+        <Link to="/student-class-routine">Class Routine</Link>
+        <Link to="/student-performance-tracker">Performance Tracker</Link>
         <Link to="/student-result-page">Result</Link>
         <Link to=" ">Notice</Link>
         <Link to=" ">Payment</Link>

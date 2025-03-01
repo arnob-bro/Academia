@@ -2,7 +2,7 @@
     display: flex;
     height: 100vh;
     width: 100%;
-    background: linear-gradient(to bottom, #fef7e5, #fbe3f0);
+    background: linear-gradient(to bottom, #fef7e5, #d38bb1);
 }
 
 .illustration-container {
@@ -16,6 +16,8 @@
 .illustration {
     width: 90%;
     max-width: 450px;
+    height: auto;
+    object-fit: contain;
 }
 
 .login-form-container {
@@ -56,20 +58,19 @@
 .input-field {
     width: 100%;
     padding: 12px;
-    border: 1px solid #ccc;
+    border: 1px solid #e6d7d7;
     border-radius: 6px;
     font-size: 14px;
     outline: none;
 }
 
 .input-field:focus {
-    border-color: #a855f7;
-    box-shadow: 0px 0px 5px rgba(168, 85, 247, 0.5);
+    border-color: #e07fd2;
 }
 
 .login-button {
     width: 100%;
-    background: #a855f7;
+    background: #cc65c5;
     color: white;
     padding: 12px;
     border: none;
@@ -80,7 +81,7 @@
 }
 
 .login-button:hover {
-    background: #9333ea;
+    background: #c44dbc;
 }
 
 .forgot-password {
@@ -89,7 +90,7 @@
 }
 
 .forgot-password a {
-    color: #7c3aed;
+    color: #52269e;
     text-decoration: none;
     font-size: 14px;
 }

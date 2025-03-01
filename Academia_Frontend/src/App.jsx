@@ -17,7 +17,16 @@ import StudentResultPage from "./components/studentPages/studentResultPage/stude
 import FacultyHomePage from "./components/facultyPages/facultyDashboard/facultyHomePage.jsx";
 import AdminHomePage from "./components/adminPages/adminDashboard/adminHomePage.jsx";
 import ResetPassword from "./components/Login/ResetPassword.jsx";
+import StudentPerformanceTracker from "./components/studentPages/studentPerformanceTracker/studentPerformanceTracker.jsx";
+import StudentClassRoutine from "./components/studentPages/studentClassRoutine/studentClassRoutine.jsx";
+import FacultyRoutine from "./components/facultyPages/facultyRoutine/facultyRoutine.jsx";
 
+import FacultyAvailableSchedule from "./components/facultyPages/facultyAvailableSchedule/facultyAvailableSchedule.jsx";
+import FacultyPerformanceTracker from "./components/facultyPages/facultyPerformanceTracker/facultyPerformanceTracker.jsx";
+import FacultyAttendanceTracker from "./components/facultyPages/facultyAttendanceTracker/facultyAttendanceTracker.jsx";
+
+import FacultyLeave from "./components/facultyPages/facultyLeaveApplication/facultyLeave.jsx";
+import FacultyLeaveAdmin from "./components/adminPages/facultyLeaveAdmin/facultyLeaveAdmin.jsx";
 function App() {
   const userData = JSON.parse(localStorage.getItem("userData"));
 
@@ -26,54 +35,61 @@ function App() {
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/reset-password" element={<ResetPassword />} />
-
-        {!userData ? (
-          <Route path="*" element={<Navigate to="/login" replace />} />
+        
+        
+        
+        
+        {!userData ? (<><Route path="*" element={<Navigate to="/login" replace />}/> 
+            
+          </>
         ) : (
           <>
+            {/* Conditionally render home page based on user role */}
+            <Route
+              path="/"
+              element={
+                userData.role === "student" ? (
+                  <Home />
+                ) : userData.role === "faculty" ? (
+                  <FacultyHomePage />
+                ) : (
+                  <AdminHomePage />
+                )
+              }
+            />
+
+            {/* Student Routes */}
             {userData.role === "student" && (
               <>
-                <Route path="/" element={<Home />} />
-                <Route
-                  path="/course-advising"
-                  element={<StudentAdvisingPage />}
-                />
-                <Route
-                  path="/course-enrollment"
-                  element={<StudentCourseEnrollment />}
-                />
-                <Route
-                  path="/student-result-page"
-                  element={<StudentResultPage />}
-                />
+                <Route path="/course-advising" element={<StudentAdvisingPage />} />
+                <Route path="/course-enrollment" element={<StudentCourseEnrollment />} />
+                <Route path="/student-performance-tracker" element={<StudentPerformanceTracker />} />
+                <Route path="/student-result-page" element={<StudentResultPage />} />
+                <Route path="/student-class-routine" element={<StudentClassRoutine />} />
               </>
             )}
 
+            {/* Faculty Routes */}
             {userData.role === "faculty" && (
               <>
-                <Route
-                  path="/faculty-advising-page"
-                  element={<FacultyAdvisingPage />}
-                />
-                <Route path="/" element={<FacultyHomePage />} />
+              <Route path="/faculty-advising-page" element={<FacultyAdvisingPage />} />
+              <Route path="/faculty-routine" element={<FacultyRoutine />} />
+              <Route path="/faculty-available-schedule" element={<FacultyAvailableSchedule />} />
+              <Route path="/faculty-routine" element={<FacultyRoutine />} /> 
+              <Route path="/faculty-performance-tracker" element={<FacultyPerformanceTracker />} />
+              <Route path="/faculty-attendance-tracker" element={<FacultyAttendanceTracker />} />
+              <Route path="faculty-leave-application" element={<FacultyLeave/>} /> 
+              <Route path="/faculty-leave-admin" element={<FacultyLeaveAdmin/>}/>
               </>
+              
             )}
 
+            {/* Admin Routes */}
             {userData.role === "admin" && (
               <>
-                <Route
-                  path="/Student-Admission"
-                  element={<StudentAdmission />}
-                />
-                <Route
-                  path="/faculty-management"
-                  element={<FacultyManagement />}
-                />
-                <Route
-                  path="/faculty-recruitment"
-                  element={<FacultyRecruitment />}
-                />
-                <Route path="/" element={<AdminHomePage />} />
+                <Route path="/Student-Admission" element={<StudentAdmission />} />
+                <Route path="/faculty-management" element={<FacultyManagement />} />
+                <Route path="/faculty-recruitment" element={<FacultyRecruitment />} />
               </>
             )}
           </>

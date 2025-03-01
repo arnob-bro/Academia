@@ -1,0 +1,102 @@
+/* Global Styles */
+body {
+    font-family: "Arial", sans-serif;
+    background: linear-gradient(to right, #fef3c7, #fbcfe8, #d8b4fe);
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #e3e0e9;
+    color: white;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-around;
+    border-radius: 10px;
+}
+
+.navbar button {
+    background: transparent;
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.navbar button:hover {
+    text-decoration: underline;
+}
+
+/* Faculty Leave Request Table */
+.table-container {
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+th {
+    background-color: #b22eb2;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+tr:hover {
+    background-color: #f3f4f6;
+    transition: 0.3s ease-in-out;
+}
+
+/* Status Dropdown */
+.status-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.status-dropdown svg {
+    margin-left: 6px;
+    width: 16px;
+    height: 16px;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    background-color: #d1d5db;
+    border: none;
+    padding: 8px 14px;
+    margin: 5px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.pagination button:hover {
+    background-color: #9ca3af;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 30px;
+    color: #4b5563;
+}

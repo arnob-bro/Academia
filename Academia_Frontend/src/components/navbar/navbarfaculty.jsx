@@ -70,8 +70,11 @@ const Navbarfaculty = () => {
       <div className="nav-bottom">
         <Link to="/">Home</Link>
         <Link to="/faculty-advising-page">Faculty Advising</Link>
-        <Link to=" ">Schedule</Link>
+        <Link to="/faculty-routine">Class Routine</Link>
+        <Link to="/faculty-available-schedule">Available Schedule</Link>
         <Link to=" ">Courses</Link>
+        <Link to="/faculty-performance-tracker">Student Performance Tracker</Link>
+        <Link to="/faculty-attendance-tracker">Attendance Tracker</Link>
         <Link to=" ">Materials</Link>
       </div>
     </nav>
