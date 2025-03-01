@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Navbar from "../../navbar/navbar.jsx";
+import Navbarfaculty from "../../navbar/navbarfaculty";
 import Footer from "../../footer/footer.jsx";
 import FacultyPerformanceTrackerChart from "./facultyPerformanceTrackerChart";
 import "./facultyPerformanceTracker.css";
@@ -48,7 +48,7 @@ export const FacultyPerformanceTracker = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbarfaculty />
       <div className="faculty-performance-tracker-container">
         <h2>Faculty Performance Tracker</h2>
 

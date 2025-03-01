@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Navbar from "../../navbar/navbar";
+import Navbarfaculty from "../../navbar/navbarfaculty";
 import Footer from "../../footer/footer";
 import AttendanceHistoryModal from "./attendanceHistoryModal"; // Import the modal
 import "./facultyAttendanceTracker.css";
@@ -57,7 +57,7 @@ const FacultyAttendanceTracker = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbarfaculty />
       <div className="faculty-attendance-tracker-container">
         {/* Course Selection Dropdown */}
         <div className="faculty-attendance-tracker-course-selection">
