@@ -1,8 +1,9 @@
+import { useState, useEffect } from "react";
 import React from "react";
 import Footer from "../../footer/footer";
 import "./StudentAdmission.css";
 import AdminNavbar from "../../navbar/AdminNavbar";
-import "../../../Api/admin.js";
+import { registerStudentApi } from "../../../Api/admin";
 
 const StudentAdmission = () => {
   const [data, setData] = useState({
@@ -13,14 +14,16 @@ const StudentAdmission = () => {
     current_semester: "",
     enrollment_semester: "",
   });
-
+  const changeHandler = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
   const registerStudent = async (e) => {
     e.preventDefault();
     try {
       const response = await registerStudentApi(data);
     } catch (error) {
-      // alert("Some error has occurred. Please try again later");
-      // console.log(error);
+      alert("Some error has occurred. Please try again later");
+      console.log(error);
     }
   };
 
@@ -38,55 +41,61 @@ const StudentAdmission = () => {
           >
             <input
               type="text"
-              placeholder="First Name"
+              name="name"
+              placeholder="Name"
               className="student-admission-input-style"
+              onChange={changeHandler}
+              value={data.name || ""}
             />
-            <input
-              type="text"
-              placeholder="Middle Name"
-              className="student-admission-input-style"
-            />
-            <input
-              type="text"
-              placeholder="Last Name"
-              className="student-admission-input-style"
-            />
+           
 
-            <select className="student-admission-input-style">
+            <select 
+            name="department"
+            className="student-admission-input-style"
+            onChange={changeHandler}
+            value={data.department || ""}
+            >
               <option>Select Department</option>
+              <option value="CSE">CSE</option>
+                <option value="EEE">EEE</option>
+                <option value="ME">ME</option>
+                <option value="TE">TE</option>
             </select>
 
             <input
               type="text"
+              name="studentID"
               placeholder="Student ID"
               className="student-admission-input-style"
+              onChange={changeHandler}
+              value={data.studentID || ""}
             />
-
-            <div className="date-selector">
-              <select className="student-admission-input-style">
-                <option>Select Year</option>
-              </select>
-              <select className="student-admission-input-style">
-                <option>Select Month</option>
-              </select>
-              <select className="student-admission-input-style">
-                <option>Select Date</option>
-              </select>
-            </div>
-
             <input
+              type="text"
+              name="current_semester"
+              placeholder="Current Semester"
+              className="student-admission-input-style"
+              onChange={changeHandler}
+              value={data.current_semester || ""}
+            />
+               <input
+              type="text"
+              name="enrollment_semester"
+              placeholder="Enrollment Semester"
+              className="student-admission-input-style"
+              onChange={changeHandler}
+              value={data.enrollment_semester || ""}
+            />
+                 <input
               type="email"
+              name="institutional_email"
               placeholder="Email"
               className="student-admission-input-style"
+              onChange={changeHandler}
+              value={data.institutional_email || ""}
             />
-            <input
-              type="tel"
-              placeholder="Phone Number"
-              className="student-admission-input-style"
-            />
-
             <div className="student-admission-button-group">
-              <button className="student-admission-register-button">
+              <button  type="submit" className="student-admission-register-button">
                 Register Student
               </button>
               <button className="student-admission-clear-button">

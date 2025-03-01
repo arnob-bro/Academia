@@ -6,7 +6,7 @@ import "./facultyAvailableSchedule.css";
 const FacultyAvailableSchedule = () => {
   const [selectedRoom, setSelectedRoom] = useState("7A03");
   const [selectedWeek, setSelectedWeek] = useState("1st");
-  const [isPopupOpen, setIsPopupOpen] = useState(false); // State to control popup visibility
+  const [isPopupOpen, setIsPopupOpen] = useState(false); 
 
   // Schedule data for rooms and weeks
   const scheduleData = {
