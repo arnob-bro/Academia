@@ -23,6 +23,7 @@ import FacultyRoutine from "./components/facultyPages/facultyRoutine/facultyRout
 import FacultyPerformanceTracker from "./components/facultyPages/facultyPerformanceTracker/facultyPerformanceTracker.jsx";
 import FacultyAttendanceTracker from "./components/facultyPages/facultyAttendanceTracker/facultyAttendanceTracker.jsx";
 
+import FacultyLeave from "./components/facultyPages/facultyLeaveApplication/facultyLeave.jsx";
 
 function App() {
   const userData = JSON.parse(localStorage.getItem("userData"));
@@ -33,9 +34,10 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         
+        <Route path="/faculty-attendance-tracker" element={<FacultyAttendanceTracker />} />
 
-        {!userData ? (
-          <Route path="*" element={<Navigate to="/login" replace />} />
+        {!userData ? (<><Route path="*" element={<Navigate to="/login" replace />}/>
+          </>
         ) : (
           <>
             {/* Conditionally render home page based on user role */}
@@ -67,9 +69,10 @@ function App() {
             {userData.role === "faculty" && (
               <>
               <Route path="/faculty-advising-page" element={<FacultyAdvisingPage />} />
-              <Route path="/faculty-routine" element={<FacultyRoutine />} />
+              <Route path="/faculty-routine" element={<FacultyRoutine />} /> 
               <Route path="/faculty-performance-tracker" element={<FacultyPerformanceTracker />} />
               <Route path="/faculty-attendance-tracker" element={<FacultyAttendanceTracker />} />
+              <Route path="faculty-leave-application" element={<FacultyLeave/>} />
               </>
               
             )}

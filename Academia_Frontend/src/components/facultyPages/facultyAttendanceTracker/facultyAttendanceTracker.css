@@ -59,6 +59,7 @@
 .faculty-attendance-tracker-attendance-table th,
 .faculty-attendance-tracker-attendance-table td {
     border: 1px solid #ccc;
+    background-color: white;
     padding: 12px;
     text-align: center;
     font-size: 14px;
