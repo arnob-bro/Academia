@@ -41,21 +41,21 @@ const courses = [
   },
 ];
 
-const MAX_CREDITS = 18; // Maximum allowable credits per semester
+const MAX_CREDITS = 18; 
 
 const StudentAdvisingPage = () => {
-  const [data, setData] = useState({
+  const [course, setCourse] = useState({
       studentID: "",
       courseID: "",
       enrollment_semester: "",
     });
   const changeHandler = (e) => {
-        setData({ ...data, [e.target.name]: e.target.value });
+        setData({ ...course, [e.target.name]: e.target.value });
       };
   const courseEnroll = async (e) => {
         e.preventDefault();
         try {
-          const response = await courseEnrollApi(data);
+          const response = await courseEnrollApi(course);
         } catch (error) {
           alert("Some error has occurred. Please try again later");
           console.log(error);
