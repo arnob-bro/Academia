@@ -78,7 +78,7 @@ h1 {
   background: none;
   cursor: pointer;
   font-weight: bold;
-  color: red; 
+  color: red;
   padding: 10px;
 }
 
@@ -104,12 +104,12 @@ h1 {
 }
 
 /* Enrollment Dropdown */
-.student-navbar-dropdown {
+.Student-navbar-dropdown {
   position: relative;
   display: inline-block;
 }
 
-.student-navbar-dropbtn {
+.Student-navbar-dropbtn {
   background: none;
   border: none;
   font-size: 16px;
@@ -120,11 +120,11 @@ h1 {
   transition: color 0.3s;
 }
 
-.student-navbar-dropbtn:hover {
+.Student-navbar-dropbtn:hover {
   color: #f8e35d;
 }
 
-.student-navbar-dropdown-content {
+.Student-navbar-dropdown-content {
   display: none;
   position: absolute;
   background: white;
@@ -134,7 +134,7 @@ h1 {
   overflow: hidden;
   z-index: 1000;
 }
-.student-navbar-dropdown-content a {
+.Student-navbar-dropdown-content a {
   color: black  !important;  
   font-weight: 500;
   padding: 10px;
@@ -143,13 +143,13 @@ h1 {
   font-size: 16px;
 }
 
-.student-navbar-dropdown-content a:hover {
+.Student-navbar-dropdown-content a:hover {
   background-color: #ebe3e3;
   padding: 10px;
 }
 
 
 /* Show dropdown when active */
-.student-navbar-dropdown:hover .dropdown-content {
+.Student-navbar-dropdown:hover .Student-navbar-dropdown-content {
   display: block;
 }
