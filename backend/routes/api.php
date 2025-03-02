@@ -41,6 +41,9 @@ Route::get('/faculty/room-schedule', [FacultyController::class, 'getAllScheduleO
 Route::post('/faculty/leave-application-request', [FacultyController::class, 'postLeaveApplicationRequest']);
 Route::get('/faculty/leave-application-request', [FacultyController::class, 'getAllLeaveApplicationRequestsOfAFaculty']);
 Route::get('/faculty/my-courses/', [FacultyController::class, 'getAllCoursesOfAFaculty']);
+Route::get('/faculty/courses/{courseID}/all-students', [FacultyController::class, 'getAllStudentsOfACourseOfASemester']);
+Route::post('/faculty/schedule/student-attendance/',[FacultyController::class, 'postAttendanceStatusOfStudents']);
+Route::get('/faculty/schedule/student-attendance/weeks', [FacultyController::class, 'getAllWeeksForAttendanceHistory']);
 
 
 
@@ -49,3 +52,4 @@ Route::post('/student/edit-all-information-of-student', [StudentController::clas
 Route::get('/student/weekly-schedule', [StudentController::class, 'getScheduleOfAStudent']);
 Route::get('/student/daily-schedule', [StudentController::class, 'getDailyScheduleOfAStudent']);
 Route::post('/student/course_enrollment', [StudentController::class, 'enrollInCourse']);
+Route::get('/student/all-available-courses', [StudentController::class, 'getAllCourses']);
