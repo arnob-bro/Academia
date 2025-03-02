@@ -15,17 +15,22 @@ const FacultyAttendanceTracker = () => {
   const [showWarningModal, setShowWarningModal] = useState(false);
   const [previousData, setPreviousData] = useState({});
 
+    const [data, setData] = useState({
+    facultyID: "",
+    
+  });
+
   // Fetch facultyID dynamically (Modify based on how you store user data)
   const userData = JSON.parse(localStorage.getItem("userData"));
   const facultyID=userData.userID;
-
+  setData({ facultyID: facultyID });
   useEffect(() => {
     const fetchCourses = async () => {
       try {
         console.log(facultyID);
-        const data = await handleFetchCoursesOfAFacultyApi(facultyID);
-        console.log(data);
-        setCourses(data[0] || []); // Ensure response is an array
+        const allCourses = await handleFetchCoursesOfAFacultyApi(data);
+        console.log(allCourses);
+        setCourses(data[0]); // Ensure response is an array
       } catch (error) {
         console.error("Error fetching courses:", error);
       }

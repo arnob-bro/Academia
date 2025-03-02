@@ -52,4 +52,4 @@ Route::post('/student/edit-all-information-of-student', [StudentController::clas
 Route::get('/student/weekly-schedule', [StudentController::class, 'getScheduleOfAStudent']);
 Route::get('/student/daily-schedule', [StudentController::class, 'getDailyScheduleOfAStudent']);
 Route::post('/student/course_enrollment', [StudentController::class, 'enrollInCourse']);
-Route::get('/student/all-available-courses', [StudentController::class, 'getAllCourses']);
+Route::get('/student/all-available-courses', [StudentController::class, 'getAllCoursesForAdvising']);

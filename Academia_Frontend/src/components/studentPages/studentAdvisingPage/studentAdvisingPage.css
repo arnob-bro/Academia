@@ -56,3 +56,7 @@ button {
   padding: 10px 15px;
   margin-top: 10px;
 }
+.delete-btn{
+  background-color: #e74c3c;
+  color: white;
+}

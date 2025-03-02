@@ -4,74 +4,116 @@
   justify-content: center;
   align-items: center;
   background: linear-gradient(to bottom, #e9d5ff, #fbcfe8);
+  padding: 20px;
 }
 
 .student-admission-form-wrapper {
   width: 100%;
-  max-width: 800px;
+  max-width: 850px;
   background: white;
-  padding: 20px;
+  padding: 30px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
+  border-radius: 12px;
 }
 
 .student-admission-form-title {
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: bold;
   color: #7c3aed;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .student-admission-form-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px 40px;
+  align-items: center;
 }
 
 .student-admission-input-style {
   border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
+  border-radius: 6px;
+  padding: 12px;
+  font-size: 16px;
   width: 100%;
   outline: none;
+  transition: all 0.3s ease-in-out;
 }
 
-.date-selector {
+.student-admission-input-style:focus {
+  border-color: #7c3aed;
+  box-shadow: 0px 0px 5px rgba(124, 58, 237, 0.5);
+}
+
+select.student-admission-input-style {
+  cursor: pointer;
+  background: white;
+}
+
+/* Ensure Select field height and width match input fields */
+.student-admission-form-grid select {
+  height: 45px;
+  width: 100%;
+  margin-top: 5px; 
+}
+
+/* General input and select styles */
+select,
+input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.form-group {
   display: flex;
-  gap: 5px;
-  grid-column: span 3;
+  gap: 10px;
+  width: 100%;
+}
+
+.form-group select {
+  flex: 1;
 }
 
 .full-width {
-  grid-column: span 3;
+  grid-column: span 2;
 }
 
 .student-admission-button-group {
   display: flex;
   justify-content: center;
-  gap: 15px;
-  grid-column: span 3;
+  gap: 20px;
+  grid-column: span 2;
+  margin-top: 25px;
+}
+
+.student-admission-register-button,
+.student-admission-clear-button {
+  padding: 12px 25px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
 }
 
 .student-admission-register-button {
   background-color: #22c55e;
   color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
+  border: none;
+}
+
+.student-admission-register-button:hover {
+  background-color: #16a34a;
 }
 
 .student-admission-clear-button {
   background-color: #ef4444;
   color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.student-admission-register-button:hover {
-  background-color: #16a34a;
+  border: none;
 }
 
 .student-admission-clear-button:hover {
