@@ -81,4 +81,22 @@ class CourseService
             ];
         }
     }
+
+
+    public function getAllCoursesForAdvising()
+    {
+        try{
+            $data = DB::select("CALL getAllCoursesForAdvising()",);
+
+        return [
+            $data
+            ];
+
+        }catch(\Exception $e){
+            return [
+            'error' => 'Course fetching failed',
+            'message' => $e->getMessage()
+            ];
+        }
+    }
 }
