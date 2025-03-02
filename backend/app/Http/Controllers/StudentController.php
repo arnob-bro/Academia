@@ -75,9 +75,9 @@ class StudentController extends Controller
     
     }
 
-    public function getAllCourses(Request $request)
+    public function getAllCoursesForAdvising(Request $request)
     {
-        $data = $this->courseService->getAllCourses();
+        $data = $this->courseService->getAllCoursesForAdvising();
 
         return response()->json($data);
     }
