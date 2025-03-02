@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Services\UserInfoService;
 use App\Services\ScheduleService;
 use App\Services\EnrollmentService;
+use App\Services\CourseService;
 
 use Illuminate\Http\Request;
 
@@ -13,12 +14,14 @@ class StudentController extends Controller
     private $userInfoService;
     private $scheduleService;
     private $enrollmentService;
+    private $courseService;
 
-    public function __construct(UserInfoService $userInfoService, ScheduleService $scheduleService,EnrollmentService  $enrollmentService)
+    public function __construct(UserInfoService $userInfoService, ScheduleService $scheduleService,EnrollmentService  $enrollmentService, CourseService $courseService)
     {
         $this->userInfoService = $userInfoService;
         $this->scheduleService = $scheduleService;
         $this->enrollmentService = $enrollmentService;
+        $this->courseService = $courseService;
     }
 
     public function storeAllInformationsOfStudent(Request $request)
@@ -70,5 +73,12 @@ class StudentController extends Controller
      );
         return response()->json($data);
     
+    }
+
+    public function getAllCourses(Request $request)
+    {
+        $data = $this->courseService->getAllCourses();
+
+        return response()->json($data);
     }
 }

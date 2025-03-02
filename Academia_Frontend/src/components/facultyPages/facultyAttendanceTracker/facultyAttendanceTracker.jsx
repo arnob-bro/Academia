@@ -23,9 +23,9 @@ const FacultyAttendanceTracker = () => {
     const fetchCourses = async () => {
       try {
         console.log(facultyID);
-        const response = await handleFetchCoursesOfAFacultyApi(facultyID);
-        console.log(response);
-        setCourses(response || []); // Ensure response is an array
+        const data = await handleFetchCoursesOfAFacultyApi(facultyID);
+        console.log(data);
+        setCourses(data[0] || []); // Ensure response is an array
       } catch (error) {
         console.error("Error fetching courses:", error);
       }

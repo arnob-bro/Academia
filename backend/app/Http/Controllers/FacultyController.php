@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Services\ScheduleService;
 use App\Services\LeaveApplicationService;
 use App\Services\CourseService;
+use App\Services\AttendanceService;
 
 use Illuminate\Http\Request;
 
@@ -12,12 +13,14 @@ class FacultyController extends Controller
     private $scheduleService;
     private $leaveApplicationService;
     private $courseService;
+    private $attendanceService;
 
-    public function __construct(ScheduleService $scheduleService, LeaveApplicationService $leaveApplicationService, CourseService $courseService)
+    public function __construct(ScheduleService $scheduleService, LeaveApplicationService $leaveApplicationService, CourseService $courseService, AttendanceService $attendanceService)
     {
         $this->scheduleService = $scheduleService;
         $this->leaveApplicationService = $leaveApplicationService;
         $this->courseService = $courseService;
+        $this->attendanceService = $attendanceService;
 
     }
 
@@ -53,5 +56,40 @@ class FacultyController extends Controller
         $courses = $this->courseService->getAllCoursesOfAFaculty($request->facultyID );
 
         return response()->json($courses);
+    }
+
+    public function getAllStudentsOfACourseOfASemester(Request $request)
+    {
+        $students = $this->attendanceService->getAllStudentsOfACourseOfASemester($request->courseID);
+
+        return response()->json($students);
+    }
+
+    public function postAttendanceStatusOfStudents(Request $request)
+    {
+        // Validate the incoming request
+        $validatedData = $request->validate([
+            '*.attendance_date' => 'required|date',
+            '*.scheduleID' => 'required|integer',
+            '*.studentID' => 'required|string|max:15',
+            '*.status' => 'required|in:Present,Absent,Late,Excused'
+        ]);
+
+        // Iterate over each object in the request
+        foreach ($validatedData as $attendance) {
+            $this->attendanceService->postAttendanceStatusOfStudents($attendance['attendance_date'],
+                $attendance['scheduleID'],
+                $attendance['studentID'],
+                $attendance['status']);
+        }
+        return response()->json(['message' => 'attendance post successful'],200);
+
+    }
+
+     public function getAllWeeksForAttendanceHistory(Request $request)
+    {
+        $weeks = $this->attendanceService->getAllWeeksForAttendanceHistory($request->courseID);
+
+        return response()->json($weeks);
     }
 }

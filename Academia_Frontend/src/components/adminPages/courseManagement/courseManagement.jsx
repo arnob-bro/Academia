@@ -2,25 +2,23 @@ import { useState } from "react";
 import { Search, Edit, Trash2, X, ChevronUp, ChevronDown } from "lucide-react";
 import Navbar from "../../navbar/AdminNavbar";
 import Footer from "../../footer/footer";
-import "./courseManagement.css"; 
+import "./courseManagement.css";
 
 const coursesData = {
   "Computer Science": [
-    { code: "CSE1111", name: "DBMS", faculty: "Mr. Momo", enrollments: 60, credits: 3, details: "See Details..." },
-    { code: "CSE1112", name: "CSE Math", faculty: "Mr. Momo", enrollments: 60, credits: 3, details: "See Details..." },
-    { code: "CSE1113", name: "MNM", faculty: "Mr. Momo", enrollments: 60, credits: 3, details: "See Details..." },
-    { code: "CSE1114", name: "SD", faculty: "Mr. Momo", enrollments: 60, credits: 3, details: "See Details..." },
+    { course_code: "CSE1111", course_name: "DBMS", department: "Computer Science", description: "Database Management Systems", credit: 3.0, section: "A", facultyID: "F101", number_of_vacant_seats: 40, prerequisite_course_code: "CSE1001" },
+    { course_code: "CSE1112", course_name: "CSE Math", department: "Computer Science", description: "Mathematics for Computer Science", credit: 3.0, section: "B", facultyID: "F102", number_of_vacant_seats: 30, prerequisite_course_code: "CSE1002" },
   ],
   "Civil Engineering": [
-    { code: "CIV2001", name: "Structural Analysis", faculty: "Dr. John", enrollments: 45, credits: 3, details: "See Details..." },
-    { code: "CIV2002", name: "Fluid Mechanics", faculty: "Dr. Smith", enrollments: 50, credits: 3, details: "See Details..." },
+    { course_code: "CIV2001", course_name: "Structural Analysis", department: "Civil Engineering", description: "Analysis of Structures", credit: 4.0, section: "C", facultyID: "F201", number_of_vacant_seats: 20, prerequisite_course_code: "CIV1001" },
   ],
   "Mechanical Engineering": [
-    { code: "MECH3001", name: "Thermodynamics", faculty: "Dr. Alex", enrollments: 40, credits: 3, details: "See Details..." },
+    { course_code: "MECH3001", course_name: "Thermodynamics", department: "Mechanical Engineering", description: "Principles of Thermodynamics", credit: 3.5, section: "D", facultyID: "F301", number_of_vacant_seats: 15, prerequisite_course_code: "MECH1001" },
   ],
 };
 
 const majors = Object.keys(coursesData);
+const departments = ["Computer Science", "Civil Engineering", "Mechanical Engineering", "Electrical Engineering"];
 
 const CourseManagement = () => {
   const [selectedMajor, setSelectedMajor] = useState("Computer Science");
@@ -31,12 +29,15 @@ const CourseManagement = () => {
   const [editIndex, setEditIndex] = useState(null);
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
   const [newCourse, setNewCourse] = useState({
-    code: "",
-    name: "",
-    faculty: "",
-    enrollments: "",
-    credits: "",
-    details: "",
+    course_code: "",
+    course_name: "",
+    department: "",
+    description: "",
+    credit: "",
+    section: "",
+    facultyID: "",
+    number_of_vacant_seats: "",
+    prerequisite_course_code: "",
   });
 
   const handleMajorChange = (e) => {
@@ -51,7 +52,7 @@ const CourseManagement = () => {
 
   const filteredCourses = courses.filter(
     (course) =>
-      course.name.toLowerCase().includes(searchTerm) || course.code.toLowerCase().includes(searchTerm)
+      course.course_name.toLowerCase().includes(searchTerm) || course.course_code.toLowerCase().includes(searchTerm)
   );
 
   const handleSort = (key) => {
@@ -76,6 +77,11 @@ const CourseManagement = () => {
   };
 
   const handleAddOrEditCourse = () => {
+    if (!newCourse.course_code || !newCourse.course_name || !newCourse.department || !newCourse.credit || !newCourse.facultyID) {
+      alert("Please fill in all required fields.");
+      return;
+    }
+
     let updatedCourses = [...courses];
 
     if (isEditing) {
@@ -87,7 +93,17 @@ const CourseManagement = () => {
     setCourses(updatedCourses);
     coursesData[selectedMajor] = updatedCourses;
     setShowModal(false);
-    setNewCourse({ code: "", name: "", faculty: "", enrollments: "", credits: "", details: "" });
+    setNewCourse({
+      course_code: "",
+      course_name: "",
+      department: "",
+      description: "",
+      credit: "",
+      section: "",
+      facultyID: "",
+      number_of_vacant_seats: "",
+      prerequisite_course_code: "",
+    });
     setIsEditing(false);
   };
 
@@ -124,7 +140,7 @@ const CourseManagement = () => {
             </div>
 
             <div className="search-box">
-              <Search className="search-icon" />
+              <Search className="search-icon" aria-label="Search" />
               <input type="text" placeholder="Search Course" className="search-input" value={searchTerm} onChange={handleSearchChange} />
             </div>
 
@@ -135,28 +151,29 @@ const CourseManagement = () => {
             <table className="course-table">
               <thead>
                 <tr>
-                  {["code", "name", "faculty", "enrollments", "credits"].map((key) => (
+                  {["course_code", "course_name", "department", "credit", "section", "facultyID", "number_of_vacant_seats", "prerequisite_course_code"].map((key) => (
                     <th key={key} onClick={() => handleSort(key)} style={{ cursor: "pointer" }}>
-                      {key.charAt(0).toUpperCase() + key.slice(1)}{" "}
+                      {key.charAt(0).toUpperCase() + key.slice(1).replace(/_/g, " ")}{" "}
                       {sortConfig.key === key ? (sortConfig.direction === "asc" ? <ChevronUp /> : <ChevronDown />) : null}
                     </th>
                   ))}
-                  <th>Course Details</th>
                   <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredCourses.map((course, index) => (
                   <tr key={index}>
-                    <td>{course.code}</td>
-                    <td>{course.name}</td>
-                    <td>{course.faculty}</td>
-                    <td>{course.enrollments}</td>
-                    <td>{course.credits}</td>
-                    <td className="details-link">{course.details}</td>
+                    <td>{course.course_code}</td>
+                    <td>{course.course_name}</td>
+                    <td>{course.department}</td>
+                    <td>{course.credit}</td>
+                    <td>{course.section}</td>
+                    <td>{course.facultyID}</td>
+                    <td>{course.number_of_vacant_seats}</td>
+                    <td>{course.prerequisite_course_code}</td>
                     <td className="action-icons">
-                      <Edit className="edit-icon" onClick={() => handleEditCourse(index)} />
-                      <Trash2 className="delete-icon" onClick={() => handleDeleteCourse(index)} />
+                      <Edit className="edit-icon" aria-label="Edit" onClick={() => handleEditCourse(index)} />
+                      <Trash2 className="delete-icon" aria-label="Delete" onClick={() => handleDeleteCourse(index)} />
                     </td>
                   </tr>
                 ))}
@@ -171,15 +188,52 @@ const CourseManagement = () => {
           <div className="modal">
             <div className="modal-header">
               <h2>{isEditing ? "Edit Course" : "Add Course"}</h2>
-              <X className="close-icon" onClick={() => setShowModal(false)} />
+              <X className="close-icon" aria-label="Close" onClick={() => setShowModal(false)} />
             </div>
             <div className="modal-body">
-              {Object.keys(newCourse).map((key) => (
-                <div key={key} className="input-group">
-                  <label>{key.charAt(0).toUpperCase() + key.slice(1)}</label>
-                  <input type={key === "enrollments" || key === "credits" ? "number" : "text"} name={key} value={newCourse[key]} onChange={handleInputChange} className="input-field" />
-                </div>
-              ))}
+              <div className="input-group">
+                <label>Course Code</label>
+                <input type="text" name="course_code" value={newCourse.course_code} onChange={handleInputChange} className="input-field" />
+              </div>
+              <div className="input-group">
+                <label>Course Name</label>
+                <input type="text" name="course_name" value={newCourse.course_name} onChange={handleInputChange} className="input-field" />
+              </div>
+              <div className="input-group">
+                <label>Department</label>
+                <select name="department" value={newCourse.department} onChange={handleInputChange} className="input-field">
+                  <option value="">Select Department</option>
+                  {departments.map((dept) => (
+                    <option key={dept} value={dept}>
+                      {dept}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="input-group">
+                <label>Description</label>
+                <input type="text" name="description" value={newCourse.description} onChange={handleInputChange} className="input-field" />
+              </div>
+              <div className="input-group">
+                <label>Credit</label>
+                <input type="number" step="0.1" name="credit" value={newCourse.credit} onChange={handleInputChange} className="input-field" />
+              </div>
+              <div className="input-group">
+                <label>Section</label>
+                <input type="text" name="section" value={newCourse.section} onChange={handleInputChange} className="input-field" />
+              </div>
+              <div className="input-group">
+                <label>Faculty ID</label>
+                <input type="text" name="facultyID" value={newCourse.facultyID} onChange={handleInputChange} className="input-field" />
+              </div>
+              <div className="input-group">
+                <label>Number of Vacant Seats</label>
+                <input type="number" name="number_of_vacant_seats" value={newCourse.number_of_vacant_seats} onChange={handleInputChange} className="input-field" />
+              </div>
+              <div className="input-group">
+                <label>Prerequisite Course Code</label>
+                <input type="text" name="prerequisite_course_code" value={newCourse.prerequisite_course_code} onChange={handleInputChange} className="input-field" />
+              </div>
             </div>
             <div className="modal-footer">
               <button className="cancel-btn" onClick={() => setShowModal(false)}>Cancel</button>

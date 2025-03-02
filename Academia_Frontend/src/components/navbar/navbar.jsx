@@ -64,7 +64,7 @@ const Navbar = () => {
 
         <div className="student-navbar-profile-info" ref={profileDropdownRef}>
           {/* Profile Icon (Click to open dropdown) */}
-          <span className="profile-icon" onClick={toggleProfileDropdown}>
+          <span className="student-navbar-profile-icon" onClick={toggleProfileDropdown}>
             👤
           </span>
 
@@ -87,14 +87,14 @@ const Navbar = () => {
         <Link to="/">Home</Link>
 
         {/* Enrollment Dropdown */}
-        <div className="student-navbar-dropdown" ref={enrollmentDropdownRef}>
-          <button className="student-navbar-dropbtn" onClick={toggleEnrollmentDropdown}>
+        <div className="Student-navbar-dropdown" ref={enrollmentDropdownRef}>
+          <button className="Student-navbar-dropbtn" onClick={toggleEnrollmentDropdown}>
             Enrollment ▼
           </button>
           {enrollmentDropdownOpen && (
-            <div className="student-navbar-dropdown-content">
+            <div className="Student-navbar-dropdown-content">
               <Link to="/course-advising">Course Advising</Link>
-              <hr className="student-navbar-dropdown-divider" />
+              <hr className="Student-navbar-dropdown-divider" />
               <Link to="/course-enrollment">Enrollment Details</Link>
             </div>
           )}

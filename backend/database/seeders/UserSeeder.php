@@ -13,6 +13,12 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+
+        DB::statement("INSERT INTO variables (log_id, current_semester, semester_starting_date)
+                VALUES (?, ?, ?)", [
+                    1,"Spring24","2025-03-02"
+        ]);
+
         // Insert Students
         $students = [
             ['arnob', 'CSE', 'arnob.cse.20220104064@aust.edu', '20220104064', 'Spring24', 'Spring22'],
@@ -39,6 +45,7 @@ class UserSeeder extends Seeder
             ['hossain', 'BBA', 'hossain.bba.20220104088@aust.edu', '20220104088', 'Spring24', 'Spring22'],
             ['omar', 'ME', 'omar.me.20220104089@aust.edu', '20220104089', 'Spring24', 'Spring22'],
         ];
+
 
         foreach ($students as $student) {
             DB::statement("CALL RegisterStudent(?, ?, ?, ?, ?, ?, ?, ?)", [

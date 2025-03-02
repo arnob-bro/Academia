@@ -21,6 +21,7 @@ return new class extends Migration
                 status ENUM("Present", "Absent", "Late", "Excused") NOT NULL,
                 scheduleID INT NOT NULL,
                 studentID VARCHAR(15) NOT NULL,
+                UNIQUE (scheduleID,studentID),
                 FOREIGN KEY (scheduleID) REFERENCES schedules(scheduleID) ON DELETE CASCADE,
                 FOREIGN KEY (studentID) REFERENCES students(studentID) ON DELETE CASCADE
             );
