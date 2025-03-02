@@ -30,6 +30,6 @@ export const getAllCoursesApi = async () => {
           "Content-type": "application/json",
         },
       };
-    const response = await axios.get(`${baseURL}/enrolled_courses`,config);
+    const response = await axios.get(`${baseURL}/all-available-courses`,config);
     return response.data;
   };

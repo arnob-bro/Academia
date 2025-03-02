@@ -171,8 +171,8 @@ const StudentAdvisingPage = () => {
             </thead>
             <tbody>
               {courses.map((course) => (
-                <tr key={course.code + course.section}>
-                  <td>{course.code}</td>
+                <tr key={course.courseID}>
+                  <td>{course.course_code}</td>
                   <td>{course.name}</td>
                   <td>{course.section}</td>
                   <td>{course.credit}</td>
