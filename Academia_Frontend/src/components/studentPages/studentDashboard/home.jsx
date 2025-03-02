@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../navbar/navbar";
+import Footer from "../../footer/footer";
 import ChartAt from "./chartAt";
 import "./home.css";
 
@@ -159,13 +160,11 @@ const Home = () => {
             <h3>Attendance Tracker</h3>
             <ChartAt data={data} />
           </div>
+          
         </div>
-
-        <footer className="footer">
-          <p>Powered By ABCDEF</p>
-          <p>Copyright © 2025 Academia. All rights reserved.</p>
-        </footer>
+        <Footer />
       </div>
+      
     </>
   );
 };

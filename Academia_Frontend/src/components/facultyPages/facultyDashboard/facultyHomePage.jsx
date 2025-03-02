@@ -1,5 +1,6 @@
 import React from "react";
 import Navbarfaculty from "../../navbar/navbarfaculty";
+import Footer from "../../footer/footer";
 import "./facultyHomePage.css";
 
 const FacultyHomePage = () => {
@@ -118,10 +119,7 @@ const FacultyHomePage = () => {
         </div>
 
         {/* Footer */}
-        <footer>
-          <p>Powered By ABCDEFGHIJK</p>
-          <p>Copyright © 2025 Academia. All rights reserved.</p>
-        </footer>
+        <Footer/>
       </div>
     </div>
     </>

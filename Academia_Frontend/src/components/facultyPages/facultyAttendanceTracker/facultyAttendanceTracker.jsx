@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbarfaculty from "../../navbar/navbarfaculty";
 import Footer from "../../footer/footer";
 import AttendanceHistoryModal from "./attendanceHistoryModal"; // Import the modal
@@ -21,6 +21,14 @@ const FacultyAttendanceTracker = () => {
     { id: "S002", name: "Jane Smith" },
     { id: "S003", name: "Alice Brown" },
   ];
+
+  // Reset attendance data when selectedCourse changes
+  useEffect(() => {
+    if (selectedCourse) {
+      setAttendanceData({});
+      setIsSaved(false);
+    }
+  }, [selectedCourse]);
 
   const handleAttendanceChange = (studentId, status) => {
     if (!isSaved) {
