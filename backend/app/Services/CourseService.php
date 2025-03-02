@@ -45,4 +45,40 @@ class CourseService
             ];
         }
     }
+
+    public function getAllCoursesOfAFaculty( $facultyID)
+    {
+        try{
+            $data = DB::select("CALL getAllCoursesOfAFaculty(?)", [
+            $facultyID
+        ]);
+
+        return [
+            $data
+            ];
+
+        }catch(\Exception $e){
+            return [
+            'error' => 'Course fetching of a faculty failed',
+            'message' => $e->getMessage()
+            ];
+        }
+    }
+
+    public function getAllCourses()
+    {
+        try{
+            $data = DB::select("CALL getAllCourses()",);
+
+        return [
+            $data
+            ];
+
+        }catch(\Exception $e){
+            return [
+            'error' => 'Course fetching failed',
+            'message' => $e->getMessage()
+            ];
+        }
+    }
 }

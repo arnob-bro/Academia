@@ -1,76 +1,100 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Navbar from "../../navbar/navbar";
 import Footer from "../../footer/footer";
 import "./studentAdvisingPage.css";
-import { courseEnrollApi } from "../../../Api/student";
+import { fetchEnrolledCoursesOfAStudentOfASemester } from "../../../Api/student";
+import { getAllCoursesApi } from "../../../Api/student";
 const courses = [
   {
     code: "CSE101",
     name: "Introduction to Programming",
     credit: 3,
-    time: "Mon 10-12",
+    time: ["Mon 10:00-11:00", "Wed 10:00-11:00"],
     prerequisite: null,
+    section: "A",
+  },
+  {
+    code: "CSE101",
+    name: "Introduction to Programming",
+    credit: 3,
+    time: ["Mon 11:00-12:00", "Wed 11:00-12:00"],
+    prerequisite: null,
+    section: "B",
+  },
+  {
+    code: "CSE101",
+    name: "Introduction to Programming",
+    credit: 3,
+    time: ["Sun 10:00-11:00", "Tues 10:00-11:00"],
+    prerequisite: null,
+    section: "C",
   },
   {
     code: "CSE102",
     name: "Data Structures",
     credit: 3,
-    time: "Tue 12-2",
+    time: ["Tue 10:00-12:00", "Thu 12:00-1:00"],
     prerequisite: "CSE101",
+    section: "A",
+  },
+  {
+    code: "CSE102",
+    name: "Data Structures",
+    credit: 3,
+    time: ["Tue 10:00-11:00", "Wed 11:00-12:00"],
+    prerequisite: "CSE101",
+    section: "B",
   },
   {
     code: "CSE201",
     name: "Algorithms",
     credit: 3,
-    time: "Wed 10-12",
+    time: ["Sun 1:00-2:00", " Mon 11:00-12:00"],
     prerequisite: "CSE102",
+    section: "A",
+  },
+  {
+    code: "CSE201",
+    name: "Algorithms",
+    credit: 3,
+    time: ["Wed 10:00-11:00", "Fri 10-12"],
+    prerequisite: "CSE102",
+    section: "B",
+  },
+  {
+    code: "CSE201",
+    name: "Algorithms",
+    credit: 3,
+    time: ["Wed 11:00-12:00", "Mon 9:00-10:00"],
+    prerequisite: "CSE102",
+    section: "C",
   },
   {
     code: "CSE202",
     name: "Database Systems",
     credit: 3,
-    time: "Thu 2-4",
+    time: ["Thu 9:00-10:00", "Wed 12:00-1:00"],
     prerequisite: null,
-  },
-  {
-    code: "CSE203",
-    name: "Operating Systems",
-    credit: 3,
-    time: "Fri 10-12",
-    prerequisite: "CSE102",
+    section: "A",
   },
 ];
 
-const MAX_CREDITS = 18; 
+const MAX_CREDITS = 18;
 
 const StudentAdvisingPage = () => {
-  const [course, setCourse] = useState({
-      studentID: "",
-      courseID: "",
-      enrollment_semester: "",
-    });
-  const changeHandler = (e) => {
-        setData({ ...course, [e.target.name]: e.target.value });
-      };
-  const courseEnroll = async (e) => {
-        e.preventDefault();
-        try {
-          const response = await courseEnrollApi(course);
-        } catch (error) {
-          alert("Some error has occurred. Please try again later");
-          console.log(error);
-        }
-      };
-
   const [selectedCourses, setSelectedCourses] = useState([]);
+
   const toggleCourseSelection = (course) => {
-    const isAlreadySelected = selectedCourses.find(
-      (c) => c.code === course.code
+    const isAlreadySelected = selectedCourses.some(
+      (c) => c.code === course.code && c.section === course.section
     );
+
     let newSelection = [...selectedCourses];
 
     if (isAlreadySelected) {
-      newSelection = newSelection.filter((c) => c.code !== course.code);
+      newSelection = newSelection.filter(
+        (c) => !(c.code === course.code && c.section === course.section)
+      );
     } else {
       if (getTotalCredits() + course.credit <= MAX_CREDITS) {
         newSelection.push(course);
@@ -78,28 +102,11 @@ const StudentAdvisingPage = () => {
         alert(`Cannot exceed max credit limit of ${MAX_CREDITS}!`);
       }
     }
-
     setSelectedCourses(newSelection);
   };
 
   const getTotalCredits = () =>
     selectedCourses.reduce((total, course) => total + course.credit, 0);
-
-  const checkPrerequisites = (course) => {
-    if (
-      course.prerequisite &&
-      !selectedCourses.find((c) => c.code === course.prerequisite)
-    ) {
-      return `Requires ${course.prerequisite}`;
-    }
-    return null;
-  };
-
-  const checkTimeConflicts = (course) => {
-    return selectedCourses.some((c) => c.time === course.time)
-      ? "Time Conflict!"
-      : null;
-  };
 
   const submitAdvising = () => {
     if (selectedCourses.length === 0) {
@@ -109,37 +116,45 @@ const StudentAdvisingPage = () => {
     alert("Advising submitted successfully!");
   };
 
+  const [data, setData] = useState({
+    studentID: "",
+    enrollment_semester: ""
+  });
+ 
+  const fetchEnrolledCourses = async () => {
+    try {
+      const enrollCourses = await fetchEnrolledCoursesOfAStudentOfASemester(data);
+      setEnrolledCourses(enrollCourses);  
+    } catch (error) {
+      console.error("Failed to fetch enrolled courses:", error);
+      alert("Failed to load enrolled courses!");
+    }
+  };
+  useEffect(() => {
+    fetchEnrolledCourses();
+  }, []);  
+  const [availableCourses, setAvailableCourses] = useState([]);
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    const getAllCourses = async () => {
+      setLoading(true);
+      try {
+        const data = await getAllCoursesApi();  
+        setAvailableCourses(data);  
+      } catch (error) {
+        console.error("Error fetching courses:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getAllCourses();
+  }, []); 
   return (
     <>
       <Navbar />
       <div className="student-advising-page-container">
-        <div className="student-info-section">
-          <div className="info-box">
-            <p>
-              <strong>CGPA:</strong> 3.5
-            </p>
-          </div>
-          <div className="info-box">
-            <p>
-              <strong>Completed Credit:</strong> 60
-            </p>
-          </div>
-          <div className="info-box">
-            <p>
-              <strong>Current Semester:</strong> 2nd
-            </p>
-          </div>
-          <div className="info-box">
-            <p>
-              <strong>For Online Payment:</strong>{" "}
-              <a href="#" className="payment-link">
-                Click here!
-              </a>
-            </p>
-          </div>
-        </div>
-
-        {/* Course Selection Table */}
+        {/* Available Courses */}
         <div className="course-selection">
           <h2>Available Courses</h2>
           <table>
@@ -147,39 +162,39 @@ const StudentAdvisingPage = () => {
               <tr>
                 <th>Course Code</th>
                 <th>Course Name</th>
+                <th>Section</th>
                 <th>Credit</th>
-                <th>Time</th>
-                <th>Prerequisite</th>
+                <th>Day 1</th>
+                <th>Day 2</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
               {courses.map((course) => (
-                <tr key={course.code}>
+                <tr key={course.code + course.section}>
                   <td>{course.code}</td>
                   <td>{course.name}</td>
+                  <td>{course.section}</td>
                   <td>{course.credit}</td>
-                  <td>{course.time}</td>
-                  <td>{course.prerequisite || "None"}</td>
+                  <td>{course.time[0]}</td>
+                  <td>{course.time[1]}</td>
                   <td>
-                    {checkPrerequisites(course) ? (
-                      <span className="warning">
-                        {checkPrerequisites(course)}
-                      </span>
-                    ) : checkTimeConflicts(course) ? (
-                      <span className="warning">
-                        {checkTimeConflicts(course)}
-                      </span>
-                    ) : (
-                      <button
-                        onClick={() => toggleCourseSelection(course)}
-                        className={
-                          selectedCourses.includes(course) ? "selected" : ""
-                        }
-                      >
-                        {selectedCourses.includes(course) ? "Remove" : "Select"}
-                      </button>
-                    )}
+                    <button
+                      onClick={() => toggleCourseSelection(course)}
+                      className={
+                        selectedCourses.some(
+                          (c) => c.code === course.code && c.section === course.section
+                        )
+                          ? "selected"
+                          : ""
+                      }
+                    >
+                      {selectedCourses.some(
+                        (c) => c.code === course.code && c.section === course.section
+                      )
+                        ? "Remove"
+                        : "Select"}
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -187,20 +202,40 @@ const StudentAdvisingPage = () => {
           </table>
         </div>
 
-        {/* Selected Courses Summary */}
+        {/* Selected Courses Table */}
         <div className="selected-courses">
           <h3>Selected Courses</h3>
-          <ul>
-            {selectedCourses.length > 0 ? (
-              selectedCourses.map((course) => (
-                <li key={course.code}>
-                  {course.code} - {course.name} ({course.credit} credits)
-                </li>
-              ))
-            ) : (
-              <p>No courses selected.</p>
-            )}
-          </ul>
+          {selectedCourses.length > 0 ? (
+            <table>
+              <thead>
+                <tr>
+                  <th>Course Code</th>
+                  <th>Course Name</th>
+                  <th>Credit</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {selectedCourses.map((course) => (
+                  <tr key={course.code + course.section}>
+                    <td>{course.code}</td>
+                    <td>{course.name}</td>
+                    <td>{course.credit}</td>
+                    <td>
+                      <button
+                        onClick={() => toggleCourseSelection(course)}
+                        className="delete-btn"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ) : (
+            <p>No courses selected.</p>
+          )}
           <p>
             <strong>Total Credits:</strong> {getTotalCredits()} / {MAX_CREDITS}
           </p>

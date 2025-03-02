@@ -50,19 +50,19 @@ const AdminNavbar = () => {
         <h1>Academia</h1>
 
         {/* Profile Section */}
-        <div className="admin-profile" ref={profileDropdownRef}>
-          <span className="profile-icon" onClick={toggleProfileDropdown}>
+        <div className="admin-navbar-admin-profile" ref={profileDropdownRef}>
+          <span className="admin-navbar-profile-icon" onClick={toggleProfileDropdown}>
             👤
           </span>
 
           {/* Dropdown Menu */}
           {profileDropdownOpen && (
-            <div className="dropdown-menu">
-              <Link to="/admin-profile" className="dropdown-item">
+            <div className="admin-navbar-dropdown-menu">
+              <Link to="/admin-profile" className="admin-navbar-dropdown-item">
                 Admin Profile
               </Link>
-              <hr className="dropdown-divider" />
-              <button className="dropdown-item logout" onClick={handleLogout}>
+              <hr className="admin-navbar-dropdown-divider" />
+              <button className="admin-navbar-dropdown-item logout" onClick={handleLogout}>
                 Logout
               </button>
             </div>

@@ -15,3 +15,21 @@ export const courseEnrollApi = async (data) => {
     );
     return response.data;
   };
+  export const fetchEnrolledCoursesOfAStudentOfASemester = async (data) => {
+    const config = {
+        headers: {
+          "Content-type": "application/json",
+        },
+      };
+    const response = await axios.get(`${baseURL}/enrolled_courses`,data,config );
+    return response.data;   
+};
+export const getAllCoursesApi = async () => {
+    const config = {
+        headers: {
+          "Content-type": "application/json",
+        },
+      };
+    const response = await axios.get(`${baseURL}/enrolled_courses`,config);
+    return response.data;
+  };

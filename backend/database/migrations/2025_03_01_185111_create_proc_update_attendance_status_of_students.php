@@ -13,15 +13,14 @@ return new class extends Migration
     public function up()
     {
         DB::unprepared('
-            CREATE PROCEDURE reviewALeaveApplicationRequest(
-                IN p_leave_id INT,
-                IN p_leave_status ENUM("Approved", "Rejected")
+            CREATE PROCEDURE updateAttendanceStatusOfStudents(
+                IN p_attendanceID INT,
+                IN p_status ENUM("Present", "Absent", "Late", "Excused")
             )
             BEGIN
-                -- Update the leave request status and remarks by admin
-                UPDATE faculty_leaves
-                SET leave_status = p_leave_status
-                WHERE leave_id = p_leave_id;
+                UPDATE attendances
+                SET status = p_status
+                WHERE attendanceID = p_attendanceID;
             END;
         ');
     }
@@ -34,7 +33,7 @@ return new class extends Migration
     public function down()
     {
         DB::unprepared('
-        DROP PROCEDURE IF EXISTS reviewALeaveApplicationRequest;
+        DROP PROCEDURE IF EXISTS updateAttendanceStatusOfStudents;
         
         ');
     }

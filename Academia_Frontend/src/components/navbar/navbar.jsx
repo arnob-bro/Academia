@@ -57,12 +57,12 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="navbar">
-      <div className="nav-top">
+    <nav className="student-navbar">
+      <div className="student-navbar-nav-top">
         <img src="/assets/logo.png" className="logo" alt="Logo" />
         <h1>Academia</h1>
 
-        <div className="profile-info" ref={profileDropdownRef}>
+        <div className="student-navbar-profile-info" ref={profileDropdownRef}>
           {/* Profile Icon (Click to open dropdown) */}
           <span className="profile-icon" onClick={toggleProfileDropdown}>
             👤
@@ -70,12 +70,12 @@ const Navbar = () => {
 
           {/* Profile Dropdown Menu */}
           {profileDropdownOpen && (
-            <div className="dropdown-menu">
-              <Link to="/student-profile" className="dropdown-item">
+            <div className="student-navbar-dropdown-menu">
+              <Link to="/student-profile" className="student-navbar-dropdown-item">
                 Student Profile
               </Link>
-              <hr className="dropdown-divider" /> {/* Divider Line */}
-              <button className="dropdown-item logout" onClick={handleLogout}>
+              <hr className="student-navbar-dropdown-divider" /> {/* Divider Line */}
+              <button className="student-navbar-dropdown-item logout" onClick={handleLogout}>
                 Logout
               </button>
             </div>
@@ -83,18 +83,18 @@ const Navbar = () => {
         </div>
       </div>
 
-      <div className="nav-bottom">
+      <div className="student-navbar-nav-bottom">
         <Link to="/">Home</Link>
 
         {/* Enrollment Dropdown */}
-        <div className="dropdown" ref={enrollmentDropdownRef}>
-          <button className="dropbtn" onClick={toggleEnrollmentDropdown}>
+        <div className="student-navbar-dropdown" ref={enrollmentDropdownRef}>
+          <button className="student-navbar-dropbtn" onClick={toggleEnrollmentDropdown}>
             Enrollment ▼
           </button>
           {enrollmentDropdownOpen && (
-            <div className="dropdown-content">
+            <div className="student-navbar-dropdown-content">
               <Link to="/course-advising">Course Advising</Link>
-              <hr className="dropdown-divider" />
+              <hr className="student-navbar-dropdown-divider" />
               <Link to="/course-enrollment">Enrollment Details</Link>
             </div>
           )}

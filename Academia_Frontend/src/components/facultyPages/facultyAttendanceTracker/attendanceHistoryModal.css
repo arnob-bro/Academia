@@ -20,7 +20,10 @@
     border-radius: 8px;
     width: 80%;
     max-height: 80vh;
-    overflow: auto;
+    overflow-y: auto;
+    /* Make the modal scrollable along the Y-axis */
+    display: flex;
+    flex-direction: column;
 }
 
 /* Close Modal Button */
@@ -36,7 +39,6 @@
 
 .attendance-history-modal-close-modal:hover {
     color: #ff4444;
-    
     /* Change to a red color on hover */
 }
 
@@ -49,6 +51,8 @@
 .attendance-history-modal-attendance-history-table {
     width: 100%;
     border-collapse: collapse;
+    margin-bottom: 20px;
+    /* Adding space below the table */
 }
 
 .attendance-history-modal-attendance-history-table th,
@@ -59,7 +63,8 @@
 }
 
 .attendance-history-modal-attendance-history-table th {
-    background-color: #f2f2f2;
+    background-color: #460048;
+    
 }
 
 /* Status Button Styling */
@@ -96,14 +101,58 @@
     background-color: #e63333;
 }
 
+/* Edit Button Styling */
+.attendance-history-modal-edit-btn {
+    padding: 6px 12px;
+    background-color: #ff8800;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.attendance-history-modal-edit-btn:hover {
+    background-color: #e67300;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .attendance-history-modal-content {
         width: 90%;
         padding: 15px;
+        max-height: 90vh;
+        /* Allow more space for small screens */
     }
 
     .attendance-history-modal-close-modal {
         font-size: 20px;
     }
+
+    .attendance-history-modal-attendance-history-table th,
+    .attendance-history-modal-attendance-history-table td {
+        font-size: 14px;
+        /* Adjust font size for small screens */
+        padding: 6px;
+    }
+
+    .attendance-history-modal-filter-container {
+        margin-bottom: 15px;
+    }
+}
+
+/* Scrollable Table */
+.attendance-history-modal-attendance-history-table {
+    max-height: 500px;
+    /* Limit table height */
+    overflow-y: auto;
+    /* Enable scrolling in the table */
+}
+
+/* Additional Custom Styling for Buttons in Table */
+.attendance-history-modal-attendance-history-table td select {
+    width: 100%;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
 }

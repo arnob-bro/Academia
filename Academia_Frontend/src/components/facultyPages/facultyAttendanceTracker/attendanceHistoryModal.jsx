@@ -1,124 +1,130 @@
 import React, { useState, useEffect } from 'react';
-import "./attendanceHistoryModal.css"; // Make sure to create this CSS file for modal styles
+import './attendanceHistoryModal.css';
 
 const AttendanceHistoryModal = ({ closeModal, selectedCourse }) => {
-  const [filterMonth, setFilterMonth] = useState('');
   const [attendanceData, setAttendanceData] = useState({});
-  const [daysInMonth, setDaysInMonth] = useState(31); // Default to 31 days
+  const [weeks, setWeeks] = useState([]);
+  const [selectedWeek, setSelectedWeek] = useState(1);
+  const [editingRow, setEditingRow] = useState(null); // State to track the row being edited
 
-  // Function to calculate the number of days in a selected month
-  const getDaysInMonth = (month) => {
-    if (!month) return 31; // Default to 31 days if no month is selected
-
-    const [year, monthNumber] = month.split('-'); // month format: YYYY-MM
-    const date = new Date(year, monthNumber, 0); // Get the last date of the given month
-    return date.getDate();
-  };
-
-  // Handle changing the filter month
   useEffect(() => {
-    if (filterMonth) {
-      const days = getDaysInMonth(filterMonth);
-      setDaysInMonth(days);
-    }
-  }, [filterMonth]);
+    // Generate week-based attendance structure (Week 1 - 14)
+    const generatedWeeks = Array.from({ length: 14 }, (_, i) => i + 1);
+    setWeeks(generatedWeeks);
+  }, []);
 
-  // Set initial attendance data based on the selected month
   useEffect(() => {
-    // Set default data with all "Absent" values for each student for the selected month
+    // Sample data initialization
     const newAttendanceData = {
-      S001: Array(daysInMonth).fill('Absent'),
-      S002: Array(daysInMonth).fill('Absent'),
-      S003: Array(daysInMonth).fill('Absent'),
-      
+      S001: { name: 'John Doe', attendance: {} },
+      S002: { name: 'Jane Smith', attendance: {} },
+      S003: { name: 'Alice Brown', attendance: {} },
+      S004: { name: 'Ali Brown', attendance: {} },
+      S005: { name: 'Alice Red', attendance: {} },
+      S006: { name: 'Alice Green', attendance: {} },
     };
+
+    // Generate column headers for Sunday-Thursday
+    const currentYear = new Date().getFullYear();
+    const startDate = new Date(currentYear, 0, 1 + (selectedWeek - 1) * 7); // Start of the selected week
+
+    for (let i = 0; i < 5; i++) { // Sunday to Thursday
+      const date = new Date(startDate);
+      date.setDate(startDate.getDate() + i);
+      const formattedDate = `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;  // Updated date format
+
+      Object.keys(newAttendanceData).forEach((studentId) => {
+        newAttendanceData[studentId].attendance[formattedDate] = 'Absent';
+      });
+    }
+
     setAttendanceData(newAttendanceData);
-  }, [daysInMonth]);
+  }, [selectedWeek]);
 
-  // Handle the status change for a particular student's attendance on a given day
-  const handleStatusChange = (studentId, day, status) => {
-    const updatedData = { ...attendanceData };
-    updatedData[studentId][day - 1] = status;
-    setAttendanceData(updatedData);
+  const handleStatusChange = (studentId, date, status) => {
+    setAttendanceData((prev) => ({
+      ...prev,
+      [studentId]: {
+        ...prev[studentId],
+        attendance: { ...prev[studentId].attendance, [date]: status },
+      },
+    }));
   };
 
-  // Get total present days for a student
-  const getTotalPresence = (studentId) => {
-    return attendanceData[studentId].filter(status => status === 'Present').length;
+  const handleEditClick = (studentId) => {
+    setEditingRow(studentId);
   };
 
-  // Render the days for each student, showing either a dropdown or the current attendance
-  const renderDays = (studentId) => {
-    return [...Array(daysInMonth).keys()].map(day => (
-      <td key={day}>
-        {editingRow === studentId ? (
-          <select 
-            value={attendanceData[studentId][day]} 
-            onChange={(e) => handleStatusChange(studentId, day + 1, e.target.value)}
-          >
-            <option value="Present">Present</option>
-            <option value="Absent">Absent</option>
-            <option value="Late">Late</option>
-            <option value="Excused">Excused</option>
-          </select>
-        ) : (
-          attendanceData[studentId][day]
-        )}
-      </td>
-    ));
-  };
-
-  const [editingRow, setEditingRow] = useState(null); // Track which row is in edit mode
-
-  const handleEdit = (studentId) => {
-    setEditingRow(studentId); // Enable editing for this student
-  };
-
-  const handleSave = (studentId) => {
-    setEditingRow(null); // Save and exit editing mode
+  const handleSaveClick = (studentId) => {
+    // Save logic can go here if needed
+    setEditingRow(null); // Exit edit mode
   };
 
   return (
     <div className="attendance-history-modal">
       <div className="attendance-history-modal-content">
-        <span className="attendance-history-modal-close-modal" onClick={closeModal}>&times;</span>
+        <span className="attendance-history-modal-close-modal" onClick={closeModal}>
+          &times;
+        </span>
         <h3>Attendance History for {selectedCourse}</h3>
 
-        {/* Filter Options */}
+        {/* Week Selector */}
         <div className="attendance-history-modal-filter-container">
-          <label>Filter by Month:</label>
-          <input 
-            type="month" 
-            value={filterMonth} 
-            onChange={(e) => setFilterMonth(e.target.value)} 
-          />
+          <label>Select Week:</label>
+          <select value={selectedWeek} onChange={(e) => setSelectedWeek(Number(e.target.value))}>
+            {weeks.map((week) => (
+              <option key={week} value={week}>
+                Week {week}
+              </option>
+            ))}
+          </select>
         </div>
 
-        {/* Attendance Records Table */}
+        {/* Attendance Table */}
         <table className="attendance-history-modal-attendance-history-table">
           <thead>
             <tr>
               <th>Student ID</th>
               <th>Name</th>
-              {[...Array(daysInMonth).keys()].map(day => (
-                <th key={day}>{day + 1}</th>
+              {Object.keys(attendanceData.S001?.attendance || {}).map((date) => (
+                <th key={date}>{date}</th>
               ))}
               <th>Total Present</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {Object.keys(attendanceData).map(studentId => (
+            {Object.keys(attendanceData).map((studentId) => (
               <tr key={studentId}>
                 <td>{studentId}</td>
-                <td>{studentId === "S001" ? "John Doe" : studentId === "S002" ? "Jane Smith" : "Alice Brown"}</td>
-                {renderDays(studentId)}
-                <td>{getTotalPresence(studentId)}</td>
+                <td>{attendanceData[studentId].name}</td>
+                {Object.keys(attendanceData[studentId].attendance).map((date) => (
+                  <td key={date}>
+                    {editingRow === studentId ? (
+                      <select
+                        value={attendanceData[studentId].attendance[date]}
+                        onChange={(e) => handleStatusChange(studentId, date, e.target.value)}
+                      >
+                        <option value="Present">Present</option>
+                        <option value="Absent">Absent</option>
+                        <option value="Late">Late</option>
+                        <option value="Excused">Excused</option>
+                      </select>
+                    ) : (
+                      attendanceData[studentId].attendance[date]
+                    )}
+                  </td>
+                ))}
+                <td>
+                  {Object.values(attendanceData[studentId].attendance).filter(
+                    (status) => status === 'Present'
+                  ).length}
+                </td>
                 <td>
                   {editingRow === studentId ? (
-                    <button onClick={() => handleSave(studentId)}>Save</button>
+                    <button onClick={() => handleSaveClick(studentId)}>Save</button>
                   ) : (
-                    <button onClick={() => handleEdit(studentId)}>Edit</button>
+                    <button onClick={() => handleEditClick(studentId)}>Edit</button>
                   )}
                 </td>
               </tr>
@@ -127,7 +133,9 @@ const AttendanceHistoryModal = ({ closeModal, selectedCourse }) => {
         </table>
 
         {/* Close Modal Button */}
-        <button className="attendance-history-modal-close-btn" onClick={closeModal}>Close</button>
+        <button className="attendance-history-modal-close-btn" onClick={closeModal}>
+          Close
+        </button>
       </div>
     </div>
   );

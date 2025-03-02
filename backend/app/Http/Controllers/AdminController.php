@@ -51,5 +51,19 @@ class AdminController extends Controller
         return response()->json($data);
     }
 
+    public function reviewALeaveApplicationRequest(Request $request)
+    {
+        $data = $this->leaveApplicationService->reviewALeaveApplicationRequest($request->leave_id, $request->leave_status);
+
+        return response()->json($data);
+    }
+
+    public function getAllCourses(Request $request)
+    {
+        $data = $this->courseService->getAllCourses();
+
+        return response()->json($data);
+    }
+
     
 }
