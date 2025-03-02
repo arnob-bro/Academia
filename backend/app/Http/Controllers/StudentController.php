@@ -81,4 +81,11 @@ class StudentController extends Controller
 
         return response()->json($data);
     }
+
+    public function fetchEnrolledCoursesOfAStudentOfASemester(Request $request)
+    {
+        $data = $this->enrollmentService->fetchEnrolledCoursesOfAStudentOfASemester($request->studentID);
+
+        return response()->json($data);
+    }
 }

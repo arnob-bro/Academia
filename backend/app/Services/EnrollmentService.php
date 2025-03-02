@@ -29,4 +29,27 @@ class EnrollmentService
             ];
         }
     }
+
+
+    public function fetchEnrolledCoursesOfAStudentOfASemester($studentID)
+    {
+        try{
+
+            
+
+            $data = DB::select("CALL fetchEnrolledCoursesOfAStudentOfASemester(?)", [
+            $studentID
+        ]);
+
+        return [
+            $data
+            ];
+
+        }catch(\Exception $e){
+            return [
+            'error' => 'enrollment courses fetch failed!',
+            'message' => $e->getMessage()
+            ];
+        }
+    }
 }

@@ -1,83 +1,83 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../../navbar/navbar";
 import Footer from "../../footer/footer";
 import "./studentAdvisingPage.css";
 import { fetchEnrolledCoursesOfAStudentOfASemester } from "../../../Api/student";
 import { getAllCoursesApi } from "../../../Api/student";
-const courses = [
-  {
-    code: "CSE101",
-    name: "Introduction to Programming",
-    credit: 3,
-    time: ["Mon 10:00-11:00", "Wed 10:00-11:00"],
-    prerequisite: null,
-    section: "A",
-  },
-  {
-    code: "CSE101",
-    name: "Introduction to Programming",
-    credit: 3,
-    time: ["Mon 11:00-12:00", "Wed 11:00-12:00"],
-    prerequisite: null,
-    section: "B",
-  },
-  {
-    code: "CSE101",
-    name: "Introduction to Programming",
-    credit: 3,
-    time: ["Sun 10:00-11:00", "Tues 10:00-11:00"],
-    prerequisite: null,
-    section: "C",
-  },
-  {
-    code: "CSE102",
-    name: "Data Structures",
-    credit: 3,
-    time: ["Tue 10:00-12:00", "Thu 12:00-1:00"],
-    prerequisite: "CSE101",
-    section: "A",
-  },
-  {
-    code: "CSE102",
-    name: "Data Structures",
-    credit: 3,
-    time: ["Tue 10:00-11:00", "Wed 11:00-12:00"],
-    prerequisite: "CSE101",
-    section: "B",
-  },
-  {
-    code: "CSE201",
-    name: "Algorithms",
-    credit: 3,
-    time: ["Sun 1:00-2:00", " Mon 11:00-12:00"],
-    prerequisite: "CSE102",
-    section: "A",
-  },
-  {
-    code: "CSE201",
-    name: "Algorithms",
-    credit: 3,
-    time: ["Wed 10:00-11:00", "Fri 10-12"],
-    prerequisite: "CSE102",
-    section: "B",
-  },
-  {
-    code: "CSE201",
-    name: "Algorithms",
-    credit: 3,
-    time: ["Wed 11:00-12:00", "Mon 9:00-10:00"],
-    prerequisite: "CSE102",
-    section: "C",
-  },
-  {
-    code: "CSE202",
-    name: "Database Systems",
-    credit: 3,
-    time: ["Thu 9:00-10:00", "Wed 12:00-1:00"],
-    prerequisite: null,
-    section: "A",
-  },
-];
+// const courses = [
+//   {
+//     course_code: "CSE101",
+//     name: "Introduction to Programming",
+//     credit: 3,
+//     time: ["Mon 10:00-11:00", "Wed 10:00-11:00"],
+//     prerequisite: null,
+//     section: "A",
+//   },
+//   {
+//     course_code: "CSE101",
+//     name: "Introduction to Programming",
+//     credit: 3,
+//     time: ["Mon 11:00-12:00", "Wed 11:00-12:00"],
+//     prerequisite: null,
+//     section: "B",
+//   },
+//   {
+//     course_code: "CSE101",
+//     name: "Introduction to Programming",
+//     credit: 3,
+//     time: ["Sun 10:00-11:00", "Tues 10:00-11:00"],
+//     prerequisite: null,
+//     section: "C",
+//   },
+//   {
+//     course_code: "CSE102",
+//     name: "Data Structures",
+//     credit: 3,
+//     time: ["Tue 10:00-12:00", "Thu 12:00-1:00"],
+//     prerequisite: "CSE101",
+//     section: "A",
+//   },
+//   {
+//     course_code: "CSE102",
+//     name: "Data Structures",
+//     credit: 3,
+//     time: ["Tue 10:00-11:00", "Wed 11:00-12:00"],
+//     prerequisite: "CSE101",
+//     section: "B",
+//   },
+//   {
+//     course_code: "CSE201",
+//     name: "Algorithms",
+//     credit: 3,
+//     time: ["Sun 1:00-2:00", " Mon 11:00-12:00"],
+//     prerequisite: "CSE102",
+//     section: "A",
+//   },
+//   {
+//     course_code: "CSE201",
+//     name: "Algorithms",
+//     credit: 3,
+//     time: ["Wed 10:00-11:00", "Fri 10-12"],
+//     prerequisite: "CSE102",
+//     section: "B",
+//   },
+//   {
+//     course_code: "CSE201",
+//     name: "Algorithms",
+//     credit: 3,
+//     time: ["Wed 11:00-12:00", "Mon 9:00-10:00"],
+//     prerequisite: "CSE102",
+//     section: "C",
+//   },
+//   {
+//     course_code: "CSE202",
+//     name: "Database Systems",
+//     credit: 3,
+//     time: ["Thu 9:00-10:00", "Wed 12:00-1:00"],
+//     prerequisite: null,
+//     section: "A",
+//   },
+// ];
 
 const MAX_CREDITS = 18;
 
@@ -118,29 +118,33 @@ const StudentAdvisingPage = () => {
 
   const [data, setData] = useState({
     studentID: "",
-    enrollment_semester: ""
+    enrollment_semester: "",
   });
- 
+
   const fetchEnrolledCourses = async () => {
     try {
-      const enrollCourses = await fetchEnrolledCoursesOfAStudentOfASemester(data);
-      setEnrolledCourses(enrollCourses);  
+      const enrollCourses = await fetchEnrolledCoursesOfAStudentOfASemester(
+        data
+      );
+      setEnrolledCourses(enrollCourses);
     } catch (error) {
       console.error("Failed to fetch enrolled courses:", error);
       alert("Failed to load enrolled courses!");
     }
   };
+
   useEffect(() => {
-    fetchEnrolledCourses();
-  }, []);  
+    // fetchEnrolledCourses();
+  }, []);
   const [availableCourses, setAvailableCourses] = useState([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     const getAllCourses = async () => {
       setLoading(true);
       try {
-        const data = await getAllCoursesApi();  
-        setAvailableCourses(data);  
+        const data = await getAllCoursesApi();
+        console.log(data);
+        setAvailableCourses(data[0]);
       } catch (error) {
         console.error("Error fetching courses:", error);
       } finally {
@@ -149,7 +153,7 @@ const StudentAdvisingPage = () => {
     };
 
     getAllCourses();
-  }, []); 
+  }, []);
   return (
     <>
       <Navbar />
@@ -164,33 +168,43 @@ const StudentAdvisingPage = () => {
                 <th>Course Name</th>
                 <th>Section</th>
                 <th>Credit</th>
+                <th>Vacant Seats</th>
+                <th>prerequisite course code</th>
                 <th>Day 1</th>
-                <th>Day 2</th>
+                <th>Starting Time</th>
+                <th>Ending Time</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              {courses.map((course) => (
+              {availableCourses.map((course) => (
                 <tr key={course.courseID}>
                   <td>{course.course_code}</td>
-                  <td>{course.name}</td>
+                  <td>{course.course_name}</td>
                   <td>{course.section}</td>
-                  <td>{course.credit}</td>
-                  <td>{course.time[0]}</td>
-                  <td>{course.time[1]}</td>
+                  <td>{course.credits}</td>
+                  <td>{course.number_of_vacant_seats}</td>
+                  <td>{course.prerequisite_course_code}</td>
+                  <td>{course.schedule_day_1}</td>
+                  <td>{course.start_time_day_1}</td>
+                  <td>{course.end_time_day_1}</td>
                   <td>
                     <button
                       onClick={() => toggleCourseSelection(course)}
                       className={
                         selectedCourses.some(
-                          (c) => c.code === course.code && c.section === course.section
+                          (c) =>
+                            c.course_code === course.course_code &&
+                            c.section === course.section
                         )
                           ? "selected"
                           : ""
                       }
                     >
                       {selectedCourses.some(
-                        (c) => c.code === course.code && c.section === course.section
+                        (c) =>
+                          c.course_code === course.course_code &&
+                          c.section === course.section
                       )
                         ? "Remove"
                         : "Select"}
@@ -202,7 +216,7 @@ const StudentAdvisingPage = () => {
           </table>
         </div>
 
-        {/* Selected Courses Table */}
+        {/* Selected Courses Table
         <div className="selected-courses">
           <h3>Selected Courses</h3>
           {selectedCourses.length > 0 ? (
@@ -242,7 +256,7 @@ const StudentAdvisingPage = () => {
           <button onClick={submitAdvising} className="submit-btn">
             Submit Advising
           </button>
-        </div>
+        </div> */}
       </div>
       <Footer />
     </>

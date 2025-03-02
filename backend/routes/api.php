@@ -53,3 +53,4 @@ Route::get('/student/weekly-schedule', [StudentController::class, 'getScheduleOf
 Route::get('/student/daily-schedule', [StudentController::class, 'getDailyScheduleOfAStudent']);
 Route::post('/student/course_enrollment', [StudentController::class, 'enrollInCourse']);
 Route::get('/student/all-available-courses', [StudentController::class, 'getAllCoursesForAdvising']);
+Route::get('/student/course-enrollment', [StudentController::class, 'fetchEnrolledCoursesOfAStudentOfASemester']);
