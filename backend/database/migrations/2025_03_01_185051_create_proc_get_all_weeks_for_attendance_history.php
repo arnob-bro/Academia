@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -13,10 +12,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('proc_get_all_weeks_for_attendance_history', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+        DB::unprepared('
+            CREATE PROCEDURE getAllWeeksForAttendanceHistory(
+                IN p_courseID INT
+            )
+            BEGIN
+                SELECT DISTINCT s.week_no 
+                FROM schedules s
+                JOIN attendances a ON s.scheduleID = a.scheduleID
+                WHERE s.courseID = p_courseID
+                ORDER BY s.week_no;
+            END;
+        ');
     }
 
     /**
@@ -26,6 +33,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('proc_get_all_weeks_for_attendance_history');
+        DB::unprepared('
+        DROP PROCEDURE IF EXISTS getAllWeeksForAttendanceHistory;
+        
+        ');
     }
 };
