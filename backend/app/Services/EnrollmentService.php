@@ -41,9 +41,7 @@ class EnrollmentService
             $studentID
         ]);
 
-        return [
-            $data
-            ];
+        return $data;
 
         }catch(\Exception $e){
             return [

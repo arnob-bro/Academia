@@ -37,7 +37,7 @@ const AdminNavbar = () => {
     try {
       logout();
       navigate("/login");
-      // window.location.reload();
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -51,7 +51,10 @@ const AdminNavbar = () => {
 
         {/* Profile Section */}
         <div className="admin-navbar-admin-profile" ref={profileDropdownRef}>
-          <span className="admin-navbar-profile-icon" onClick={toggleProfileDropdown}>
+          <span
+            className="admin-navbar-profile-icon"
+            onClick={toggleProfileDropdown}
+          >
             👤
           </span>
 
@@ -62,7 +65,10 @@ const AdminNavbar = () => {
                 Admin Profile
               </Link>
               <hr className="admin-navbar-dropdown-divider" />
-              <button className="admin-navbar-dropdown-item logout" onClick={handleLogout}>
+              <button
+                className="admin-navbar-dropdown-item logout"
+                onClick={handleLogout}
+              >
                 Logout
               </button>
             </div>

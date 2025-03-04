@@ -14,9 +14,9 @@ class UserSeeder extends Seeder
     public function run(): void
     {
 
-        DB::statement("INSERT INTO variables (log_id, current_semester, semester_starting_date)
-                VALUES (?, ?, ?)", [
-                    1,"Spring24","2025-03-02"
+        DB::statement("INSERT INTO variables (log_id, current_semester, semester_starting_date,current_week_no,current_day_of_week)
+                VALUES (?, ?, ?,?,?)", [
+                    1,"Spring24","2025-03-02",1,"Sunday"
         ]);
 
         // Insert Students
@@ -285,6 +285,7 @@ $courses = [
     ['CSE102', 'Data Structures and Algorithms', 'CSE', 'Introduction to data structures and algorithmic techniques.', 3, 'B', $facultyIDs[3], 45, 'CSE101'],
     ['ME101', 'Introduction to Mechanical Engineering', 'ME', 'Fundamentals of mechanical engineering concepts.', 3, 'A', $facultyIDs[1], 40, NULL],
     ['BBA101', 'Principles of Management', 'BBA', 'Introduction to management principles and organizational behavior.', 3, 'A', $facultyIDs[2], 50, NULL],
+    ['BBA102', 'Principles of Management', 'BBA', 'Introduction to management principles and organizational behavior.', 3, 'A', $facultyIDs[2], 50, NULL],
     ['EEE101', 'Introduction to Electrical Engineering', 'EEE', 'Basic electrical engineering concepts, circuits, and systems.', 3, 'A', $facultyIDs[4], 48, NULL],
     ['CSE201', 'Discrete Mathematics', 'CSE', 'Mathematical foundations for computer science and engineering.', 3, 'C', $facultyIDs[5], 40, 'CSE101'],
     ['ME201', 'Engineering Mechanics', 'ME', 'Study of forces and their effect on motion of bodies.', 3, 'B', $facultyIDs[6], 38, 'ME101'],

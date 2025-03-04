@@ -33,9 +33,7 @@ class LeaveApplicationService
             $p_facultyID 
         ]);
 
-        return [
-            $data
-            ];
+        return $data;
 
         }catch(\Exception $e){
             return [
@@ -50,9 +48,7 @@ class LeaveApplicationService
         try{
             $data = DB::select("CALL getAllLeaveApplicationRequests()");
 
-        return [
-            $data
-            ];
+        return $data;
 
         }catch(\Exception $e){
             return [

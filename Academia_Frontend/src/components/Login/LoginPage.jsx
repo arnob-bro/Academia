@@ -47,7 +47,7 @@ export default function LoginPage() {
   return (
     <div className="login-container">
       <div className="illustration-container">
-        <img src="\src\assets\illus.png" className="illustration"/>
+        <img src="\src\assets\illus.png" className="illustration" />
       </div>
 
       <div className="login-form-container">

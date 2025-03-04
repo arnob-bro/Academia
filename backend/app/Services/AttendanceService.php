@@ -8,32 +8,45 @@ use Illuminate\Support\Facades\Hash;
 class AttendanceService
 {
     public function getAllStudentsOfACourseOfASemester($courseID)
-    {
-        try{
-
-            
-
-            $data= DB::select("CALL getAllStudentsOfACourseOfASemester(?)", [
-            $courseID
-        ]);
-
-        return [
-            $data
-            ];
-
-        }catch(\Exception $e){
-            return [
-            'error' => 'all student fetch failed!',
-            'message' => $e->getMessage()
-            ];
+{
+    try {
+        // Get the current day of the week from the variables table
+        $currentDayQuery = DB::select("SELECT current_day_of_week FROM variables WHERE log_id = 1");
+        
+        if (empty($currentDayQuery)) {
+            return ['error' => 'Current day information not found'];
         }
+
+        $currentDay = $currentDayQuery[0]->current_day_of_week;
+
+        // Check if the course is scheduled for today
+        $isScheduled = DB::select("
+            SELECT * FROM schedules
+            WHERE courseID = ? AND day_of_week = ?
+        ", [$courseID, $currentDay]);
+
+        // If the course is scheduled today, return an error
+        if (!empty($isScheduled)) {
+            return ['error' => 'Students cannot be fetched as the course is scheduled today.'];
+        }
+
+        // Fetch students if the course is NOT scheduled today
+        $data = DB::select("CALL getAllStudentsOfACourseOfASemester(?)", [$courseID]);
+
+        return $data;
+        
+    } catch (\Exception $e) {
+        return [
+            'error' => 'All student fetch failed!',
+            'message' => $e->getMessage()
+        ];
     }
+}
+
 
     public function postAttendanceStatusOfStudents($attendance_date,$scheduleID,$studentID, $status )
     {
         try{
-
-            
 
             $data= DB::select("CALL postAttendanceStatusOfStudents(?, ?, ?, ?)", [
             $attendance_date,$scheduleID,$studentID, $status
@@ -59,9 +72,7 @@ class AttendanceService
             $courseID
         ]);
 
-        return [
-            $data
-            ];
+        return $data;
 
         }catch(\Exception $e){
             return [

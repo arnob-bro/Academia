@@ -5,6 +5,7 @@ use App\Services\ScheduleService;
 use App\Services\LeaveApplicationService;
 use App\Services\CourseService;
 use App\Services\AttendanceService;
+use DB;
 
 use Illuminate\Http\Request;
 
@@ -54,9 +55,12 @@ class FacultyController extends Controller
     public function getAllCoursesOfAFaculty(Request $request)
     {
         $courses = $this->courseService->getAllCoursesOfAFaculty($request->facultyID );
+    
 
         return response()->json($courses);
     }
+
+
 
     public function getAllStudentsOfACourseOfASemester(Request $request)
     {

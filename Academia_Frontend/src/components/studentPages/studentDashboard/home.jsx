@@ -1,10 +1,9 @@
-import React from "react";
+import { React, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../navbar/navbar";
 import Footer from "../../footer/footer";
 import ChartAt from "./chartAt";
 import "./home.css";
-
 
 const data = [
   { name: "CSE3100", Present: 60, Absent: 10, Remaining: 30 },
@@ -18,6 +17,16 @@ const data = [
 const Home = () => {
   const navigate = useNavigate(); // Initialize navigate function
 
+  useEffect(() => {
+    const userPrint = () => {
+      const user = JSON.parse(localStorage.getItem("userData"));
+      if (user) {
+        console.log(user.userID);
+      }
+    };
+    userPrint();
+  }, []);
+
   const handleNavigate = () => {
     navigate("/student-class-routine"); // Navigate to the desired route
   };
@@ -27,16 +36,23 @@ const Home = () => {
       <div className="home-container">
         <div className="content">
           <div className="info-box">
-            <p><strong>Cgpa:</strong> 3.5</p>
+            <p>
+              <strong>Cgpa:</strong> 3.5
+            </p>
           </div>
           <div className="info-box">
-            <p><strong>Completed Credit:</strong> 60</p>
+            <p>
+              <strong>Completed Credit:</strong> 60
+            </p>
           </div>
           <div className="info-box">
-            <p><strong>Current Semester:</strong> 1st</p>
+            <p>
+              <strong>Current Semester:</strong> 1st
+            </p>
           </div>
           <div className="info-box">
-            <p><strong>For Online Payment: </strong>
+            <p>
+              <strong>For Online Payment: </strong>
               <a href="#">Click me!</a>
             </p>
           </div>
@@ -153,18 +169,18 @@ const Home = () => {
                 </tr>
               </tbody>
             </table>
-            <div className="see-more" onClick={handleNavigate}>More →</div>
+            <div className="see-more" onClick={handleNavigate}>
+              More →
+            </div>
           </div>
 
           <div className="graph-box">
             <h3>Attendance Tracker</h3>
             <ChartAt data={data} />
           </div>
-          
         </div>
         <Footer />
       </div>
-      
     </>
   );
 };

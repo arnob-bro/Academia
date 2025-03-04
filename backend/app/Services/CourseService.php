@@ -53,9 +53,7 @@ class CourseService
             $facultyID
         ]);
 
-        return [
-            $data
-            ];
+        return $data;
 
         }catch(\Exception $e){
             return [
@@ -70,9 +68,7 @@ class CourseService
         try{
             $data = DB::select("CALL getAllCourses()",);
 
-        return [
-            $data
-            ];
+        return $data;
 
         }catch(\Exception $e){
             return [
@@ -88,9 +84,7 @@ class CourseService
         try{
             $data = DB::select("CALL getAllCoursesForAdvising()",);
 
-        return [
-            $data
-            ];
+        return $data;
 
         }catch(\Exception $e){
             return [

@@ -54,9 +54,7 @@ class ScheduleService
                 $p_week_no, $p_room_no
         ]);
 
-        return [
-            $schedules
-            ];
+        return $schedules;
 
         }catch(\Exception $e){
             return [
@@ -73,9 +71,7 @@ class ScheduleService
                 $p_studentID,$p_week_no
         ]);
 
-        return [
-            $schedules
-            ];
+        return $schedules;
 
         }catch(\Exception $e){
             return [
@@ -93,9 +89,7 @@ class ScheduleService
                 $p_studentID,$p_week_no, $p_day_of_week
         ]);
 
-        return [
-            $schedules
-            ];
+        return $schedules;
 
         }catch(\Exception $e){
             return [

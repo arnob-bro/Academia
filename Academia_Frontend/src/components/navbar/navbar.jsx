@@ -11,7 +11,7 @@ const Navbar = () => {
     try {
       logout();
       navigate("/login");
-      // window.location.reload();
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -64,18 +64,28 @@ const Navbar = () => {
 
         <div className="student-navbar-profile-info" ref={profileDropdownRef}>
           {/* Profile Icon (Click to open dropdown) */}
-          <span className="student-navbar-profile-icon" onClick={toggleProfileDropdown}>
+          <span
+            className="student-navbar-profile-icon"
+            onClick={toggleProfileDropdown}
+          >
             👤
           </span>
 
           {/* Profile Dropdown Menu */}
           {profileDropdownOpen && (
             <div className="student-navbar-dropdown-menu">
-              <Link to="/student-profile" className="student-navbar-dropdown-item">
+              <Link
+                to="/student-profile"
+                className="student-navbar-dropdown-item"
+              >
                 Student Profile
               </Link>
-              <hr className="student-navbar-dropdown-divider" /> {/* Divider Line */}
-              <button className="student-navbar-dropdown-item logout" onClick={handleLogout}>
+              <hr className="student-navbar-dropdown-divider" />{" "}
+              {/* Divider Line */}
+              <button
+                className="student-navbar-dropdown-item logout"
+                onClick={handleLogout}
+              >
                 Logout
               </button>
             </div>
@@ -88,7 +98,10 @@ const Navbar = () => {
 
         {/* Enrollment Dropdown */}
         <div className="Student-navbar-dropdown" ref={enrollmentDropdownRef}>
-          <button className="Student-navbar-dropbtn" onClick={toggleEnrollmentDropdown}>
+          <button
+            className="Student-navbar-dropbtn"
+            onClick={toggleEnrollmentDropdown}
+          >
             Enrollment ▼
           </button>
           {enrollmentDropdownOpen && (

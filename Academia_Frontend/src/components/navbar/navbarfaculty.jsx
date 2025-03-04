@@ -36,7 +36,7 @@ const Navbarfaculty = () => {
     try {
       logout();
       navigate("/login");
-      // window.location.reload();
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -49,18 +49,28 @@ const Navbarfaculty = () => {
         <h1>Academia</h1>
 
         <div className="faculty-navbar-profile-info" ref={profileDropdownRef}>
-          <span className="faculty-navbar-profile-icon" onClick={toggleProfileDropdown}>
+          <span
+            className="faculty-navbar-profile-icon"
+            onClick={toggleProfileDropdown}
+          >
             👤
           </span>
 
           {/* Profile Dropdown Menu */}
           {profileDropdownOpen && (
             <div className="faculty-navbar-dropdown-menu">
-              <Link to="/student-profile" className="faculty-navbar-dropdown-item">
+              <Link
+                to="/student-profile"
+                className="faculty-navbar-dropdown-item"
+              >
                 Faculty Profile
               </Link>
-              <hr className="faculty-navbar-dropdown-divider" /> {/* Divider Line */}
-              <button className="faculty-navbar-dropdown-item logout" onClick={handleLogout}>
+              <hr className="faculty-navbar-dropdown-divider" />{" "}
+              {/* Divider Line */}
+              <button
+                className="faculty-navbar-dropdown-item logout"
+                onClick={handleLogout}
+              >
                 Logout
               </button>
             </div>
@@ -73,7 +83,9 @@ const Navbarfaculty = () => {
         <Link to="/faculty-routine">Class Routine</Link>
         <Link to="/faculty-available-schedule">Available Schedule</Link>
         <Link to=" ">Courses</Link>
-        <Link to="/faculty-performance-tracker">Student Performance Tracker</Link>
+        <Link to="/faculty-performance-tracker">
+          Student Performance Tracker
+        </Link>
         <Link to="/faculty-attendance-tracker">Attendance Tracker</Link>
         <Link to=" ">Materials</Link>
       </div>
