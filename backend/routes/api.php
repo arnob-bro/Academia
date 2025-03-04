@@ -34,6 +34,7 @@ Route::post('/admin/leave-application-request', [AdminController::class, 'review
 Route::get('/admin/leave-application-request', [AdminController::class, 'getAllLeaveApplicationRequests']);
 Route::get('/admin/all-courses', [AdminController::class, 'getAllCourses']);
 Route::get('/admin/variable-update', [AdminController::class, 'updateVariables']);
+Route::get('/admin/variables', [AdminController::class, 'getVariables']);
 
 
 

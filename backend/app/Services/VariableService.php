@@ -23,4 +23,22 @@ class VariableService
             "message"=> "update variables successfull"
         ];
     }
+
+
+    public function getVariables()
+    {
+        $data=DB::select("SELECT 
+            current_semester,
+            semester_starting_date,
+            current_week_no,
+            current_day_of_week 
+            from variables
+        
+            
+        WHERE log_id=?
+            ", [
+                1
+        ]);
+        return $data;
+    }
 }

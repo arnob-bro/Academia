@@ -74,5 +74,13 @@ class AdminController extends Controller
 
         return response()->json($data);
     }
+
+
+     public function getVariables(Request $request)
+    {
+        $data = $this->variableService->getVariables();
+
+        return response()->json($data[0]);
+    }
     
 }

@@ -58,7 +58,7 @@
 .admin-home-variable-control input,
 .admin-home-variable-control select {
     width: 100%;
-    padding: 5px;
+    padding-right: 3px;
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
