@@ -70,25 +70,42 @@ class FacultyController extends Controller
     }
 
     public function postAttendanceStatusOfStudents(Request $request)
-    {
+{
+    try {
         // Validate the incoming request
         $validatedData = $request->validate([
             '*.attendance_date' => 'required|date',
-            '*.scheduleID' => 'required|integer',
+            '*.courseID' => 'required|integer',
             '*.studentID' => 'required|string|max:15',
             '*.status' => 'required|in:Present,Absent,Late,Excused'
         ]);
 
+        \Log::info("Received Attendance Data:", $validatedData); // Debugging
+
         // Iterate over each object in the request
         foreach ($validatedData as $attendance) {
-            $this->attendanceService->postAttendanceStatusOfStudents($attendance['attendance_date'],
-                $attendance['scheduleID'],
-                $attendance['studentID'],
-                $attendance['status']);
-        }
-        return response()->json(['message' => 'attendance post successful'],200);
+            \Log::info("Processing Attendance Entry:", $attendance); // Debug each entry
 
+            $this->attendanceService->postAttendanceStatusOfStudents(
+                $attendance['attendance_date'],
+                $attendance['courseID'],
+                $attendance['studentID'],
+                $attendance['status']
+            );
+        }
+
+        return response()->json(['message' => 'attendance post successful'], 200);
+
+    } catch (\Exception $e) {
+        \Log::error("Attendance post error: " . $e->getMessage());
+
+        return response()->json([
+            'error' => 'Attendance post failed!',
+            'message' => $e->getMessage()
+        ], 500);
     }
+}
+
 
      public function getAllWeeksForAttendanceHistory(Request $request)
     {

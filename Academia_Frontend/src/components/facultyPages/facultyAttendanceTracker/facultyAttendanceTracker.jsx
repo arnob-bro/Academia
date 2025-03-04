@@ -6,10 +6,11 @@ import "./facultyAttendanceTracker.css";
 import {
   handleFetchCoursesOfAFacultyApi,
   fetchStudentsOfSelectedCourseApi,
+  postAttendanceStatusOfStudentsApi,
 } from "../../../Api/faculty.js";
 
 const FacultyAttendanceTracker = () => {
-  const [selectedCourse, setSelectedCourse] = useState({});
+  const [selectedCourse, setSelectedCourse] = useState("");
   const [courses, setCourses] = useState([]);
   const [students, setStudents] = useState([]);
   const [attendanceData, setAttendanceData] = useState({});
@@ -43,26 +44,31 @@ const FacultyAttendanceTracker = () => {
 
   const fetchStudentsOfSelectedCourse = async () => {
     try {
+      if (!selectedCourse) {
+        alert("Please select a course first!");
+        return;
+      }
+
       const allStudents = await fetchStudentsOfSelectedCourseApi(
         selectedCourse
       );
-      if (Array.isArray(allStudents) === true) {
+
+      if (Array.isArray(allStudents) && allStudents.length > 0) {
         setStudents(allStudents);
       } else {
-        const alert = allStudents["error"];
         setStudents([]);
-        alert(alert);
+        alert("No students found for this course.");
       }
-      // setStudents(Array.isArray(allStudents) ? allStudents : []);
     } catch (error) {
       console.error("Error fetching students:", error);
-      alert("Error fetching students. Please try again later.");
+      alert(error.message || "Failed to fetch students.");
     }
   };
 
   useEffect(() => {
     if (selectedCourse) {
       setAttendanceData({});
+      console.log(selectedCourse);
       setIsSaved(false);
     }
   }, [selectedCourse]);
@@ -81,14 +87,33 @@ const FacultyAttendanceTracker = () => {
     }
   };
 
-  const handleSave = () => {
-    students.forEach((student) => {
-      if (!attendanceData[student.studentID]) {
-        attendanceData[student.studentID] = "Absent";
+  const handleSave = async () => {
+    if (!selectedCourse || !students.length) {
+      alert("Please select a course and students first.");
+      return;
+    }
+
+    const attendancePayload = students.map((student) => ({
+      attendance_date: selectedDate,
+      courseID: Number(selectedCourse),
+      studentID: student.studentID,
+      status: attendanceData[student.studentID] || "Absent",
+    }));
+
+    try {
+      const response = await postAttendanceStatusOfStudentsApi(
+        attendancePayload
+      );
+      if (response.message === "attendance post successful") {
+        setIsSaved(true);
+        alert("Attendance saved successfully!");
+      } else {
+        alert(response.error || "Failed to save attendance.");
       }
-    });
-    setIsSaved(true);
-    alert("Attendance saved successfully!");
+    } catch (error) {
+      console.error("Error saving attendance:", error);
+      alert("An error occurred while saving attendance.");
+    }
   };
 
   return (

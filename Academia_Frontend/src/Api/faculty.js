@@ -17,17 +17,40 @@ export const handleFetchCoursesOfAFacultyApi = async (facultyID) => {
 
 export const fetchStudentsOfSelectedCourseApi = async (courseID) => {
   try {
-    console.log(courseID);
+    console.log("Fetching students for courseID:", courseID);
     const response = await axios.get(
       `${baseURL}/courses/${courseID}/all-students`,
-      {
-        headers: { "Content-Type": "application/json" },
-      }
+      { headers: { "Content-Type": "application/json" } }
     );
-    console.log(response.data);
+    console.log("Students fetched:", response.data);
     return response.data;
   } catch (error) {
     console.error("Error fetching students:", error);
-    throw error;
+
+    // Propagate the error message from the backend or default message
+    if (error.response) {
+      const serverError = error.response.data?.error || "Server error occurred";
+      throw new Error(serverError);
+    } else if (error.request) {
+      throw new Error("No response received from server");
+    } else {
+      throw new Error("Request setup error: " + error.message);
+    }
+  }
+};
+
+export const postAttendanceStatusOfStudentsApi = async (attendanceData) => {
+  try {
+    const response = await fetch(`${baseURL}/schedule/student-attendance/`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(attendanceData),
+    });
+    const result = await response.json(); // Single read
+    console.log("Response from API:", result);
+    return result; // Return the parsed result
+  } catch (error) {
+    console.error("Error posting attendance:", error);
+    return { error: "Attendance post failed!" };
   }
 };
