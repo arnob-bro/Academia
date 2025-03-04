@@ -81,7 +81,7 @@ function App() {
               <Route path="/faculty-routine" element={<FacultyRoutine />} /> 
               <Route path="/faculty-performance-tracker" element={<FacultyPerformanceTracker />} />
               <Route path="/faculty-attendance-tracker" element={<FacultyAttendanceTracker />} />
-              <Route path="faculty-leave-application" element={<FacultyLeave/>} /> 
+              <Route path="/faculty-leave-application" element={<FacultyLeave/>} /> 
               <Route path="/faculty-leave-admin" element={<FacultyLeaveAdmin/>}/>
               </>
               
