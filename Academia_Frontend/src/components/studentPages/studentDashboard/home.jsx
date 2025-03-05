@@ -1,4 +1,4 @@
-import { React, useEffect } from "react";
+import { React, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../navbar/navbar";
 import Footer from "../../footer/footer";
@@ -13,6 +13,7 @@ const data = [
   { name: "CSE3104", Present: 80, Absent: 10, Remaining: 10 },
   { name: "CSE3105", Present: 85, Absent: 5, Remaining: 10 },
 ];
+onst[(studentInfo, setStudentInfo)] = useState({});
 
 const Home = () => {
   const navigate = useNavigate(); // Initialize navigate function
@@ -27,8 +28,17 @@ const Home = () => {
     userPrint();
   }, []);
 
-  const handleNavigate = () => {
-    navigate("/student-class-routine"); // Navigate to the desired route
+  useEffect(() => {
+    const getStudentInformation = () => {
+      if (user) {
+        console.log(user.userID);
+      }
+    };
+    getStudentInformation();
+  }, []);
+
+  const handleNavigateToWeeklyRoutine = () => {
+    navigate("/student-class-routine");
   };
   return (
     <>
@@ -169,7 +179,7 @@ const Home = () => {
                 </tr>
               </tbody>
             </table>
-            <div className="see-more" onClick={handleNavigate}>
+            <div className="see-more" onClick={handleNavigateToWeeklyRoutine}>
               More →
             </div>
           </div>
