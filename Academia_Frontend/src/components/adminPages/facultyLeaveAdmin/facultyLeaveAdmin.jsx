@@ -1,137 +1,109 @@
-import { useState } from "react";
-import { ChevronDown } from "lucide-react";
-import "./facultyLeaveAdmin.css"; 
-import Navbar from "../../navbar/AdminNavbar"; 
+import { useState, useEffect } from "react";
+import Navbar from "../../navbar/AdminNavbar";
 import Footer from "../../footer/footer";
+import "./FacultyLeaveAdmin.css";
 
 const FacultyLeaveAdmin = () => {
-  const [leaveRequests, setLeaveRequests] = useState([
-    {
-      id: 1,
-      facultyId: "1456731",
-      name: "Mr.Meow",
-      department: "CSE",
-      designation: "Lecturer II",
-      startDate: "26.02.2024",
-      endDate: "28.02.2024",
-      totalDays: 3,
-      totalLeavesTaken: 6,
-      leaveType: "Sick Leave",
-      remarks: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi...",
-      status: "Pending",
-    },
-    {
-      id: 2,
-      facultyId: "1456731",
-      name: "Mr.Meow",
-      department: "CSE",
-      designation: "Lecturer II",
-      startDate: "26.02.2024",
-      endDate: "28.02.2024",
-      totalDays: 3,
-      totalLeavesTaken: 6,
-      leaveType: "Casual Leave",
-      remarks: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi...",
-      status: "Approved",
-    },
-    {
-      id: 3,
-      facultyId: "1456731",
-      name: "Mr.Meow",
-      department: "CSE",
-      designation: "Lecturer II",
-      startDate: "26.02.2024",
-      endDate: "28.02.2024",
-      totalDays: 3,
-      totalLeavesTaken: 6,
-      leaveType: "Annual Leave",
-      remarks: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi...",
-      status: "Rejected",
-    },
-    {
-      id: 4,
-      facultyId: "1456731",
-      name: "Mr.Meow",
-      department: "CSE",
-      designation: "Lecturer II",
-      startDate: "26.02.2024",
-      endDate: "28.02.2024",
-      totalDays: 3,
-      totalLeavesTaken: 6,
-      leaveType: "Sick Leave",
-      remarks: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi...",
-      status: "Approved",
-    },
-  ]);
+  const [leaveRequests, setLeaveRequests] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const handleStatusChange = (id, newStatus) => {
-    setLeaveRequests((prevRequests) =>
-      prevRequests.map((request) =>
-        request.id === id ? { ...request, status: newStatus } : request
-      )
-    );
+  useEffect(() => {
+    const fetchLeaveRequests = async () => {
+      try {
+        const response = await fetch("http://127.0.0.1:8000/api/admin/leave-application-request");
+        const data = await response.json();
+        setLeaveRequests(data);
+      } catch (err) {
+        setError("Failed to fetch leave requests");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchLeaveRequests();
+  }, []);
+
+  const handleStatusChange = async (leaveId, newStatus) => {
+    try {
+      const response = await fetch("http://localhost:8000/api/admin/leave-application-request", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ leave_id: leaveId, leave_status: newStatus })
+      });
+      const result = await response.json();
+      if (result.message) {
+        setLeaveRequests(prev => prev.map(request =>
+          request.leave_id === leaveId ? { ...request, leave_status: newStatus } : request
+        ));
+      }
+    } catch (err) {
+      setError("Error updating leave status");
+    }
   };
 
-  return (  
-    <>
-    <Navbar />
-    <div className="min-h-screen bg-gradient-to-r from-yellow-200 via-pink-300 to-purple-300 p-8">
-      <div className="bg-white shadow-md rounded-lg p-6">
-        <h2 className="text-2xl font-bold text-purple-700 mt-6">
-          Faculty Leave Request
-        </h2>
+  const handleSubmitLeaveApplication = async (leaveData) => {
+    try {
+      const response = await fetch("http://localhost:8000/api/admin/postLeaveApplication", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(leaveData)
+      });
+      const result = await response.json();
+      if (result.message) {
+        alert("Leave application submitted successfully");
+      }
+    } catch (err) {
+      setError("Error submitting leave application");
+    }
+  };
 
-        <div className="mt-4 overflow-x-auto">
-          <table className="w-full border-collapse bg-white shadow-lg rounded-lg">
-            <thead>
-              <tr className="bg-purple-600 text-white">
-                <th className="p-2">Serial No.</th>
-                <th className="p-2">Faculty Id</th>
-                <th className="p-2">Faculty Name</th>
-                <th className="p-2">Department</th>
-                <th className="p-2">Designation</th>
-                <th className="p-2">Start Date</th>
-                <th className="p-2">End Date</th>
-                <th className="p-2">Total Days</th>
-                <th className="p-2">Total Leaves Taken</th>
-                <th className="p-2">Leave Type</th>
-                <th className="p-2">Remarks</th>
-                <th className="p-2">Status</th>
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p className="text-red-500">{error}</p>;
+
+  return (
+    <>
+      <Navbar />
+      <div className="table-container">
+        <h2 className="text-2xl font-bold text-purple-700 mt-6">Faculty Leave Requests</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Serial No.</th>
+              <th>Faculty Id</th>
+              <th>Name</th>
+              <th>Department</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Leave Type</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {leaveRequests.map((request, index) => (
+              <tr key={index}>
+                <td>{index + 1}</td>
+                <td>{request.facultyID}</td>
+                <td>{request.name || "N/A"}</td>
+                <td>{request.department || "N/A"}</td>
+                <td>{request.start_date}</td>
+                <td>{request.end_date}</td>
+                <td>{request.leave_type}</td>
+                <td>
+                  <select
+                    value={request.leave_status}
+                    onChange={(e) => handleStatusChange(request.leave_id, e.target.value)}
+                  >
+                    <option value="Pending">Pending</option>
+                    <option value="Approved">Approved</option>
+                    <option value="Rejected">Rejected</option>
+                  </select>
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {leaveRequests.map((request, index) => (
-                <tr key={request.id} className="border-b hover:bg-gray-100 transition duration-200">
-                  <td className="p-2 text-center">{index + 1}</td>
-                  <td className="p-2 text-center">{request.facultyId}</td>
-                  <td className="p-2">{request.name}</td>
-                  <td className="p-2">{request.department}</td>
-                  <td className="p-2">{request.designation}</td>
-                  <td className="p-2">{request.startDate}</td>
-                  <td className="p-2">{request.endDate}</td>
-                  <td className="p-2 text-center">{request.totalDays}</td>
-                  <td className="p-2 text-center">{request.totalLeavesTaken}</td>
-                  <td className="p-2 text-center">{request.leaveType}</td>
-                  <td className="p-2">{request.remarks}</td>
-                  <td className="p-2 flex items-center">
-                    <select
-                      className="border rounded p-1"
-                      value={request.status}
-                      onChange={(e) => handleStatusChange(request.id, e.target.value)}
-                    >
-                      <option value="Pending">Pending</option>
-                      <option value="Approved">Approved</option>
-                      <option value="Rejected">Rejected</option>
-                    </select>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </tbody>
+        </table>
       </div>
-    </div>  
-    <Footer />
+      <Footer />
     </>
   );
 };
