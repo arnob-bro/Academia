@@ -3,6 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import "./navbarfaculty.css";
 import { logout } from "../../Api/auth";
 
+
+
+
 const Navbarfaculty = () => {
   const navigate = useNavigate();
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
@@ -72,20 +75,18 @@ const Navbarfaculty = () => {
           </span>
 
           {/* Profile Dropdown Menu */}
-          {profileDropdownOpen && (
-            <div className="faculty-navbar-dropdown-menu">
-              <Link to="/faculty-profile" className="faculty-navbar-dropdown-item">
-                Faculty Profile
-              </Link>
-              <hr className="faculty-navbar-dropdown-divider" />
-              <button
-                className="faculty-navbar-dropdown-item logout"
-                onClick={handleLogout}
-              >
-                Logout
-              </button>
-            </div>
-          )}
+         {profileDropdownOpen && (
+  <div className={`faculty-navbar-dropdown-menu ${profileDropdownOpen ? "open" : ""}`}>
+    <Link to="/faculty-profile" className="faculty-navbar-dropdown-item">
+      Faculty Profile
+    </Link>
+    <hr className="faculty-navbar-dropdown-divider" />
+    <button className="faculty-navbar-dropdown-item logout" onClick={handleLogout}>
+      Logout
+    </button>
+  </div>
+)}
+
         </div>
       </div>
 
@@ -94,6 +95,7 @@ const Navbarfaculty = () => {
         <Link to="/">Home</Link>
         <Link to="/faculty-advising-page">Faculty Advising</Link>
         <Link to="/faculty-routine">Class Routine</Link>
+        
         <Link to="/faculty-available-schedule">Available Schedule</Link>
         <Link to="/faculty-courses">Courses</Link>
 

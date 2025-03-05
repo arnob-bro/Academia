@@ -148,3 +148,27 @@ h1 {
 .tracker-dropdown-title:hover {
   color: #f8e35d;
 }
+
+.faculty-navbar-profile-info {
+  position: relative;
+}
+
+.faculty-navbar-dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: 50px;
+  /* Adjust to ensure it appears below the icon */
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  width: 150px;
+  z-index: 1000;
+  display: none;
+  /* Add this */
+}
+
+/* Ensure it appears when state is true */
+.faculty-navbar-dropdown-menu.open {
+  display: block;
+}

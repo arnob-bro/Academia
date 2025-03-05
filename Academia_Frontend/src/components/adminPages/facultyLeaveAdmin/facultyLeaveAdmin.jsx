@@ -70,8 +70,7 @@ const FacultyLeaveAdmin = () => {
             <tr>
               <th>Serial No.</th>
               <th>Faculty Id</th>
-              <th>Name</th>
-              <th>Department</th>
+              
               <th>Start Date</th>
               <th>End Date</th>
               <th>Leave Type</th>
@@ -83,8 +82,7 @@ const FacultyLeaveAdmin = () => {
               <tr key={index}>
                 <td>{index + 1}</td>
                 <td>{request.facultyID}</td>
-                <td>{request.name || "N/A"}</td>
-                <td>{request.department || "N/A"}</td>
+              
                 <td>{request.start_date}</td>
                 <td>{request.end_date}</td>
                 <td>{request.leave_type}</td>
