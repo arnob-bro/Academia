@@ -47,10 +47,12 @@ Route::get('/faculty/courses/{courseID}/all-students', [FacultyController::class
 Route::post('/faculty/schedule/student-attendance/',[FacultyController::class, 'postAttendanceStatusOfStudents']);
 Route::get('/faculty/schedule/student-attendance/weeks', [FacultyController::class, 'getAllWeeksForAttendanceHistory']);
 Route::post('/faculty/assessment/assessment-creation', [FacultyController::class, 'CreateAssessment']);
+Route::get('/faculty/courses/assessments', [FacultyController::class, 'getAssessmentsByCourseAndSemester']);
 
 
 Route::post('/student/AllInformationsOfStudent', [StudentController::class, 'storeAllInformationsOfStudent']);
 Route::post('/student/edit-all-information-of-student', [StudentController::class, 'editAllInformationOfStudent']);
+Route::get('/student/{studentID}', [StudentController::class, 'getStudentInfo']);
 Route::get('/student/weekly-schedule', [StudentController::class, 'getScheduleOfAStudent']);
 Route::get('/student/daily-schedule', [StudentController::class, 'getDailyScheduleOfAStudent']);
 Route::post('/student/course_enrollment', [StudentController::class, 'enrollInCourse']);

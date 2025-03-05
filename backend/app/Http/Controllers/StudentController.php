@@ -5,6 +5,7 @@ use App\Services\UserInfoService;
 use App\Services\ScheduleService;
 use App\Services\EnrollmentService;
 use App\Services\CourseService;
+use App\Services\InfoService;
 
 use Illuminate\Http\Request;
 
@@ -15,13 +16,15 @@ class StudentController extends Controller
     private $scheduleService;
     private $enrollmentService;
     private $courseService;
+    private $infoService;
 
-    public function __construct(UserInfoService $userInfoService, ScheduleService $scheduleService,EnrollmentService  $enrollmentService, CourseService $courseService)
+    public function __construct(UserInfoService $userInfoService, ScheduleService $scheduleService,EnrollmentService  $enrollmentService, CourseService $courseService, InfoService $infoService)
     {
         $this->userInfoService = $userInfoService;
         $this->scheduleService = $scheduleService;
         $this->enrollmentService = $enrollmentService;
         $this->courseService = $courseService;
+        $this->infoService = $infoService;
     }
 
     public function storeAllInformationsOfStudent(Request $request)
@@ -88,4 +91,35 @@ class StudentController extends Controller
 
         return response()->json($data);
     }
+
+    // Change method signature to receive $studentID from route
+public function getStudentInfo(Request $request, $studentID)
+{
+    try {
+        // Validate route parameter directly
+        $validator = Validator::make(['studentID' => $studentID], [
+            'studentID' => 'required|string|size:15'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 422);
+        }
+
+        $studentInfo = $this->infoService->getStudentInfo($studentID);
+        
+        if (!$studentInfo) {
+            return response()->json(['error' => 'Student not found'], 404);
+        }
+        
+        \Log::info("Student info retrieved:", (array)$studentInfo);
+        return response()->json($studentInfo);
+        
+    } catch (\Exception $e) {
+        \Log::error("Student info fetch error: " . $e->getMessage());
+        return response()->json(
+            ['error' => 'Failed to fetch student data: ' . $e->getMessage()],
+            500
+        );
+    }
+}
 }

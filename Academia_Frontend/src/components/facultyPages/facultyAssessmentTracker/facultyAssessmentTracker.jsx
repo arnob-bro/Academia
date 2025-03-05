@@ -3,6 +3,7 @@ import Navbarfaculty from "../../navbar/navbarfaculty";
 import Footer from "../../footer/footer";
 import "./facultyAssessmentTracker.css";
 import { handleFetchCoursesOfAFacultyApi } from "../../../Api/faculty";
+import axios from "axios";
 
 const FacultyAssessmentTracker = () => {
   const [selectedCourse, setSelectedCourse] = useState("");
@@ -51,15 +52,19 @@ const FacultyAssessmentTracker = () => {
 
     setIsFetching(true); // Set fetching to true while fetching assessments
     try {
-      const allAssessments = await fetchAssessmentsOfSelectedCourseApi(selectedCourse);
+      const allAssessments = await axios.get(
+       ` http://127.0.0.1:8000/api/faculty/courses/assessments`,
+        { headers: { "Content-Type": "application/json" } }
+      );
       setAssessments(allAssessments || []);
       setIsLoaded(true);
     } catch (error) {
       console.error("Error fetching assessments:", error);
       alert("Failed to fetch assessments.");
     }
-    setIsFetching(false); // Set fetching to false when done
+    setIsFetching(false); 
   };
+  
 
   const createAssessment = async (assessmentData) => {
     try {
@@ -146,16 +151,16 @@ const FacultyAssessmentTracker = () => {
                 <tr>
                   <th>Type</th>
                   <th>Weight</th>
-                  <th>Course + Section</th>
+                  <th>Date</th>
                   <th>Semester</th>
                 </tr>
               </thead>
               <tbody>
                 {assessments.map((assessment, index) => (
                   <tr key={index}>
-                    <td>{assessment.type}</td>
-                    <td>{assessment.weight}</td>
-                    <td>{assessment.course_section}</td>
+                    <td>{assessment.assessment_type}</td>
+                    <td>{assessment.assessment_weight}</td>
+                    <td>{assessment.assessment_date}</td>
                     <td>{assessment.semester}</td>
                   </tr>
                 ))}

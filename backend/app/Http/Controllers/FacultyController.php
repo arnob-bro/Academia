@@ -117,6 +117,13 @@ class FacultyController extends Controller
         return response()->json($weeks);
     }
 
+    public function getAssessmentsByCourseAndSemester(Request $request)
+    {
+        $assessments = $this->assessmentService->getAssessmentsByCourseAndSemester($request->courseID);
+
+        return response()->json($assessments);
+    }
+
 
     public function CreateAssessment(Request $request)
     {

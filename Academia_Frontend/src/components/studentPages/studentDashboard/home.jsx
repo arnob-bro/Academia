@@ -27,8 +27,8 @@ const Home = () => {
     userPrint();
   }, []);
 
-  const handleNavigate = () => {
-    navigate("/student-class-routine"); // Navigate to the desired route
+  const handleNavigateToWeeklyRoutine = () => {
+    navigate("/student-class-routine");
   };
   return (
     <>
@@ -169,7 +169,7 @@ const Home = () => {
                 </tr>
               </tbody>
             </table>
-            <div className="see-more" onClick={handleNavigate}>
+            <div className="see-more" onClick={handleNavigateToWeeklyRoutine}>
               More →
             </div>
           </div>
