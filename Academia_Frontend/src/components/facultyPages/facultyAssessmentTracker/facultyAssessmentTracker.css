@@ -1,0 +1,107 @@
+.get-data-btn {
+    padding: 5px 10px;
+    background-color: #f73636;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .get-data-btn:hover {
+    background-color: #b30018;
+  }
+  /* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  /* Style for disabled buttons */
+button:disabled {
+    background-color: grey;
+    cursor: not-allowed;
+  }
+  
+  
+  /* Modal Content */
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    width: 33%;
+    height: 33%;
+    overflow-y: auto;
+    position: relative;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Close Button */
+  .modal-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  /* Modal Table */
+  .modal-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .modal-table th,
+  .modal-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .modal-table th {
+    background-color: #f4f4f4;
+    color: black;
+  }
+  .modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+  
+  .edit-btn, .save-btn {
+    padding: 10px 10px;
+    border: none;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .edit-btn {
+    background-color: #FF9800;
+  }
+  
+  .edit-icon {
+    margin-right: 8px;
+  }
+  .get-assessment-btn{
+    background-color: rgb(107, 247, 130);
+    color: white;
+    font-weight: 600;
+  }
+
+  .create-assessment-btn{
+    background-color: rgb(15, 15, 129);
+    color: white;
+    font-weight: 600;
+    margin-left: 10px
+  }

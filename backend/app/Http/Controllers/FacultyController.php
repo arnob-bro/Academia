@@ -5,6 +5,7 @@ use App\Services\ScheduleService;
 use App\Services\LeaveApplicationService;
 use App\Services\CourseService;
 use App\Services\AttendanceService;
+use App\Services\AssessmentService;
 use DB;
 
 use Illuminate\Http\Request;
@@ -15,13 +16,15 @@ class FacultyController extends Controller
     private $leaveApplicationService;
     private $courseService;
     private $attendanceService;
+    private $assessmentService;
 
-    public function __construct(ScheduleService $scheduleService, LeaveApplicationService $leaveApplicationService, CourseService $courseService, AttendanceService $attendanceService)
+    public function __construct(AssessmentService $assessmentService,ScheduleService $scheduleService, LeaveApplicationService $leaveApplicationService, CourseService $courseService, AttendanceService $attendanceService)
     {
         $this->scheduleService = $scheduleService;
         $this->leaveApplicationService = $leaveApplicationService;
         $this->courseService = $courseService;
         $this->attendanceService = $attendanceService;
+        $this->assessmentService = $assessmentService;
 
     }
 
@@ -113,4 +116,13 @@ class FacultyController extends Controller
 
         return response()->json($weeks);
     }
+
+
+    public function CreateAssessment(Request $request)
+    {
+       $data= $this->assessmentService->CreateAssessment($request->assessment_weight,$request->assessment_date,$request->assessment_type,$request->semester,$request->courseID);
+
+        return response()->json($data);
+    }
+    
 }
