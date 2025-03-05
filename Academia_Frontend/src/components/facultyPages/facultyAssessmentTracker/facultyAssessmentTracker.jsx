@@ -50,41 +50,50 @@ const FacultyAssessmentTracker = () => {
       return;
     }
 
-    setIsFetching(true); // Set fetching to true while fetching assessments
+    setIsFetching(true);
     try {
-      const allAssessments = await axios.get(
-       ` http://127.0.0.1:8000/api/faculty/courses/assessments`,
-        { headers: { "Content-Type": "application/json" } }
+      const response = await axios.get(
+        `http://127.0.0.1:8000/api/faculty/courses/assessments`,
+        {
+          params: { courseID: selectedCourse }, // Add courseID parameter
+          headers: { "Content-Type": "application/json" },
+        }
       );
-      setAssessments(allAssessments || []);
+
+      // Ensure we're getting array data
+      const data = Array.isArray(response?.data) ? response.data : [];
+      setAssessments(data);
       setIsLoaded(true);
     } catch (error) {
       console.error("Error fetching assessments:", error);
+      setAssessments([]); // Reset to empty array on error
       alert("Failed to fetch assessments.");
     }
-    setIsFetching(false); 
+    setIsFetching(false);
   };
-  
 
   const createAssessment = async (assessmentData) => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/faculty/assessment/assessment-creation', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(assessmentData),
-      });
+      const response = await fetch(
+        "http://127.0.0.1:8000/api/faculty/assessment/assessment-creation",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(assessmentData),
+        }
+      );
 
       const data = await response.json();
       if (response.ok) {
         setMessage(data.message);
         setError("");
       } else {
-        setError(data.error || 'Error creating assessment');
+        setError(data.error || "Error creating assessment");
         setMessage("");
       }
     } catch (error) {
-      console.error('Error:', error);
-      setError('Failed to create assessment');
+      console.error("Error:", error);
+      setError("Failed to create assessment");
       setMessage("");
     }
   };
@@ -156,7 +165,7 @@ const FacultyAssessmentTracker = () => {
                 </tr>
               </thead>
               <tbody>
-                {assessments.map((assessment, index) => (
+                {assessments?.map((assessment, index) => (
                   <tr key={index}>
                     <td>{assessment.assessment_type}</td>
                     <td>{assessment.assessment_weight}</td>
@@ -173,7 +182,9 @@ const FacultyAssessmentTracker = () => {
         {showModal && (
           <div className="modal-overlay">
             <div className="modal-content">
-              <button className="modal-close-btn" onClick={closeModal}>X</button>
+              <button className="modal-close-btn" onClick={closeModal}>
+                X
+              </button>
               <h3>Student Marks</h3>
               <table className="modal-table">
                 <thead>
@@ -203,19 +214,39 @@ const FacultyAssessmentTracker = () => {
             <form onSubmit={handleCreateAssessment}>
               <div>
                 <label>Assessment Type: </label>
-                <input type="text" value={type} onChange={(e) => setType(e.target.value)} required />
+                <input
+                  type="text"
+                  value={type}
+                  onChange={(e) => setType(e.target.value)}
+                  required
+                />
               </div>
               <div>
                 <label>Weight: </label>
-                <input type="number" value={weight} onChange={(e) => setWeight(e.target.value)} required />
+                <input
+                  type="number"
+                  value={weight}
+                  onChange={(e) => setWeight(e.target.value)}
+                  required
+                />
               </div>
               <div>
                 <label>Assessment Date: </label>
-                <input type="date" value={date} onChange={(e) => setDate(e.target.value)} required />
+                <input
+                  type="date"
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                  required
+                />
               </div>
               <div>
                 <label>Semester: </label>
-                <input type="text" value={semester} onChange={(e) => setSemester(e.target.value)} required />
+                <input
+                  type="text"
+                  value={semester}
+                  onChange={(e) => setSemester(e.target.value)}
+                  required
+                />
               </div>
               <button type="submit">Create Assessment</button>
             </form>
