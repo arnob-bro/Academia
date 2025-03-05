@@ -18,7 +18,7 @@ class FacultyController extends Controller
     private $attendanceService;
     private $assessmentService;
 
-    public function __construct(ScheduleService $scheduleService, LeaveApplicationService $leaveApplicationService, CourseService $courseService, AttendanceService $attendanceService,  AssessmentService $assessmentService)
+    public function __construct(AssessmentService $assessmentService,ScheduleService $scheduleService, LeaveApplicationService $leaveApplicationService, CourseService $courseService, AttendanceService $attendanceService)
     {
         $this->scheduleService = $scheduleService;
         $this->leaveApplicationService = $leaveApplicationService;
@@ -123,4 +123,13 @@ class FacultyController extends Controller
 
         return response()->json($assessments);
     }
+
+
+    public function CreateAssessment(Request $request)
+    {
+       $data= $this->assessmentService->CreateAssessment($request->assessment_weight,$request->assessment_date,$request->assessment_type,$request->semester,$request->courseID);
+
+        return response()->json($data);
+    }
+    
 }

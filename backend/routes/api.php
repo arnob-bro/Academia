@@ -45,8 +45,7 @@ Route::get('/faculty/my-courses/', [FacultyController::class, 'getAllCoursesOfAF
 Route::get('/faculty/courses/{courseID}/all-students', [FacultyController::class, 'getAllStudentsOfACourseOfASemester']);
 Route::post('/faculty/schedule/student-attendance/',[FacultyController::class, 'postAttendanceStatusOfStudents']);
 Route::get('/faculty/schedule/student-attendance/weeks', [FacultyController::class, 'getAllWeeksForAttendanceHistory']);
-Route::get('/faculty/courses/assessments', [FacultyController::class, 'getAssessmentsByCourseAndSemester']);
-
+Route::post('/faculty/assessment/assessment-creation', [FacultyController::class, 'CreateAssessment']);
 
 
 Route::post('/student/AllInformationsOfStudent', [StudentController::class, 'storeAllInformationsOfStudent']);

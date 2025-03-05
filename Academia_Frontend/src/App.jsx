@@ -30,7 +30,7 @@ import FacultyLeave from "./components/facultyPages/facultyLeaveApplication/facu
 import FacultyLeaveAdmin from "./components/adminPages/facultyLeaveAdmin/facultyLeaveAdmin.jsx"; 
 import CourseManagement from "./components/adminPages/courseManagement/courseManagement.jsx"; 
 import CourseSchedule from "./components/adminPages/courseScheduleManagement/courseSchedule.jsx";
-
+import FacultyAssessmentTracker from "./components/facultyPages/facultyAssessmentTracker/facultyAssessmentTracker.jsx";
 function App() {
   const userData = JSON.parse(localStorage.getItem("userData"));
 
@@ -82,7 +82,7 @@ function App() {
               <Route path="/faculty-performance-tracker" element={<FacultyPerformanceTracker />} />
               <Route path="/faculty-attendance-tracker" element={<FacultyAttendanceTracker />} />
               <Route path="faculty-leave-application" element={<FacultyLeave/>} /> 
-              <Route path="/faculty-leave-admin" element={<FacultyLeaveAdmin/>}/>
+              <Route path="/faculty-assessment-tracker" element={<FacultyAssessmentTracker />} />
               </>
               
             )}
@@ -95,6 +95,7 @@ function App() {
                 <Route path="/faculty-recruitment" element={<FacultyRecruitment />} /> 
                 <Route path="/course-management-admin" element={<CourseManagement/>}/> 
                 <Route path="/course-schedule" element={<CourseSchedule/>}/>
+                <Route path="/faculty-leave-admin" element={<FacultyLeaveAdmin/>}/>
               </>
             )}
           </>

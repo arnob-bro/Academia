@@ -34,6 +34,7 @@ const FacultyAttendanceTracker = () => {
       if (!facultyID) return;
       try {
         const allCourses = await handleFetchCoursesOfAFacultyApi(facultyID);
+        console.log("Fetched courses:", allCourses);
         setCourses(allCourses || []);
       } catch (error) {
         console.error("Error fetching courses:", error);
