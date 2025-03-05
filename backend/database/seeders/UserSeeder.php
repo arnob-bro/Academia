@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
 
         DB::statement("INSERT INTO variables (log_id, current_semester, semester_starting_date,current_week_no,current_day_of_week)
                 VALUES (?, ?, ?,?,?)", [
-                    1,"Spring24","2025-03-02",1,"Sunday"
+                    1,"Spring24","2025-03-02",1,"Monday"
         ]);
 
         // Insert Students
