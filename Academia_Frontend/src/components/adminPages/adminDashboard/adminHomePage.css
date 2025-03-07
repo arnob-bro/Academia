@@ -1,5 +1,6 @@
 .admin-home-dashboard-container {
-    background: linear-gradient(to bottom, #fffdf1, #ffdafa);
+    background-color: #dcf9ff;
+    /* background: linear-gradient(to bottom, #eef9ff, #8ddbfa); */
     padding: 20px;
     font-family: 'Arial', sans-serif;
 }

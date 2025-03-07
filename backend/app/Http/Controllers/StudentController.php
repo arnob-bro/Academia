@@ -93,33 +93,30 @@ class StudentController extends Controller
     }
 
     // Change method signature to receive $studentID from route
-public function getStudentInfo(Request $request, $studentID)
-{
-    try {
-        // Validate route parameter directly
-        $validator = Validator::make(['studentID' => $studentID], [
-            'studentID' => 'required|string|size:15'
-        ]);
+// public function getStudentInfo(Request $request, $studentID)
+// {
+//     try {
+        
 
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 422);
-        }
+//         if ($validator->fails()) {
+//             return response()->json(['error' => $validator->errors()], 422);
+//         }
 
-        $studentInfo = $this->infoService->getStudentInfo($studentID);
+//         $studentInfo = $this->infoService->getStudentInfo($studentID);
         
-        if (!$studentInfo) {
-            return response()->json(['error' => 'Student not found'], 404);
-        }
+//         if (!$studentInfo) {
+//             return response()->json(['error' => 'Student not found'], 404);
+//         }
         
-        \Log::info("Student info retrieved:", (array)$studentInfo);
-        return response()->json($studentInfo);
+//         \Log::info("Student info retrieved:", (array)$studentInfo);
+//         return response()->json($studentInfo);
         
-    } catch (\Exception $e) {
-        \Log::error("Student info fetch error: " . $e->getMessage());
-        return response()->json(
-            ['error' => 'Failed to fetch student data: ' . $e->getMessage()],
-            500
-        );
-    }
-}
+//     } catch (\Exception $e) {
+//         \Log::error("Student info fetch error: " . $e->getMessage());
+//         return response()->json(
+//             ['error' => 'Failed to fetch student data: ' . $e->getMessage()],
+//             500
+//         );
+//     }
+// }
 }
