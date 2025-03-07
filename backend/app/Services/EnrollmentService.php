@@ -10,7 +10,7 @@ use Exception;
 class EnrollmentService
 {
 
-    function checkPrerequisiteCompletion($studentID, $courseID) {
+    public function checkPrerequisiteCompletion($studentID, $courseID) {
     // Get the prerequisite course code for the given course
     $prerequisiteCourseCode = DB::table('courses')
         ->where('courseID', $courseID)
@@ -44,7 +44,7 @@ class EnrollmentService
 
     if ($prerequisiteCourseID) {
         // Recursively check for multilevel prerequisite completion
-        return checkPrerequisiteCompletion($studentID, $prerequisiteCourseID);
+        return $this->checkPrerequisiteCompletion($studentID, $prerequisiteCourseID);
     }
 
     return true;
@@ -192,7 +192,7 @@ class EnrollmentService
 
         return $data;
 
-        }catch(\Exception $e){
+        }catch(Exception $e){
             return [
             'error' => 'enrollment courses fetch failed!',
             'message' => $e->getMessage()
