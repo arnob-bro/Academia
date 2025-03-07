@@ -62,7 +62,7 @@ class StudentController extends Controller
     {
 
      $data = $this->scheduleService->getDailyScheduleOfAStudent(
-        $request->studentID,$request->week_no , $request->day_of_week
+        $request->studentID
      );
         return response()->json($data);
     
@@ -72,7 +72,7 @@ class StudentController extends Controller
     {
 
      $data = $this->enrollmentService->enrollInCourse(
-        $request->studentID,$request->courseID, $request->enrollment_semester
+        $request->studentID,$request->courseID
      );
         return response()->json($data);
     
@@ -93,33 +93,26 @@ class StudentController extends Controller
     }
 
     // Change method signature to receive $studentID from route
-public function getStudentInfo(Request $request, $studentID)
+        public function getStudentInfo(Request $request)
 {
     try {
-        // Validate route parameter directly
-        $validator = Validator::make(['studentID' => $studentID], [
-            'studentID' => 'required|string|size:15'
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 422);
-        }
-
+        $studentID = $request->studentID;
+        // Log the received studentID to confirm
+        \Log::info("Fetching student info for studentID: " . $studentID);
+        
         $studentInfo = $this->infoService->getStudentInfo($studentID);
         
         if (!$studentInfo) {
+            \Log::warning("No student data found for studentID: " . $studentID);
             return response()->json(['error' => 'Student not found'], 404);
         }
         
-        \Log::info("Student info retrieved:", (array)$studentInfo);
         return response()->json($studentInfo);
         
     } catch (\Exception $e) {
         \Log::error("Student info fetch error: " . $e->getMessage());
-        return response()->json(
-            ['error' => 'Failed to fetch student data: ' . $e->getMessage()],
-            500
-        );
+        return response()->json(['error' => 'Failed to fetch student data: ' . $e->getMessage()], 500);
     }
 }
+
 }

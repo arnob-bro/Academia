@@ -1,9 +1,10 @@
-import { React, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../navbar/navbar";
 import Footer from "../../footer/footer";
 import ChartAt from "./chartAt";
 import "./home.css";
+import { getStudentInfoApi, fetchDailyScheduleApi } from "../../../Api/student";
 
 const data = [
   { name: "CSE3100", Present: 60, Absent: 10, Remaining: 30 },
@@ -15,21 +16,53 @@ const data = [
 ];
 
 const Home = () => {
-  const navigate = useNavigate(); // Initialize navigate function
+  const navigate = useNavigate();
+  const [studentInfo, setStudentInfo] = useState(null);
+  const [loading, setLoading] = useState(true); // Loading state
+  const [dailySchedule, setDailySchedule] = useState([]);
 
   useEffect(() => {
-    const userPrint = () => {
+    const fetchStudentInfo = async () => {
       const user = JSON.parse(localStorage.getItem("userData"));
       if (user) {
-        console.log(user.userID);
+        try {
+          const studentData = await getStudentInfoApi(user.userID);
+          setStudentInfo(studentData[0]);
+        } catch (error) {
+          console.error("Error fetching student info:", error);
+        }
       }
+      setLoading(false); // Mark loading as complete
     };
-    userPrint();
+
+    fetchStudentInfo();
   }, []);
 
-  const handleNavigateToWeeklyRoutine = () => {
-    navigate("/student-class-routine");
-  };
+  useEffect(() => {
+    const fetchDailySchedule = async () => {
+      const user = JSON.parse(localStorage.getItem("userData"));
+      if (user) {
+        try {
+          const dailyScheduleData = await fetchDailyScheduleApi(user.userID);
+          setDailySchedule(dailyScheduleData);
+        } catch (error) {
+          console.error("Error fetching daily schedule:", error);
+        }
+      }
+      setLoading(false); // Mark loading as complete
+    };
+
+    fetchDailySchedule();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <h2>Loading...</h2>
+      </div>
+    );
+  }
+
   return (
     <>
       <Navbar />
@@ -37,17 +70,19 @@ const Home = () => {
         <div className="content">
           <div className="info-box">
             <p>
-              <strong>Cgpa:</strong> 3.5
+              <strong>Cgpa:</strong> {studentInfo?.cgpa || "N/A"}
             </p>
           </div>
           <div className="info-box">
             <p>
-              <strong>Completed Credit:</strong> 60
+              <strong>Completed Credit:</strong>{" "}
+              {studentInfo?.completedCredit || "N/A"}
             </p>
           </div>
           <div className="info-box">
             <p>
-              <strong>Current Semester:</strong> 1st
+              <strong>Current Semester:</strong>{" "}
+              {studentInfo?.currentSemester || "N/A"}
             </p>
           </div>
           <div className="info-box">
@@ -58,87 +93,34 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="notice-board">
-          <h2>Notice</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Date</th>
-                <th>Details</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>01.01.2025</td>
-                <td>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  </p>
-                  <p>
-                    Sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua.
-                  </p>
-                  <p>
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                    laboris nisi ...
-                    <a href="#"> Read More</a>
-                  </p>
-                </td>
-              </tr>
-              <tr>
-                <td>01.01.2025</td>
-                <td>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  </p>
-                  <p>
-                    Sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua.
-                  </p>
-                  <p>
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                    laboris nisi ...
-                    <a href="#"> Read More</a>
-                  </p>
-                </td>
-              </tr>
-              <tr>
-                <td>01.01.2025</td>
-                <td>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  </p>
-                  <p>
-                    Sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua.
-                  </p>
-                  <p>
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                    laboris nisi ...
-                    <a href="#"> Read More</a>
-                  </p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
         <div className="profile-container">
           <div className="profile-box">
             <h3>Student Profile</h3>
-            <p>Name: Safina</p>
-            <p>Id: 2022010401</p>
-            <p>Phone: 01711111111</p>
-            <p>Father's Name: Howlader</p>
-            <p>Mother's Name: Sabrina</p>
+            <p>
+              <strong>Name:</strong> {studentInfo?.name || "N/A"}
+            </p>
+            <p>
+              <strong>Student ID:</strong> {studentInfo?.studentID || "N/A"}
+            </p>
+            <p>
+              <strong>Phone:</strong> {studentInfo?.phone_number || "N/A"}
+            </p>
+            <p>
+              <strong>Father's Name:</strong>{" "}
+              {studentInfo?.father_name || "N/A"}
+            </p>
+            <p>
+              <strong>Mother's Name:</strong>{" "}
+              {studentInfo?.mother_name || "N/A"}
+            </p>
           </div>
 
           <div className="profile-box">
             <h3>Advisor Information</h3>
-            <p>Name: Donald</p>
-            <p>Room No: 7A01</p>
-            <p>Email: donaldk@gmail.com</p>
-            <p>Contact: 01722222222</p>
+            <p>Name: {studentInfo?.advisor?.name || "N/A"}</p>
+            <p>Room No: {studentInfo?.advisor?.room || "N/A"}</p>
+            <p>Email: {studentInfo?.advisor?.email || "N/A"}</p>
+            <p>Contact: {studentInfo?.advisor?.contact || "N/A"}</p>
           </div>
         </div>
 
@@ -147,6 +129,7 @@ const Home = () => {
             <h3>Today's Class Routine</h3>
             <p>Day: Tuesday</p>
             <p>Date: 14.01.2025</p>
+
             <table>
               <thead>
                 <tr>
@@ -155,21 +138,20 @@ const Home = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>CSE3100</td>
-                  <td>10:00 AM - 11:00 AM</td>
-                </tr>
-                <tr>
-                  <td>CSE3101</td>
-                  <td>11:00 AM - 12:00 PM</td>
-                </tr>
-                <tr>
-                  <td>CSE3102</td>
-                  <td>12:00 PM - 1:00 PM</td>
-                </tr>
+                {dailySchedule?.map((schedule) => (
+                  <tr key={schedule.scheduleID}>
+                    <td>{schedule.course_code}</td>
+                    <td>
+                      {schedule.start_time} - {schedule.end_time}
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
-            <div className="see-more" onClick={handleNavigateToWeeklyRoutine}>
+            <div
+              className="see-more"
+              onClick={() => navigate("/student-class-routine")}
+            >
               More →
             </div>
           </div>

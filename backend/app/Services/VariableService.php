@@ -7,17 +7,19 @@ use DB;
 use Illuminate\Support\Facades\Hash;
 class VariableService
 {
-    public function updateVariables($current_semester, $semester_starting_date, $current_week_no, $current_day_of_week)
+    public function updateVariables($current_semester, $semester_starting_date, $current_week_no, $current_day_of_week,$advising)
     {
         DB::update("UPDATE variables
         SET
             current_semester=?,
             semester_starting_date=?,
             current_week_no=?,
-            current_day_of_week=?
+            current_day_of_week=?,
+            advising=?
+
         WHERE log_id=?
             ", [
-                $current_semester, $semester_starting_date, $current_week_no, $current_day_of_week,1
+                $current_semester, $semester_starting_date, $current_week_no, $current_day_of_week,$advising,1
         ]);
         return [
             "message"=> "update variables successfull"
