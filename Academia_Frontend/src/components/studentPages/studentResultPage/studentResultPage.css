@@ -1,6 +1,7 @@
 .student-result-page-container {
-    background: linear-gradient(to bottom, #fffdf1, #ffdafa);
-    padding: 20px;
+    /* background: linear-gradient(to bottom, #fffdf1, #ffdafa); */
+    background-color: #f4f7fc;
+    padding: 30px;
     text-align: center;
 }
 
@@ -8,6 +9,7 @@
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 20px;
+    
 }
 
 .student-result-page-student-info-table,
@@ -25,16 +27,40 @@
 .student-result-page-semester-info-table td,
 .student-result-page-result-table th,
 .student-result-page-result-table td {
-    border: 1px solid #ddd;
+    border: 1px solid #95c1d4;
     padding: 10px;
     text-align: left;
 }
 
 .student-result-page-result-table th {
-    background-color: #f2f2f2;
+    background-color: #21637f;
     font-weight: bold;
 }
 
 .student-result-page-result-table tbody tr:nth-child(even) {
     background-color: #f9f9f9;
+}
+
+
+.student-result-page-dropdown {
+    margin-bottom: 20px;
+    text-align: right;
+    
+}
+
+.student-result-page-dropdown label {
+    font-weight: bold;
+    margin-right: 10px;
+    color: #21637f;
+}
+
+.student-result-page-dropdown select {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #95c1d4;
+}
+
+.student-result-page-dropdown select:hover {
+    
+    border: 1px solid #2c657e;
 }

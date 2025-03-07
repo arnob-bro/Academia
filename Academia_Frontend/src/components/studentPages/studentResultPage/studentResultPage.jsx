@@ -1,119 +1,84 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './studentResultPage.css';
 import Navbar from '../../navbar/navbar';
 import Footer from '../../footer/footer';
 
 export const StudentResultPage = () => {
+  const [selectedSemester, setSelectedSemester] = useState('');
+
+  // Sample result data for different semesters
+  const resultData = {
+    "Spring 2024": [
+      { courseNumber: "CSE 3100", title: "Software Development", credit: 3, finalGrade: "A-", finalPoint: 3.5 },
+      { courseNumber: "CSE 3101", title: "Database Systems", credit: 3, finalGrade: "A", finalPoint: 4.0 },
+      { courseNumber: "CSE 3700", title: "Artificial Intelligence", credit: 3, finalGrade: "B+", finalPoint: 3.3 },
+    ],
+    "Fall 2023": [
+      { courseNumber: "CSE 2200", title: "Computer Networks", credit: 3, finalGrade: "B+", finalPoint: 3.3 },
+      { courseNumber: "CSE 2201", title: "Operating Systems", credit: 3, finalGrade: "A-", finalPoint: 3.5 },
+    ],
+  };
+
   return (
     <>
       <Navbar />
       <div className="student-result-page-container">
-        <h2 className="student-result-page-result-title">Result</h2>
+        <h2 className="student-result-page-result-title">Student Result</h2>
         
-        {/* Student Information Table */}
-        <table className="student-result-page-student-info-table">
-          <tbody>
-            <tr>
-              <td><strong>Student Name</strong></td>
-              <td>Mickey Mouse</td>
-            </tr>
-            <tr>
-              <td><strong>Registration Number</strong></td>
-              <td>20220104008</td>
-            </tr>
-            <tr>
-              <td><strong>Program</strong></td>
-              <td>Bachelor of Science in Computer Science and Engineering</td>
-            </tr>
-            <tr>
-              <td><strong>Department/School</strong></td>
-              <td>Department of Computer Science and Engineering</td>
-            </tr>
-          </tbody>
-        </table>
+        {/* Semester Selection Dropdown */}
+        <div className="student-result-page-dropdown">
+          <label htmlFor="semester" >Select Semester: </label>
+          <select
+            id="semester"
+            value={selectedSemester}
+            onChange={(e) => setSelectedSemester(e.target.value)}
+          >
+            <option value="">-- Select Semester --</option>
+            {Object.keys(resultData).map((semester) => (
+              <option key={semester} value={semester}>{semester}</option>
+            ))}
+          </select>
+        </div>
 
-        {/* Semester Details Table */}
-        <table className="student-result-page-semester-info-table">
-          <tbody>
-            <tr>
-              <td><strong>Semester</strong></td>
-              <td>2</td>
-              <td><strong>Semester Credit Completed</strong></td>
-              <td>19.5</td>
-            </tr>
-            <tr>
-              <td><strong>Enrollment Semester</strong></td>
-              <td>Spring 2022</td>
-              <td><strong>Grade Point Average (GPA)</strong></td>
-              <td>3.5</td>
-            </tr>
-            <tr>
-              <td><strong>Current Semester</strong></td>
-              <td>Spring 2024</td>
-              <td><strong>Cumulative Credit Completed</strong></td>
-              <td>60</td>
-            </tr>
-            <tr>
-              <td><strong>Medium of Instruction</strong></td>
-              <td>English</td>
-              <td><strong>Cumulative Grade Point Average (CGPA)</strong></td>
-              <td>3.47</td>
-            </tr>
-          </tbody>
-        </table>
+        {/* Show Results only if a semester is selected */}
+        {selectedSemester && (
+          <>
+            <table className="student-result-page-student-info-table">
+              <tbody>
+                <tr><td><strong>Student Name</strong></td><td>Mickey Mouse</td></tr>
+                <tr><td><strong>Registration Number</strong></td><td>20220104008</td></tr>
+                <tr><td><strong>Program</strong></td><td>Bachelor of Science in Computer Science and Engineering</td></tr>
+                <tr><td><strong>Department/School</strong></td><td>Department of Computer Science and Engineering</td></tr>
+              </tbody>
+            </table>
 
-        {/* Result Table */}
-        <table className="student-result-page-result-table">
-          <thead>
-            <tr>
-              <th>Course Number</th>
-              <th>Course Title</th>
-              <th>Course Credit</th>
-              <th colSpan="2">Final</th>
-              <th colSpan="2">Improvement/Clearance</th>
-            </tr>
-            <tr>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th>Letter Grade</th>
-              <th>Grade Point</th>
-              <th>Letter Grade</th>
-              <th>Grade Point</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>CSE 3100</td>
-              <td>Software Development</td>
-              <td>3</td>
-              <td>A-</td>
-              <td>3.5</td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>CSE 3101</td>
-              <td>Software Development</td>
-              <td>3</td>
-              <td>A-</td>
-              <td>3.5</td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>CSE 3700</td>
-              <td>Software Development</td>
-              <td>3</td>
-              <td>A-</td>
-              <td>3.5</td>
-              <td></td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
+            <table className="student-result-page-result-table">
+              <thead>
+                <tr>
+                  <th>Course Number</th>
+                  <th>Course Title</th>
+                  <th>Course Credit</th>
+                  <th>Final Grade</th>
+                  <th>Grade Point</th>
+                </tr>
+              </thead>
+              <tbody>
+                {resultData[selectedSemester].map((course, index) => (
+                  <tr key={index}>
+                    <td>{course.courseNumber}</td>
+                    <td>{course.title}</td>
+                    <td>{course.credit}</td>
+                    <td>{course.finalGrade}</td>
+                    <td>{course.finalPoint}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </>
+        )}
+        <Footer />
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
