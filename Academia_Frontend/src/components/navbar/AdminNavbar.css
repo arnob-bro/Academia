@@ -6,7 +6,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(to right, #FAF3C4, #D07CE1);
+    background: linear-gradient(to right, #eef9ff, #8ddbfa);
     padding: 6px 30px;
 }
 
@@ -71,7 +71,7 @@ h1 {
 .admin-nav-bottom {
     display: flex;
     justify-content: space-around;
-    background: #BB5BB5;
+    background: #21637f;
     padding: 10px 0;
 }
 
@@ -85,7 +85,7 @@ h1 {
 
 .admin-nav-bottom a:hover,
 .admin-nav-bottom a.active {
-    color: #f8e35d;
+    color: #59b4ea;
 }
 
   /* Profile Section */

@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 use App\Services\UserInfoService;
 use App\Services\ScheduleService;
 use App\Services\EnrollmentService;
-use App\Services\CourseService;
-use App\Services\InfoService;
-use App\Services\VariableService;
 
 use Illuminate\Http\Request;
 
@@ -16,18 +13,12 @@ class StudentController extends Controller
     private $userInfoService;
     private $scheduleService;
     private $enrollmentService;
-    private $courseService;
-    private $infoService;
-    private $variableService;
 
-    public function __construct(UserInfoService $userInfoService, ScheduleService $scheduleService,EnrollmentService  $enrollmentService, CourseService $courseService, InfoService $infoService, VariableService $variableService)
+    public function __construct(UserInfoService $userInfoService, ScheduleService $scheduleService,EnrollmentService  $enrollmentService)
     {
         $this->userInfoService = $userInfoService;
         $this->scheduleService = $scheduleService;
         $this->enrollmentService = $enrollmentService;
-        $this->courseService = $courseService;
-        $this->infoService = $infoService;
-        $this->variableService = $variableService;
     }
 
     public function storeAllInformationsOfStudent(Request $request)
@@ -65,7 +56,7 @@ class StudentController extends Controller
     {
 
      $data = $this->scheduleService->getDailyScheduleOfAStudent(
-        $request->studentID
+        $request->studentID,$request->week_no , $request->day_of_week
      );
         return response()->json($data);
     
@@ -75,74 +66,9 @@ class StudentController extends Controller
     {
 
      $data = $this->enrollmentService->enrollInCourse(
-        $request->studentID,$request->courseID
+        $request->studentID,$request->courseID, $request->enrollment_semester
      );
         return response()->json($data);
     
     }
-
-    public function getAllCoursesForAdvising(Request $request)
-    {
-        $data = $this->courseService->getAllCoursesForAdvising();
-
-        return response()->json($data);
-    }
-
-    public function fetchEnrolledCoursesOfAStudentOfASemester(Request $request)
-    {
-        $data = $this->enrollmentService->fetchEnrolledCoursesOfAStudentOfASemester($request->studentID);
-
-        return response()->json($data);
-    }
-
-    // Change method signature to receive $studentID from route
-    public function getStudentInfo(Request $request)
-    {
-        try {
-            $studentID = $request->studentID;
-            // Log the received studentID to confirm
-            \Log::info("Fetching student info for studentID: " . $studentID);
-            
-            $studentInfo = $this->infoService->getStudentInfo($studentID);
-            
-            if (!$studentInfo) {
-                \Log::warning("No student data found for studentID: " . $studentID);
-                return response()->json(['error' => 'Student not found'], 404);
-            }
-            
-            return response()->json($studentInfo);
-            
-        } catch (\Exception $e) {
-            \Log::error("Student info fetch error: " . $e->getMessage());
-            return response()->json(['error' => 'Failed to fetch student data: ' . $e->getMessage()], 500);
-        }
-    }
-
-    public function removeCourseFromEnrollmentByStudent(Request $request)
-    {
-        try {
-            $studentID = $request->studentID;
-            $courseID = $request->courseID;
-           
-            $data = $this->enrollmentService->removeCourseFromEnrollmentByStudent($studentID, $courseID);
-            
-            
-            
-            return response()->json($data);
-            
-        } catch (\Exception $e) {
-           
-            return response()->json([
-                'error' => 'enrollment course deletion failed!',
-                'message' => $e->getMessage()], 500);
-        }
-    }
-
-    public function getVariables(Request $request)
-    {
-        $data = $this->variableService->getVariables();
-
-        return response()->json($data[0]);
-    }
-
 }
