@@ -52,9 +52,10 @@ Route::get('/faculty/courses/assessments', [FacultyController::class, 'getAssess
 
 Route::post('/student/AllInformationsOfStudent', [StudentController::class, 'storeAllInformationsOfStudent']);
 Route::post('/student/edit-all-information-of-student', [StudentController::class, 'editAllInformationOfStudent']);
-Route::get('/student/{studentID}', [StudentController::class, 'getStudentInfo']);
+Route::get('/student/{studentID}/student-info', [StudentController::class, 'getStudentInfo']);
 Route::get('/student/weekly-schedule', [StudentController::class, 'getScheduleOfAStudent']);
 Route::get('/student/daily-schedule', [StudentController::class, 'getDailyScheduleOfAStudent']);
 Route::post('/student/course_enrollment', [StudentController::class, 'enrollInCourse']);
 Route::get('/student/all-available-courses', [StudentController::class, 'getAllCoursesForAdvising']);
 Route::get('/student/course-enrollment', [StudentController::class, 'fetchEnrolledCoursesOfAStudentOfASemester']);
+Route::delete('/student/{studentID}/course-enrollment/{courseID}', [StudentController::class, 'removeCourseFromEnrollmentByStudent']);

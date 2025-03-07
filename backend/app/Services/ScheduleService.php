@@ -82,11 +82,23 @@ class ScheduleService
     }
 
 
-    public function getDailyScheduleOfAStudent($p_studentID,$p_week_no, $p_day_of_week )
+    public function getDailyScheduleOfAStudent($p_studentID)
     {
         try{
+            $currentWeekQuery = DB::select("SELECT current_week_no FROM variables WHERE log_id = 1");
+            if (empty($currentWeekQuery)) {
+                return ['error' => 'Current day information not found'];
+            }
+            $current_week_no = $currentWeekQuery[0]->current_week_no;
+            
+            $currentDayQuery = DB::select("SELECT current_day_of_week FROM variables WHERE log_id = 1");
+            if (empty($currentDayQuery)) {
+                return ['error' => 'Current day information not found'];
+            }
+            $currentDay = $currentDayQuery[0]->current_day_of_week;
+
             $schedules = DB::select("CALL getDailyScheduleOfAStudent(?, ?, ?)", [
-                $p_studentID,$p_week_no, $p_day_of_week
+                $p_studentID,$current_week_no, $currentDay
         ]);
 
         return $schedules;

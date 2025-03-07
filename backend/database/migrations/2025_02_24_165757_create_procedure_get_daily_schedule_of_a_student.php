@@ -21,6 +21,7 @@ return new class extends Migration
             BEGIN
                 SELECT 
                     s.scheduleID,
+                    s.day_of_week,
                     s.start_time,
                     s.end_time,
                     s.room_no,

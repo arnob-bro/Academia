@@ -81,7 +81,6 @@ const AdminNavbar = () => {
           { name: "Home", path: "/" },
           { name: "Student Admission", path: "/student-admission" },
           { name: "Faculty Management", path: "/faculty-management" },
-         
           { name: "Faculty Leave Request", path: "/faculty-leave-admin" },
           { name: "Faculty Recruitment", path: "/faculty-recruitment" },
           { name: "Fee Management", path: " " },
