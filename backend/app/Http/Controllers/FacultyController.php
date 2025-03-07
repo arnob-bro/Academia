@@ -6,6 +6,7 @@ use App\Services\LeaveApplicationService;
 use App\Services\CourseService;
 use App\Services\AttendanceService;
 use App\Services\AssessmentService;
+use App\Services\InfoService;
 use DB;
 
 use Illuminate\Http\Request;
@@ -18,13 +19,16 @@ class FacultyController extends Controller
     private $attendanceService;
     private $assessmentService;
 
-    public function __construct(AssessmentService $assessmentService,ScheduleService $scheduleService, LeaveApplicationService $leaveApplicationService, CourseService $courseService, AttendanceService $attendanceService)
+    private $infoService;
+
+    public function __construct(AssessmentService $assessmentService,ScheduleService $scheduleService, LeaveApplicationService $leaveApplicationService, CourseService $courseService, AttendanceService $attendanceService, InfoService $infoService)
     {
         $this->scheduleService = $scheduleService;
         $this->leaveApplicationService = $leaveApplicationService;
         $this->courseService = $courseService;
         $this->attendanceService = $attendanceService;
         $this->assessmentService = $assessmentService;
+        $this->infoService = $infoService;
 
     }
 
@@ -128,6 +132,21 @@ class FacultyController extends Controller
     public function CreateAssessment(Request $request)
     {
        $data= $this->assessmentService->CreateAssessment($request->assessment_weight,$request->assessment_date,$request->assessment_type,$request->semester,$request->courseID);
+
+        return response()->json($data);
+    }
+
+    public function getFacultyInfo(Request $request)
+    {
+       $data= $this->infoService->getFacultyInfo($request->facultyID);
+
+        return response()->json($data);
+    }
+
+
+    public function getDailyScheduleOfAFaculty(Request $request)
+    {
+       $data= $this->scheduleService->getDailyScheduleOfAFaculty($request->facultyID);
 
         return response()->json($data);
     }

@@ -79,6 +79,54 @@ class InfoService
             return null;
         }
     }
+
+
+    public function getFacultyInfo($facultyID)
+    {
+        try {
+            $query = "
+                Select * from faculties 
+                Where facultyID = ?
+            ";
+
+            $facultyInfo = DB::selectOne($query, [$facultyID]);
+            return $facultyInfo;
+
+        } catch (\Exception $e) {
+             \Log::error("SQL error fetching faculty info: " . $e->getMessage());
+            return null;
+        }
+    }
+
+    public function getDepartmentWiseCount()
+{
+    try {
+        $query = "
+            SELECT d.department, 
+                COUNT(DISTINCT s.studentID) AS total_students, 
+                COUNT(DISTINCT f.facultyID) AS total_faculties
+            FROM (
+                SELECT students.department FROM students 
+                UNION 
+                SELECT faculties.department FROM faculties
+            ) AS d
+            LEFT JOIN students s ON d.department = s.department
+            LEFT JOIN faculties f ON d.department = f.department
+            GROUP BY d.department
+            ORDER BY d.department;
+        ";
+
+        $results = DB::select($query);
+
+        return $results;
+    } catch (\Exception $e) {
+        return [
+            'error' => "Failed to fetch department counts!",
+            'message' => $e->getMessage(),
+        ];
+    }
+}
+
             
         
 }

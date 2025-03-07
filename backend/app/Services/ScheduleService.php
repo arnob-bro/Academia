@@ -110,4 +110,53 @@ class ScheduleService
             ];
         }
     }
+
+
+    public function getDailyScheduleOfAFaculty($facultyID)
+    {
+        try {
+            // Fetch current week and day in a single query
+            $currentInfoQuery = DB::select("SELECT current_week_no, current_day_of_week FROM variables WHERE log_id = 1");
+            
+            if (empty($currentInfoQuery)) {
+                return ['error' => 'Current week and day information not found'];
+            }
+
+            $current_week_no = $currentInfoQuery[0]->current_week_no;
+            $current_day = $currentInfoQuery[0]->current_day_of_week;
+
+            $query = "
+                SELECT DISTINCT 
+                    s.scheduleID,
+                    s.day_of_week,
+                    s.start_time,
+                    s.end_time,
+                    s.room_no,
+                    s.facultyID,
+                    f.name AS faculty_name,
+                    c.courseID,
+                    c.course_code,
+                    c.course_name
+                FROM schedules s
+                JOIN courses c ON s.courseID = c.courseID
+                JOIN faculties f ON s.facultyID = f.facultyID
+                WHERE s.facultyID = ?
+                AND s.week_no = ?
+                AND s.day_of_week = ?
+                ORDER BY s.start_time;
+            ";
+
+            $schedules = DB::select($query, [$facultyID, $current_week_no, $current_day]);
+
+            return $schedules;
+            
+        } catch (\Exception $e) {
+            return [
+                'error' => "Faculty's daily schedule fetching failed!",
+                'message' => $e->getMessage(),
+            ];
+        }
+    }
+
+
 }

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./adminHomePage.css";
 import AdminNavbar from "../../navbar/AdminNavbar";
 import Footer from "../../footer/footer";
-import { updateVariablesApi } from "../../../Api/admin"; 
-import { getVariablesApi } from "../../../Api/admin";
+import { updateVariablesApi } from "../../../Api/admin";
+import { getVariablesApi, getDepartmentDatasApi } from "../../../Api/admin";
 import {
   BarChart,
   Bar,
@@ -27,8 +27,11 @@ const AdminHomePage = () => {
   const [startDate, setStartDate] = useState("");
   const [currentWeek, setCurrentWeek] = useState("");
   const [dayOfWeek, setDayOfWeek] = useState("");
+  const [departmentData, setDepartmentData] = useState([]);
+  const [studentsNum, setStudentsNum] = useState(0);
+  const [facultiesNum, setFacultiesNum] = useState(0);
 
-useEffect(() => {
+  useEffect(() => {
     const getVariables = async () => {
       try {
         const allVariables = await getVariablesApi();
@@ -43,6 +46,31 @@ useEffect(() => {
     getVariables();
   }, []);
 
+  useEffect(() => {
+    const getDepartmentData = async () => {
+      try {
+        const data = await getDepartmentDatasApi();
+        setDepartmentData(data || []);
+
+        // Calculate total students and faculties
+        const totalStudents = data.reduce(
+          (sum, dept) => sum + dept.total_students,
+          0
+        );
+        const totalFaculties = data.reduce(
+          (sum, dept) => sum + dept.total_faculties,
+          0
+        );
+
+        setStudentsNum(totalStudents);
+        setFacultiesNum(totalFaculties);
+      } catch (error) {
+        console.error("Error fetching departmentData:", error);
+      }
+    };
+    getDepartmentData();
+  }, []);
+
   const handleUpdateVariables = async () => {
     try {
       const formattedDate = new Date(startDate).toISOString().split("T")[0];
@@ -54,10 +82,10 @@ useEffect(() => {
         current_day_of_week: dayOfWeek,
       };
 
-      console.log("Sending data:", data); // Debugging output
+      console.log("Sending data:", data);
 
       const response = await updateVariablesApi(data);
-      console.log("API Response:", response); // Debugging output
+      console.log("API Response:", response);
 
       alert(response.message || "Variables updated successfully!");
     } catch (error) {
@@ -66,22 +94,19 @@ useEffect(() => {
     }
   };
 
-
-
-const handleGetVariables = async () => {
-  try {
-    const response = await getVariablesApi(); // No need to pass data
-    console.log("API Response:", response);
-    setSemester(response.current_semester || "");
-    setStartDate(response.semester_starting_date || "");
-    setCurrentWeek(response.current_week_no || "");
-    setDayOfWeek(response.current_day_of_week || "");
-  } catch (error) {
-    console.error("Fetch failed:", error.response?.data || error.message);
-    alert(`Fetch failed: ${error.response?.data?.message || error.message}`);
-  }
-};
-
+  const handleGetVariables = async () => {
+    try {
+      const response = await getVariablesApi();
+      console.log("API Response:", response);
+      setSemester(response.current_semester || "");
+      setStartDate(response.semester_starting_date || "");
+      setCurrentWeek(response.current_week_no || "");
+      setDayOfWeek(response.current_day_of_week || "");
+    } catch (error) {
+      console.error("Fetch failed:", error.response?.data || error.message);
+      alert(`Fetch failed: ${error.response?.data?.message || error.message}`);
+    }
+  };
 
   return (
     <div>
@@ -91,10 +116,10 @@ const handleGetVariables = async () => {
           <h2 className="welcomeadmin">Welcome, Admin</h2>
           <div className="admin-home-dashboard-cards">
             <div className="admin-home-card">
-              <strong>Total Students:</strong> 1200
+              <strong>Total Students:</strong> {studentsNum}
             </div>
             <div className="admin-home-card">
-              <strong>Total Faculty:</strong> 80
+              <strong>Total Faculty:</strong> {facultiesNum}
             </div>
             <div className="admin-home-card">
               <strong>Active Courses:</strong> 35
@@ -150,15 +175,15 @@ const handleGetVariables = async () => {
             <h3>Department-wise Student & Faculty Count</h3>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart
-                data={data}
+                data={departmentData}
                 margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
               >
                 <XAxis dataKey="department" />
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="students" fill="#3498db" name="Students" />
-                <Bar dataKey="faculty" fill="#2ecc71" name="Faculty" />
+                <Bar dataKey="total_students" fill="#3498db" name="Students" />
+                <Bar dataKey="total_faculties" fill="#2ecc71" name="Faculty" />
               </BarChart>
             </ResponsiveContainer>
           </div>
