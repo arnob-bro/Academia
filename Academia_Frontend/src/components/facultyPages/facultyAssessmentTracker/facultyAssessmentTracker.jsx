@@ -53,7 +53,7 @@ const FacultyAssessmentTracker = () => {
     setIsFetching(true); // Set fetching to true while fetching assessments
     try {
       const allAssessments = await axios.get(
-       ` http://127.0.0.1:8000/api/faculty/courses/assessments`,
+       ` http://127.0.0.1:8000/api/faculty/courses/${selectedCourse}/assessments`,
         { headers: { "Content-Type": "application/json" } }
       );
       setAssessments(allAssessments || []);
