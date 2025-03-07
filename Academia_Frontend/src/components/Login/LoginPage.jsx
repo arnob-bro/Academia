@@ -60,7 +60,7 @@ export default function LoginPage() {
               type="text"
               name="userID"
               placeholder="Enter your Institutional ID"
-              className="input-field"
+              className="login-input-field"
               onChange={changeHandler}
               value={data.userID || ""}
             />
@@ -71,7 +71,7 @@ export default function LoginPage() {
               type="password"
               name="password"
               placeholder="Enter your password"
-              className="input-field"
+              className="login-input-field"
               onChange={changeHandler}
               value={data.password || ""}
             />
@@ -80,6 +80,7 @@ export default function LoginPage() {
           <button type="submit" className="login-button">
             Log in
           </button>
+          
 
           <div className="forgot-password">
             <a href="#" onClick={handleForgotPassword}>
@@ -88,10 +89,15 @@ export default function LoginPage() {
           </div>
         </form>
 
-        <p className="footer-text">Powered By MOAB</p>
-        <p className="footer-text">
+        <div className="login-footer-text">
+          <p >Powered By MOAB</p>
+            <p>
           Copyright &copy; 2025 Academia. All rights reserved.
-        </p>
+          </p>
+        </div>
+
+        
+        
       </div>
     </div>
   );

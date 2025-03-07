@@ -47,7 +47,7 @@ h1 {
 }
 
 .admin-navbar-admin-logout {
-    background: #FAF3C4;
+    background: #90c6ef;
     border: none;
     padding: 5px 12px;
     color: #2f5d8b;
@@ -140,6 +140,7 @@ h1 {
   }
 
     .admin-navbar-profile-btn {
+      
       background: none;
       border: 1px solid #21637f;
       color: #21637f;
