@@ -4,24 +4,25 @@
 
 /* Top Navigation Bar */
 .faculty-navbar-nav-top {
-  display: flex;
+display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(to right, #FAF3C4, #D07CE1);
+  background: linear-gradient(to right, #eef9ff, #8ddbfa);
   padding: 6px 30px;
 }
 
 .faculty-navbar-logo {
   width: 50px;
-  height: 50px;
-  border-radius: 50%;
+    height: 50px;
+    gap: 10 px;
+    border-radius: 50px;
 }
 
 h1 {
   font-size: 50px;
-  font-weight: bold;
-  color: black;
-  font-family: "Times New Roman";
+    font-weight: bold;
+    color: black;
+    font-family: "Times New Roman";
 }
 
 /* Profile Section */
@@ -56,7 +57,7 @@ h1 {
 }
 
 .faculty-navbar-dropdown-item:hover {
-  background: #f4f4f4;
+  background: #86c1d8;
 }
 
 .faculty-navbar-dropdown-divider {
@@ -78,14 +79,13 @@ h1 {
 /* Bottom Navigation Bar */
 .faculty-navbar-nav-bottom {
   display: flex;
-  justify-content: space-evenly;
-  background: #BB5BB5;
-  padding: 10px 0;
-  position: relative;
+    justify-content: space-around;
+    background: #21637f;
+    padding: 5px 0;
 }
 
 .faculty-navbar-nav-bottom a {
-  color: white;
+color: white;
   text-decoration: none;
   padding: 10px 15px;
   font-weight: bold;
@@ -93,7 +93,7 @@ h1 {
 }
 
 .faculty-navbar-nav-bottom a:hover {
-  color: #f8e35d;
+  color: #59b4ea;
 }
 /* Tracker Dropdown */
 .faculty-navbar-dropdown {
@@ -146,7 +146,7 @@ h1 {
 }
 
 .tracker-dropdown-title:hover {
-  color: #f8e35d;
+  color: #59b4ea;
 }
 
 .faculty-navbar-profile-info {
