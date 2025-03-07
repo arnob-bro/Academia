@@ -33,7 +33,8 @@ class VariableService
             current_semester,
             semester_starting_date,
             current_week_no,
-            current_day_of_week 
+            current_day_of_week,
+            advising
             from variables
         
             
