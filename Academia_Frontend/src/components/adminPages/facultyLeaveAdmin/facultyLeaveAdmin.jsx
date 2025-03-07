@@ -11,7 +11,9 @@ const FacultyLeaveAdmin = () => {
   useEffect(() => {
     const fetchLeaveRequests = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:8000/api/admin/leave-application-request");
+        const response = await fetch(
+          "http://127.0.0.1:8000/api/admin/leave-application-request"
+        );
         const data = await response.json();
         setLeaveRequests(data);
       } catch (err) {
@@ -25,16 +27,23 @@ const FacultyLeaveAdmin = () => {
 
   const handleStatusChange = async (leaveId, newStatus) => {
     try {
-      const response = await fetch("http://localhost:8000/api/admin/leave-application-request", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ leave_id: leaveId, leave_status: newStatus })
-      });
+      const response = await fetch(
+        "http://localhost:8000/api/admin/leave-application-request",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ leave_id: leaveId, leave_status: newStatus }),
+        }
+      );
       const result = await response.json();
       if (result.message) {
-        setLeaveRequests(prev => prev.map(request =>
-          request.leave_id === leaveId ? { ...request, leave_status: newStatus } : request
-        ));
+        setLeaveRequests((prev) =>
+          prev.map((request) =>
+            request.leave_id === leaveId
+              ? { ...request, leave_status: newStatus }
+              : request
+          )
+        );
       }
     } catch (err) {
       setError("Error updating leave status");
@@ -43,11 +52,14 @@ const FacultyLeaveAdmin = () => {
 
   const handleSubmitLeaveApplication = async (leaveData) => {
     try {
-      const response = await fetch("http://localhost:8000/api/admin/postLeaveApplication", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(leaveData)
-      });
+      const response = await fetch(
+        "http://localhost:8000/api/admin/postLeaveApplication",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(leaveData),
+        }
+      );
       const result = await response.json();
       if (result.message) {
         alert("Leave application submitted successfully");
@@ -64,16 +76,19 @@ const FacultyLeaveAdmin = () => {
     <>
       <Navbar />
       <div className="table-container">
-        <h2 className="text-2xl font-bold text-purple-700 mt-6">Faculty Leave Requests</h2>
+        <h2 className="text-2xl font-bold text-purple-700 mt-6">
+          Faculty Leave Requests
+        </h2>
         <table>
           <thead>
             <tr>
               <th>Serial No.</th>
               <th>Faculty Id</th>
-              
+
               <th>Start Date</th>
               <th>End Date</th>
               <th>Leave Type</th>
+              <th>Remarks</th>
               <th>Status</th>
             </tr>
           </thead>
@@ -82,14 +97,17 @@ const FacultyLeaveAdmin = () => {
               <tr key={index}>
                 <td>{index + 1}</td>
                 <td>{request.facultyID}</td>
-              
+
                 <td>{request.start_date}</td>
                 <td>{request.end_date}</td>
                 <td>{request.leave_type}</td>
+                <td>{request.remarks}</td>
                 <td>
                   <select
                     value={request.leave_status}
-                    onChange={(e) => handleStatusChange(request.leave_id, e.target.value)}
+                    onChange={(e) =>
+                      handleStatusChange(request.leave_id, e.target.value)
+                    }
                   >
                     <option value="Pending">Pending</option>
                     <option value="Approved">Approved</option>

@@ -93,26 +93,46 @@ class StudentController extends Controller
     }
 
     // Change method signature to receive $studentID from route
-        public function getStudentInfo(Request $request)
-{
-    try {
-        $studentID = $request->studentID;
-        // Log the received studentID to confirm
-        \Log::info("Fetching student info for studentID: " . $studentID);
-        
-        $studentInfo = $this->infoService->getStudentInfo($studentID);
-        
-        if (!$studentInfo) {
-            \Log::warning("No student data found for studentID: " . $studentID);
-            return response()->json(['error' => 'Student not found'], 404);
+    public function getStudentInfo(Request $request)
+    {
+        try {
+            $studentID = $request->studentID;
+            // Log the received studentID to confirm
+            \Log::info("Fetching student info for studentID: " . $studentID);
+            
+            $studentInfo = $this->infoService->getStudentInfo($studentID);
+            
+            if (!$studentInfo) {
+                \Log::warning("No student data found for studentID: " . $studentID);
+                return response()->json(['error' => 'Student not found'], 404);
+            }
+            
+            return response()->json($studentInfo);
+            
+        } catch (\Exception $e) {
+            \Log::error("Student info fetch error: " . $e->getMessage());
+            return response()->json(['error' => 'Failed to fetch student data: ' . $e->getMessage()], 500);
         }
-        
-        return response()->json($studentInfo);
-        
-    } catch (\Exception $e) {
-        \Log::error("Student info fetch error: " . $e->getMessage());
-        return response()->json(['error' => 'Failed to fetch student data: ' . $e->getMessage()], 500);
     }
-}
+
+    public function removeCourseFromEnrollmentByStudent(Request $request)
+    {
+        try {
+            $studentID = $request->studentID;
+            $courseID = $request->courseID;
+           
+            $data = $this->enrollmentService->removeCourseFromEnrollmentByStudent($studentID, $courseID);
+            
+            
+            
+            return response()->json($data);
+            
+        } catch (\Exception $e) {
+           
+            return response()->json([
+                'error' => 'enrollment course deletion failed!',
+                'message' => $e->getMessage()], 500);
+        }
+    }
 
 }

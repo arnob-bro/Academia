@@ -7,6 +7,7 @@ import {
   enrollInCourseApi,
   getAllCoursesApi,
   getAllSelectedCoursesApi,
+  removeCourseApi,
 } from "../../../Api/student";
 // const courses = [
 //   {
@@ -102,6 +103,7 @@ const StudentAdvisingPage = () => {
       // newSelection = newSelection.filter(
       //   (c) => !(c.code === course.code && c.section === course.section)
       // );
+      removeCourse(course);
     } else {
       if (getTotalCredits() + course.credits <= MAX_CREDITS) {
         // newSelection.push(course);
@@ -164,6 +166,26 @@ const StudentAdvisingPage = () => {
       console.log(course);
       const user = JSON.parse(localStorage.getItem("userData"));
       const data = await enrollInCourseApi(user.userID, course.courseID);
+      console.log(data);
+      if (data.success === true) {
+        getAllCourses();
+        getAllSelectedCourses();
+      } else {
+        alert(data.message);
+      }
+    } catch (error) {
+      console.error("Error fetching courses:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const removeCourse = async (course) => {
+    setLoading(true);
+    try {
+      console.log(course);
+      const user = JSON.parse(localStorage.getItem("userData"));
+      const data = await removeCourseApi(user.userID, course.courseID);
       console.log(data);
       if (data.success === true) {
         getAllCourses();

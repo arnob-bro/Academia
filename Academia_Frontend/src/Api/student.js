@@ -128,3 +128,22 @@ export const enrollInCourseApi = async (studentID, courseID) => {
     throw error;
   }
 };
+
+export const removeCourseApi = async (studentID, courseID) => {
+  try {
+    const response = await axios.delete(
+      `http://127.0.0.1:8000/api/student/${studentID}/course-enrollment/${courseID}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error removing enrollment:", error.response?.data || error);
+    throw error;
+  }
+};

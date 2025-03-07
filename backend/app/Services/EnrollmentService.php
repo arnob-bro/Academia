@@ -199,4 +199,52 @@ class EnrollmentService
             ];
         }
     }
+
+    public function removeCourseFromEnrollmentByStudent($studentID, $courseID)
+    {
+        try{
+
+            $advising = DB::table('variables')->value('advising');
+            $enrollmentSemester = DB::table('variables')->value('current_semester');
+
+            if (!$advising) {
+                throw new Exception("Advising is currently OFF. Enrollment deletion is not allowed.");
+            }
+
+
+            $enrolledCourses = $data = DB::select("CALL fetchEnrolledCoursesOfAStudentOfASemester(?)", [
+            $studentID
+        ]);
+
+         $isEnrolled = collect($enrolledCourses)->contains('courseID', $courseID);
+
+            if (!$isEnrolled) {
+            throw new Exception("Course not found in the enrolled courses.");
+        }
+
+        // Delete the course enrollment
+        $deleted = DB::delete(
+            "DELETE FROM enrollments WHERE studentID = ? AND courseID = ? AND enrollment_semester = ?",
+            [$studentID, $courseID, $enrollmentSemester]
+        );
+
+        if ($deleted) {
+            return[
+                'success' => true,
+                'message' => 'Course removed successfully'];
+        } else {
+            return [
+                'success' => false,
+                'error' => 'enrollment course deletion failed!',
+                'message' => 'Failed to remove the course'];
+        }
+
+        }catch(Exception $e){
+            return [
+                'success' => false,
+                'error' => 'enrollment course deletion failed!',
+                'message' => $e->getMessage()
+            ];
+        }
+    }
 }

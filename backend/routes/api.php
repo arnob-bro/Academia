@@ -58,3 +58,4 @@ Route::get('/student/daily-schedule', [StudentController::class, 'getDailySchedu
 Route::post('/student/course_enrollment', [StudentController::class, 'enrollInCourse']);
 Route::get('/student/all-available-courses', [StudentController::class, 'getAllCoursesForAdvising']);
 Route::get('/student/course-enrollment', [StudentController::class, 'fetchEnrolledCoursesOfAStudentOfASemester']);
+Route::delete('/student/{studentID}/course-enrollment/{courseID}', [StudentController::class, 'removeCourseFromEnrollmentByStudent']);
