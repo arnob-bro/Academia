@@ -65,29 +65,35 @@ const Navbarfaculty = () => {
         <img src="/assets/logo.png" className="faculty-navbar-logo" alt="Logo" />
         <h1>Academia</h1>
 
-        {/* Profile Section */}
-        <div className="faculty-navbar-profile-info" ref={profileDropdownRef}>
-          <span
-            className="faculty-navbar-profile-icon"
-            onClick={toggleProfileDropdown}
-          >
-            👤
-          </span>
-
-          {/* Profile Dropdown Menu */}
-         {profileDropdownOpen && (
-  <div className={`faculty-navbar-dropdown-menu ${profileDropdownOpen ? "open" : ""}`}>
-    <Link to="/faculty-profile" className="faculty-navbar-dropdown-item">
-      Faculty Profile
-    </Link>
-    <hr className="faculty-navbar-dropdown-divider" />
-    <button className="faculty-navbar-dropdown-item logout" onClick={handleLogout}>
-      Logout
-    </button>
-  </div>
-)}
-
-        </div>
+       {/* Profile Section */}
+              <div className="admin-navbar-admin-profile" ref={profileDropdownRef}>
+                <div className="adminSession">
+                  <p>Session: Spring 2024</p>
+                </div>
+                
+                <button
+                  className="admin-navbar-profile-btn"
+                  onClick={toggleProfileDropdown}
+                >
+                  Id: 20220xx ▼
+                </button>
+      
+                {/* Dropdown Menu */}
+                {profileDropdownOpen && (
+                  <div className="admin-navbar-dropdown-menu">
+                    <Link to="/admin-profile" className="admin-navbar-dropdown-item">
+                      Admin Profile 
+                    </Link>
+                    <hr className="admin-navbar-dropdown-divider" />
+                    <button
+                      className="admin-navbar-dropdown-item logout"
+                      onClick={handleLogout}
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
+              </div>
       </div>
 
       {/* Bottom Navbar */}

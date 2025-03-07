@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(to bottom, #e9d5ff, #fbcfe8);
+  /* background: linear-gradient(to bottom, #e9d5ff, #fbcfe8); */
   padding: 20px;
 }
 
@@ -20,7 +20,7 @@
   text-align: center;
   font-size: 1.8rem;
   font-weight: bold;
-  color: #7c3aed;
+  color: #21637f;
   margin-bottom: 25px;
 }
 
@@ -42,8 +42,8 @@
 }
 
 .student-admission-input-style:focus {
-  border-color: #7c3aed;
-  box-shadow: 0px 0px 5px rgba(124, 58, 237, 0.5);
+  border-color: #21637f;
+  box-shadow: 0px 0px 5px #21637f;
 }
 
 select.student-admission-input-style {
@@ -101,17 +101,17 @@ input {
 }
 
 .student-admission-register-button {
-  background-color: #22c55e;
+  background-color: #21637f;
   color: white;
   border: none;
 }
 
 .student-admission-register-button:hover {
-  background-color: #16a34a;
+  background-color: #0f3a4d;
 }
 
 .student-admission-clear-button {
-  background-color: #ef4444;
+  background-color: #ef4d4d;
   color: white;
   border: none;
 }

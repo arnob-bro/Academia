@@ -58,40 +58,40 @@ const Navbar = () => {
 
   return (
     <nav className="student-navbar">
-      <div className="student-navbar-nav-top">
-        <img src="/assets/logo.png" className="logo" alt="Logo" />
-        <h1>Academia</h1>
-
-        <div className="student-navbar-profile-info" ref={profileDropdownRef}>
-          {/* Profile Icon (Click to open dropdown) */}
-          <span
-            className="student-navbar-profile-icon"
-            onClick={toggleProfileDropdown}
-          >
-            👤
-          </span>
-
-          {/* Profile Dropdown Menu */}
-          {profileDropdownOpen && (
-            <div className="student-navbar-dropdown-menu">
-              <Link
-                to="/student-profile"
-                className="student-navbar-dropdown-item"
-              >
-                Student Profile
-              </Link>
-              <hr className="student-navbar-dropdown-divider" />{" "}
-              {/* Divider Line */}
-              <button
-                className="student-navbar-dropdown-item logout"
-                onClick={handleLogout}
-              >
-                Logout
-              </button>
+            <div className="admin-nav-top">
+              <img src="/assets/logo.png" className="admin-logo" alt="Logo" />
+              <h1>Academia</h1>
+      
+              {/* Profile Section */}
+              <div className="admin-navbar-admin-profile" ref={profileDropdownRef}>
+                <div className="adminSession">
+                  <p>Session: Spring 2024</p>
+                </div>
+                
+                <button
+                  className="admin-navbar-profile-btn"
+                  onClick={toggleProfileDropdown}
+                >
+                  Id: 20220xx ▼
+                </button>
+      
+                {/* Dropdown Menu */}
+                {profileDropdownOpen && (
+                  <div className="admin-navbar-dropdown-menu">
+                    <Link to="/admin-profile" className="admin-navbar-dropdown-item">
+                      Admin Profile 
+                    </Link>
+                    <hr className="admin-navbar-dropdown-divider" />
+                    <button
+                      className="admin-navbar-dropdown-item logout"
+                      onClick={handleLogout}
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
-          )}
-        </div>
-      </div>
 
       <div className="student-navbar-nav-bottom">
         <Link to="/">Home</Link>

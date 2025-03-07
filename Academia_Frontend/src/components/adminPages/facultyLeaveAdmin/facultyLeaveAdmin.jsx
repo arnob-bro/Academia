@@ -75,8 +75,8 @@ const FacultyLeaveAdmin = () => {
   return (
     <>
       <Navbar />
-      <div className="table-container">
-        <h2 className="text-2xl font-bold text-purple-700 mt-6">
+      <div className="admin-faculty-leave-table-container">
+        <h2 className="admin-faculty-leave-title">
           Faculty Leave Requests
         </h2>
         <table>

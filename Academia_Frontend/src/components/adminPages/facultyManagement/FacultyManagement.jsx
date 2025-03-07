@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./FacultyManagement.css";
 import AdminNavbar from "../../navbar/AdminNavbar.jsx";
 import Footer from "../../footer/footer.jsx";
+import { FaFilter } from "react-icons/fa"; // Import filter icon
 
 export const FacultyManagement = () => {
   const [filterType, setFilterType] = useState("name");
@@ -45,11 +46,9 @@ export const FacultyManagement = () => {
   const handleSearchChange = (e) => setSearchQuery(e.target.value);
 
   // Filtered faculty list based on search query
-  const filteredFaculty = facultyData.filter((faculty) => {
-    return faculty[filterType]
-      .toLowerCase()
-      .includes(searchQuery.toLowerCase());
-  });
+  const filteredFaculty = facultyData.filter((faculty) =>
+    faculty[filterType].toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const openModal = (faculty) => {
     setSelectedFaculty(faculty);
@@ -80,7 +79,9 @@ export const FacultyManagement = () => {
     <>
       <AdminNavbar />
       <div className="faculty-management-container">
-        {/* Search Box */}
+        <h2 className="faculty-recruitment-form-title">Faculty Management</h2>
+
+        {/* Search Box with Filter Icon */}
         <div className="faculty-management-search-box">
           <input
             type="text"
@@ -88,11 +89,13 @@ export const FacultyManagement = () => {
             value={searchQuery}
             onChange={handleSearchChange}
           />
-          <select onChange={handleFilterChange}>
-            <option value="name">Search by Name</option>
-            <option value="id">Search by ID</option>
-            <option value="department">Search by Department</option>
-          </select>
+          <div className="faculty-management-filter-icon">
+            <select onChange={handleFilterChange}>
+              <option value="name">Search by Name</option>
+              <option value="id">Search by ID</option>
+              <option value="department">Search by Department</option>
+            </select>
+          </div>
         </div>
 
         {/* Faculty Table */}

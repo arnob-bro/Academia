@@ -163,8 +163,9 @@ const handleGetVariables = async () => {
             </ResponsiveContainer>
           </div>
         </main>
-        <Footer />
+       
       </div>
+      <Footer />
     </div>
   );
 };

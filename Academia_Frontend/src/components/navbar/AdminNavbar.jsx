@@ -87,7 +87,7 @@ const AdminNavbar = () => {
           { name: "Faculty Leave Request", path: "/faculty-leave-admin" },
           { name: "Faculty Recruitment", path: "/faculty-recruitment" },
           { name: "Fee Management", path: " " },
-          { name: "Material Overview", path: " " },
+          { name: "Schedule Management ", path: " " },
         ].map((item) => (
           <Link
             key={item.name}

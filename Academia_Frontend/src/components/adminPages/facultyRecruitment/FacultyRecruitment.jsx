@@ -28,10 +28,10 @@ const FacultyRecruitment = () => {
   return (
     <>
       <AdminNavbar />
-       <div className="form-container">
-        <h2 className="form-title">Faculty Recruitment Form</h2>
-        <form className="form" onSubmit={registerFaculty}>
-          <div className="form-group">
+       <div className="faculty-recruitment-form-container">
+        <h2 className="faculty-recruitment-form-title">Faculty Recruitment Form</h2>
+        <form className="faculty-recruitment-form" onSubmit={registerFaculty}>
+          <div className="faculty-recruitment-form-group">
             <label>Full Name:</label>
             <input 
             type="text" 
@@ -41,7 +41,7 @@ const FacultyRecruitment = () => {
             value={data.name || ""}
              required />
           </div>
-          <div className="form-group">
+          <div className="faculty-recruitment-form-group">
             <label>Faculty ID:</label>
             <input 
             type="text" 
@@ -51,7 +51,7 @@ const FacultyRecruitment = () => {
             value={data.facultyID || ""}
              required />
           </div>
-          <div className="form-group">
+          <div className="faculty-recruitment-form-group">
             <label>Department:</label>
             <select  name="department"
             onChange={changeHandler}
@@ -68,7 +68,7 @@ const FacultyRecruitment = () => {
               <option>ARCH</option>
             </select>
           </div>
-          <div className="form-group">
+          <div className="faculty-recruitment-form-group">
             <label>Designation:</label>
             <select 
             name="rank"
@@ -83,7 +83,7 @@ const FacultyRecruitment = () => {
               <option>Lecturer (Grade-II)</option>
             </select>
           </div>
-          <div className="form-group">
+          <div className="faculty-recruitment-form-group">
             <label>Email:</label>
             <input  
              type="email"
@@ -93,7 +93,7 @@ const FacultyRecruitment = () => {
             value={data.institutional_email || ""}
              required />
           </div>
-          <div className="form-group">
+          <div className="faculty-recruitment-form-group">
             <label>Administrative role:</label>
             <select 
             name="administrative_role"
@@ -105,7 +105,7 @@ const FacultyRecruitment = () => {
               <option>Proctor</option>
             </select>
           </div>
-          <div className="form-buttons">
+          <div className="faculty-recruitment-form-buttons">
             <button type="submit" className="register-btn">
               Submit Application
             </button>
@@ -114,6 +114,7 @@ const FacultyRecruitment = () => {
             </button>
           </div>
         </form>
+        
       </div>
       <Footer />
     </>
