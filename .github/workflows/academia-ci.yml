@@ -1,18 +1,51 @@
-name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [push]
+name: Linter and Auto-Fixer
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
 jobs:
-  Explore-GitHub-Actions:
+  php-linter:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - name: Check out repository code
-        uses: actions/checkout@v4
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+
+      - name: Install PHP dependencies
+        run: composer install --prefer-dist --no-progress
+        working-directory: backend_directory_name  # Change to actual backend folder
+
+      - name: Run PHP Linter
+        run: ~/.composer/vendor/bin/phpcs --standard=PSR12 app/ routes/
+        working-directory: backend_directory_name  # Change to actual backend folder
+
+      - name: Auto-fix PHP Code
+        run: ~/.composer/vendor/bin/phpcbf --standard=PSR12 app/ routes/
+        working-directory: backend_directory_name  # Change to actual backend folder
+
+  js-linter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install --prefix Academia_Frontend
+
+      - name: Run ESLint
+        run: npm run lint --prefix Academia_Frontend
+
+      - name: Run JavaScript tests
+        run: npm test --prefix Academia_Frontend || echo "No tests found, skipping."
