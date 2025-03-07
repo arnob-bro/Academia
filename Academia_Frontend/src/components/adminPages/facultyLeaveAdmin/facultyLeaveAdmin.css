@@ -1,108 +1,56 @@
-/* Global Styles */
-body {
-    font-family: "Arial", sans-serif;
-    background: linear-gradient(to right, #fef3c7, #fbcfe8, #d8b4fe);
-    margin: 0;
-    padding: 0;
-}
-
-/* Navbar */
-.navbar {
-    background-color: #e3e0e9;
-    color: white;
-    padding: 12px 20px;
-    display: flex;
-    justify-content: space-around;
-    border-radius: 10px;
-}
-
-.navbar button {
-    background: transparent;
-    color: white;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-}
-
-.navbar button:hover {
-    text-decoration: underline;
-}
-
 /* Faculty Leave Request Table */
-.table-container {
-    margin-top: 20px;
+.admin-faculty-leave-table-container {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 95%;
+    /* background: white; */
+    border-radius: 12px;
+    /* box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); */
     overflow-x: auto;
 }
 
-table {
+/* Table Styling */
+.admin-faculty-leave-table-container table {
     width: 100%;
+    min-width: 800px;
     border-collapse: collapse;
-    background: white;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-th {
-    background-color: #b22eb2;
+.admin-faculty-leave-table-container th {
+    background-color: #21637f;
     color: white;
-    padding: 12px;
+    padding: 14px;
     text-align: left;
+    font-size: 16px;
 }
 
-td {
+.admin-faculty-leave-table-container td {
     padding: 12px;
     border-bottom: 1px solid #e5e7eb;
+    font-size: 14px;
+    color: #333;
 }
 
-tr:hover {
+/* Table Row Hover Effect */
+.admin-faculty-leave-table-container tr:hover {
     background-color: #f3f4f6;
-    transition: 0.3s ease-in-out;
+    transition: background 0.3s ease-in-out;
+}
+
+.admin-faculty-leave-title{
+    text-align: center;
+        font-size: 26px;
+        color: #0e0e53;
+        font-weight: 600;
+        margin-bottom: 25px;
 }
 
 /* Status Dropdown */
-.status-dropdown {
-    position: relative;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
-
-.status-dropdown svg {
-    margin-left: 6px;
-    width: 16px;
-    height: 16px;
-}
-
-/* Pagination */
-.pagination {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.pagination button {
-    background-color: #d1d5db;
-    border: none;
-    padding: 8px 14px;
-    margin: 5px;
-    border-radius: 6px;
-    cursor: pointer;
-}
-
-.pagination button:hover {
-    background-color: #9ca3af;
-}
-
-/* Footer */
-footer {
-    text-align: center;
-    margin-top: 30px;
-    color: #4b5563;
-}
-
-.status-dropdown select {
-    padding: 6px;
+.admin-faculty-leave-status-dropdown select {
+    padding: 8px;
     border: 1px solid #b22eb2;
     border-radius: 6px;
     background-color: white;
@@ -110,6 +58,68 @@ footer {
     font-size: 14px;
 }
 
-.status-dropdown select:hover {
+.admin-faculty-leave-status-dropdown select:hover {
     background-color: #f3f4f6;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .admin-faculty-leave-table-container {
+        padding: 15px;
+        max-width: 100%;
+    }
+
+    .admin-faculty-leave-table-container table {
+        min-width: 700px;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-faculty-leave-table-container {
+        padding: 10px;
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+    .admin-faculty-leave-table-container table {
+        min-width: 600px;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-faculty-leave-table-container {
+        padding: 5px;
+    }
+
+    .admin-faculty-leave-table-container table {
+        min-width: 500px;
+    }
+
+    .admin-faculty-leave-table-container th,
+    .admin-faculty-leave-table-container td {
+        padding: 8px;
+        font-size: 13px;
+    }
+}
+
+/* Pagination */
+.admin-faculty-leave-pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.admin-faculty-leave-pagination button {
+    background-color: #d1d5db;
+    border: none;
+    padding: 8px 14px;
+    margin: 5px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.admin-faculty-leave-pagination button:hover {
+    background-color: #9ca3af;
 }
