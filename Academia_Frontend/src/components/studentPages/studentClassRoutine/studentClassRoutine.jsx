@@ -1,9 +1,120 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../../navbar/navbar";
 import Footer from "../../footer/footer";
 import "./studentClassRoutine.css";
+import { getVariablesApi, getWeeklySchedulesApi } from "../../../Api/student";
+
+const DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"];
+const TIME_SLOTS = [
+  "08:00 am - 09:00 am",
+  "09:00 am - 10:00 am",
+  "10:00 am - 11:00 am",
+  "11:00 am - 12:00 pm",
+  "12:00 pm - 01:00 pm",
+  "01:00 pm - 02:00 pm",
+  "02:00 pm - 03:00 pm",
+  "03:00 pm - 04:00 pm",
+  "05:00 pm - 06:00 pm",
+];
 
 const StudentClassRoutine = () => {
+  const [variables, setVariables] = useState({});
+  const [schedule, setSchedule] = useState({});
+
+  useEffect(() => {
+    const fetchVariables = async () => {
+      try {
+        const variableData = await getVariablesApi();
+        console.log("Fetched Variables:", variableData);
+        setVariables(variableData);
+      } catch (error) {
+        console.error("Error fetching variables:", error);
+      }
+    };
+
+    fetchVariables();
+  }, []); // Run once when the component mounts
+
+  useEffect(() => {
+    const fetchSchedule = async () => {
+      if (!variables.current_week_no) return; // Ensure week_no is set
+
+      const user = JSON.parse(localStorage.getItem("userData"));
+
+      try {
+        const scheduleData = await getWeeklySchedulesApi(
+          user.userID,
+          variables.current_week_no
+        );
+        console.log("Fetched Schedule:", scheduleData);
+
+        // Merge fetched schedule into a full timetable
+        setSchedule(formatSchedule(scheduleData));
+        console.log(schedule);
+      } catch (error) {
+        console.error("Error fetching weekly schedules:", error);
+      }
+    };
+
+    fetchSchedule();
+  }, [variables]);
+
+  // Function to format schedule with empty slots
+  const formatSchedule = (apiData) => {
+    let fullSchedule = {};
+
+    // Initialize fullSchedule with empty slots
+    DAYS.forEach((day) => {
+      fullSchedule[day] = {};
+      TIME_SLOTS.forEach((slot) => {
+        fullSchedule[day][slot] = ""; // Empty by default
+      });
+    });
+
+    // Time Mapping for Start and End Times
+    const timeMapping = {
+      "08:00:00": "08:00 am",
+      "09:00:00": "09:00 am",
+      "10:00:00": "10:00 am",
+      "11:00:00": "11:00 am",
+      "12:00:00": "12:00 pm",
+      "13:00:00": "01:00 pm",
+      "14:00:00": "02:00 pm",
+      "15:00:00": "03:00 pm",
+      "16:00:00": "04:00 pm",
+      "17:00:00": "05:00 pm",
+      "18:00:00": "06:00 pm",
+    };
+
+    // Fill in classes from API response
+    apiData.forEach((classItem) => {
+      const {
+        day_of_week,
+        start_time,
+        end_time,
+        course_code,
+        faculty_name,
+        room_no,
+      } = classItem;
+
+      let _start_time = timeMapping[start_time];
+      let _end_time = timeMapping[end_time];
+
+      if (!_start_time || !_end_time) return; // Ignore invalid times
+
+      // Find the correct time slot in TIME_SLOTS
+      let slotKey = `${_start_time} - ${_end_time}`;
+
+      if (fullSchedule[day_of_week] && TIME_SLOTS.includes(slotKey)) {
+        fullSchedule[day_of_week][
+          slotKey
+        ] = `${course_code} (${faculty_name}) ${room_no}`;
+      }
+    });
+
+    return fullSchedule;
+  };
+
   return (
     <div className="routine-page">
       <Navbar />
@@ -13,84 +124,35 @@ const StudentClassRoutine = () => {
 
         {/* Static Information */}
         <div className="routine-info">
-          <p><strong>Current Semester:</strong> 6th</p>
-          <p><strong>Section:</strong> B</p>
-          <p><strong>Week:</strong> 3th</p>
+          <p>
+            <strong>Current Semester:</strong> {variables.current_semester}
+          </p>
+          <p>
+            <strong>Week:</strong> {variables.current_week_no}
+          </p>
         </div>
 
         {/* Routine Table */}
-        <h3 className="semester-title">Spring 2023</h3>
+        <h3 className="semester-title">{variables.current_semester}</h3>
         <div className="routine-table">
           <table>
             <thead>
               <tr>
                 <th>Time/Day</th>
-                <th>8:00 - 9:00 am</th>
-                <th>9:00 - 10:00 am</th>
-                <th>10:00 - 11:00 am</th>
-                <th>12:00 - 1:00 pm</th>
-                <th>1:00 - 2:00 pm</th>
-                <th>2:00 - 3:00 pm</th>
-                <th>3:00 - 4:00 pm</th>
-                <th>5:00 - 6:00 pm</th>
+                {TIME_SLOTS.map((slot) => (
+                  <th key={slot}>{slot}</th>
+                ))}
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Sunday</td>
-                <td></td>
-                <td></td>
-                <td>CSE 3100 (Chowdhury) 7B07</td>
-                <td></td>
-                <td>CSE 3117 (Akhter) 7A03</td>
-                <td>CSE 3101 (Ansary) 7A03</td>
-                <td>HUM 3115 (Keya) 7A03</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Monday</td>
-                <td></td>
-                <td>CSE 3103 (Tanny) 7C03</td>
-                <td>HUM 3115 (Keya) 7C03</td>
-                <td></td>
-                <td></td>
-                <td>CSE 3110 (Broti, Sohidul) 9A05</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Tuesday</td>
-                <td></td>
-                <td></td>
-                <td>CSE 3117 (Akhter) 7A05</td>
-                <td></td>
-                <td>CSE 3103 (Tanny) 7A05</td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Wednesday</td>
-                <td></td>
-                <td>CSE 3104 (Tanny, Ansary) 7B05</td>
-                <td></td>
-                <td></td>
-                <td>CSE 3103 (Tanny) 7A06</td>
-                <td>CSE 3109 (Broti) 7A06</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Thursday</td>
-                <td>CSE 3109 (Broti) 7A06</td>
-                <td>CSE 3101 (Ansary) 7A06</td>
-                <td>CSE 3117 (Hossain) 7A06</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
+              {DAYS.map((day) => (
+                <tr key={day}>
+                  <td>{day}</td>
+                  {TIME_SLOTS.map((slot) => (
+                    <td key={slot}>{schedule[day]?.[slot] || ""}</td>
+                  ))}
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

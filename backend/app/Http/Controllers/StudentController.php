@@ -6,6 +6,7 @@ use App\Services\ScheduleService;
 use App\Services\EnrollmentService;
 use App\Services\CourseService;
 use App\Services\InfoService;
+use App\Services\VariableService;
 
 use Illuminate\Http\Request;
 
@@ -17,14 +18,16 @@ class StudentController extends Controller
     private $enrollmentService;
     private $courseService;
     private $infoService;
+    private $variableService;
 
-    public function __construct(UserInfoService $userInfoService, ScheduleService $scheduleService,EnrollmentService  $enrollmentService, CourseService $courseService, InfoService $infoService)
+    public function __construct(UserInfoService $userInfoService, ScheduleService $scheduleService,EnrollmentService  $enrollmentService, CourseService $courseService, InfoService $infoService, VariableService $variableService)
     {
         $this->userInfoService = $userInfoService;
         $this->scheduleService = $scheduleService;
         $this->enrollmentService = $enrollmentService;
         $this->courseService = $courseService;
         $this->infoService = $infoService;
+        $this->variableService = $variableService;
     }
 
     public function storeAllInformationsOfStudent(Request $request)
@@ -133,6 +136,13 @@ class StudentController extends Controller
                 'error' => 'enrollment course deletion failed!',
                 'message' => $e->getMessage()], 500);
         }
+    }
+
+    public function getVariables(Request $request)
+    {
+        $data = $this->variableService->getVariables();
+
+        return response()->json($data[0]);
     }
 
 }
