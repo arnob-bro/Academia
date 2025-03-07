@@ -5,36 +5,27 @@
 /* Top Navigation Bar */
 .student-navbar-nav-top {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: linear-gradient(to right, #FAF3C4, #D07CE1);
-  padding: 6px 30px;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right, #eef9ff, #8ddbfa);
+    padding: 6px 30px;
 }
 
-.logo {
+.student-navbar-logo {
   width: 50px;
-  height: 50px;
-  border-radius: 50px;
+    height: 50px;
+    gap: 10 px;
+    border-radius: 50px;
 }
 
 h1 {
   font-size: 50px;
-  font-weight: bold;
-  color: black;
-  font-family: "Times New Roman";
+    font-weight: bold;
+    color: black;
+    font-family: "Times New Roman";
 }
 
 /* Profile Section */
-.student-navbar-profile-info {
-  position: relative;
-  display: inline-block;
-}
-
-.student-navbar-profile-icon {
-  font-size: 40px;
-  cursor: pointer;
-  margin-right: 35px;
-}
 
 .student-navbar-dropdown-menu {
   position: absolute;
@@ -85,22 +76,21 @@ h1 {
 /* Bottom Navigation Bar */
 .student-navbar-nav-bottom {
   display: flex;
-  justify-content: space-evenly;
-  gap: 20px;
-  background: #BB5BB5;
-  padding: 10px 0;
+    justify-content: space-around;
+    background: #21637f;
+    padding: 5px 0;
 }
 
 .student-navbar-nav-bottom a {
   color: white;
-  text-decoration: none;
-  padding: 10px 15px;
-  font-weight: bold;
-  transition: color 0.3s;
+    text-decoration: none;
+    padding: 10px 15px;
+    font-weight: bold;
+    transition: color 0.3s;
 }
 
 .student-navbar-nav-bottom a:hover {
-  color: #f8e35d;
+  color: #59b4ea;
 }
 
 /* Enrollment Dropdown */
@@ -121,7 +111,7 @@ h1 {
 }
 
 .Student-navbar-dropbtn:hover {
-  color: #f8e35d;
+  color: #59b4ea;
 }
 
 .Student-navbar-dropdown-content {
