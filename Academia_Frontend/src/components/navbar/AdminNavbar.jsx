@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./AdminNavbar.css";
 import { logout } from "../../Api/auth";
 
@@ -51,18 +50,22 @@ const AdminNavbar = () => {
 
         {/* Profile Section */}
         <div className="admin-navbar-admin-profile" ref={profileDropdownRef}>
-          <span
-            className="admin-navbar-profile-icon"
+          <div className="adminSession">
+            <p>Session: Spring 2024</p>
+          </div>
+          
+          <button
+            className="admin-navbar-profile-btn"
             onClick={toggleProfileDropdown}
           >
-            👤
-          </span>
+            Id: 20220xx ▼
+          </button>
 
           {/* Dropdown Menu */}
           {profileDropdownOpen && (
             <div className="admin-navbar-dropdown-menu">
               <Link to="/admin-profile" className="admin-navbar-dropdown-item">
-                Admin Profile
+                Admin Profile 
               </Link>
               <hr className="admin-navbar-dropdown-divider" />
               <button

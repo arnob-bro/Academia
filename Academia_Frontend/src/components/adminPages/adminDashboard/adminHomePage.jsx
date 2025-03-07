@@ -88,7 +88,7 @@ const handleGetVariables = async () => {
       <AdminNavbar />
       <div className="admin-home-dashboard-container">
         <main className="admin-home-dashboard-content">
-          <h2>Welcome, Admin</h2>
+          <h2 className="welcomeadmin">Welcome, Admin</h2>
           <div className="admin-home-dashboard-cards">
             <div className="admin-home-card">
               <strong>Total Students:</strong> 1200
