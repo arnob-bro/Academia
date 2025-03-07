@@ -34,6 +34,7 @@ Route::post('/admin/leave-application-request', [AdminController::class, 'review
 Route::get('/admin/leave-application-request', [AdminController::class, 'getAllLeaveApplicationRequests']);
 Route::get('/admin/all-courses', [AdminController::class, 'getAllCourses']);
 Route::get('/admin/variable-update', [AdminController::class, 'updateVariables']);
+Route::get('/admin/variables', [AdminController::class, 'getVariables']);
 
 
 
@@ -51,9 +52,11 @@ Route::get('/faculty/courses/{courseID}/assessments', [FacultyController::class,
 
 Route::post('/student/AllInformationsOfStudent', [StudentController::class, 'storeAllInformationsOfStudent']);
 Route::post('/student/edit-all-information-of-student', [StudentController::class, 'editAllInformationOfStudent']);
-Route::get('/student/{studentID}', [StudentController::class, 'getStudentInfo']);
+Route::get('/student/{studentID}/student-info', [StudentController::class, 'getStudentInfo']);
 Route::get('/student/weekly-schedule', [StudentController::class, 'getScheduleOfAStudent']);
 Route::get('/student/daily-schedule', [StudentController::class, 'getDailyScheduleOfAStudent']);
 Route::post('/student/course_enrollment', [StudentController::class, 'enrollInCourse']);
 Route::get('/student/all-available-courses', [StudentController::class, 'getAllCoursesForAdvising']);
 Route::get('/student/course-enrollment', [StudentController::class, 'fetchEnrolledCoursesOfAStudentOfASemester']);
+Route::delete('/student/{studentID}/course-enrollment/{courseID}', [StudentController::class, 'removeCourseFromEnrollmentByStudent']);
+Route::get('/student/variables', [StudentController::class, 'getVariables']);

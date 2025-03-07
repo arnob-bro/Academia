@@ -11,7 +11,7 @@ class CourseService
     public function createNewCourse($course_code, $course_name, $department, $description, $credit, $section, $facultyID, $number_of_vacant_seats, $prerequisite_course_code)
     {
         try{
-            DB::statement("CALL CreateNewCourse(?, ?, ?, ?, ?, ?, ?)", [
+            DB::statement("CALL CreateNewCourse(?, ?, ?, ?, ?, ?, ?,?,?)", [
             $course_code, $course_name, $department, $description, $credit, $section, $facultyID, $number_of_vacant_seats, $prerequisite_course_code
         ]);
 

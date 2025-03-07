@@ -100,3 +100,16 @@ footer {
     margin-top: 30px;
     color: #4b5563;
 }
+
+.status-dropdown select {
+    padding: 6px;
+    border: 1px solid #b22eb2;
+    border-radius: 6px;
+    background-color: white;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.status-dropdown select:hover {
+    background-color: #f3f4f6;
+}

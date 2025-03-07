@@ -2,8 +2,13 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../../navbar/navbar";
 import Footer from "../../footer/footer";
 import "./studentAdvisingPage.css";
-import { fetchEnrolledCoursesOfAStudentOfASemester } from "../../../Api/student";
-import { getAllCoursesApi } from "../../../Api/student";
+import {
+  fetchEnrolledCoursesOfAStudentOfASemester,
+  enrollInCourseApi,
+  getAllCoursesApi,
+  getAllSelectedCoursesApi,
+  removeCourseApi,
+} from "../../../Api/student";
 // const courses = [
 //   {
 //     course_code: "CSE101",
@@ -82,78 +87,119 @@ import { getAllCoursesApi } from "../../../Api/student";
 const MAX_CREDITS = 18;
 
 const StudentAdvisingPage = () => {
+  const [availableCourses, setAvailableCourses] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [selectedCourses, setSelectedCourses] = useState([]);
 
   const toggleCourseSelection = (course) => {
     const isAlreadySelected = selectedCourses.some(
-      (c) => c.code === course.code && c.section === course.section
+      (c) =>
+        c.course_code === course.course_code && c.section === course.section
     );
 
-    let newSelection = [...selectedCourses];
+    // let newSelection = [...selectedCourses];
 
     if (isAlreadySelected) {
-      newSelection = newSelection.filter(
-        (c) => !(c.code === course.code && c.section === course.section)
-      );
+      // newSelection = newSelection.filter(
+      //   (c) => !(c.code === course.code && c.section === course.section)
+      // );
+      removeCourse(course);
     } else {
-      if (getTotalCredits() + course.credit <= MAX_CREDITS) {
-        newSelection.push(course);
+      if (getTotalCredits() + course.credits <= MAX_CREDITS) {
+        // newSelection.push(course);
+        enrollInCourse(course);
       } else {
         alert(`Cannot exceed max credit limit of ${MAX_CREDITS}!`);
       }
     }
-    setSelectedCourses(newSelection);
+    // setSelectedCourses(newSelection);
   };
 
   const getTotalCredits = () =>
-    selectedCourses.reduce((total, course) => total + course.credit, 0);
+    selectedCourses.reduce((total, course) => total + course.credits, 0);
 
-  const submitAdvising = () => {
-    if (selectedCourses.length === 0) {
-      alert("Please select at least one course!");
-      return;
-    }
-    alert("Advising submitted successfully!");
-  };
+  // const submitAdvising = () => {
+  //   if (selectedCourses.length === 0) {
+  //     alert("Please select at least one course!");
+  //     return;
+  //   }
+  //   alert("Advising submitted successfully!");
+  // };
 
-  const [data, setData] = useState({
-    studentID: "",
-    enrollment_semester: "",
-  });
-
-  const fetchEnrolledCourses = async () => {
+  const getAllCourses = async () => {
+    setLoading(true);
     try {
-      const enrollCourses = await fetchEnrolledCoursesOfAStudentOfASemester(
-        data
-      );
-      setEnrolledCourses(enrollCourses);
+      const data = await getAllCoursesApi();
+      console.log(data);
+      setAvailableCourses(data);
     } catch (error) {
-      console.error("Failed to fetch enrolled courses:", error);
-      alert("Failed to load enrolled courses!");
+      console.error("Error fetching courses:", error);
+    } finally {
+      setLoading(false);
     }
   };
-
   useEffect(() => {
-    // fetchEnrolledCourses();
-  }, []);
-  const [availableCourses, setAvailableCourses] = useState([]);
-  const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    const getAllCourses = async () => {
-      setLoading(true);
-      try {
-        const data = await getAllCoursesApi();
-        console.log(data);
-        setAvailableCourses(data[0]);
-      } catch (error) {
-        console.error("Error fetching courses:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     getAllCourses();
   }, []);
+
+  const getAllSelectedCourses = async () => {
+    setLoading(true);
+    try {
+      const user = JSON.parse(localStorage.getItem("userData"));
+      const data = await getAllSelectedCoursesApi(user.userID);
+      console.log(data);
+      setSelectedCourses(data);
+    } catch (error) {
+      console.error("Error fetching courses:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getAllSelectedCourses();
+  }, []);
+
+  const enrollInCourse = async (course) => {
+    setLoading(true);
+    try {
+      console.log(course);
+      const user = JSON.parse(localStorage.getItem("userData"));
+      const data = await enrollInCourseApi(user.userID, course.courseID);
+      console.log(data);
+      if (data.success === true) {
+        getAllCourses();
+        getAllSelectedCourses();
+      } else {
+        alert(data.message);
+      }
+    } catch (error) {
+      console.error("Error fetching courses:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const removeCourse = async (course) => {
+    setLoading(true);
+    try {
+      console.log(course);
+      const user = JSON.parse(localStorage.getItem("userData"));
+      const data = await removeCourseApi(user.userID, course.courseID);
+      console.log(data);
+      if (data.success === true) {
+        getAllCourses();
+        getAllSelectedCourses();
+      } else {
+        alert(data.message);
+      }
+    } catch (error) {
+      console.error("Error fetching courses:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <>
       <Navbar />
@@ -173,6 +219,9 @@ const StudentAdvisingPage = () => {
                 <th>Day 1</th>
                 <th>Starting Time</th>
                 <th>Ending Time</th>
+                <th>Day 2</th>
+                <th>Starting Time</th>
+                <th>Ending Time</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -188,6 +237,9 @@ const StudentAdvisingPage = () => {
                   <td>{course.schedule_day_1}</td>
                   <td>{course.start_time_day_1}</td>
                   <td>{course.end_time_day_1}</td>
+                  <td>{course.schedule_day_2}</td>
+                  <td>{course.start_time_day_2}</td>
+                  <td>{course.end_time_day_2}</td>
                   <td>
                     <button
                       onClick={() => toggleCourseSelection(course)}
@@ -215,8 +267,7 @@ const StudentAdvisingPage = () => {
             </tbody>
           </table>
         </div>
-
-        {/* Selected Courses Table
+        Selected Courses Table
         <div className="selected-courses">
           <h3>Selected Courses</h3>
           {selectedCourses.length > 0 ? (
@@ -231,16 +282,16 @@ const StudentAdvisingPage = () => {
               </thead>
               <tbody>
                 {selectedCourses.map((course) => (
-                  <tr key={course.code + course.section}>
-                    <td>{course.code}</td>
-                    <td>{course.name}</td>
-                    <td>{course.credit}</td>
+                  <tr key={course.course_code + course.section}>
+                    <td>{course.course_code}</td>
+                    <td>{course.course_name}</td>
+                    <td>{course.credits}</td>
                     <td>
                       <button
                         onClick={() => toggleCourseSelection(course)}
                         className="delete-btn"
                       >
-                        Delete
+                        Remove
                       </button>
                     </td>
                   </tr>
@@ -253,10 +304,10 @@ const StudentAdvisingPage = () => {
           <p>
             <strong>Total Credits:</strong> {getTotalCredits()} / {MAX_CREDITS}
           </p>
-          <button onClick={submitAdvising} className="submit-btn">
+          {/* <button onClick={submitAdvising} className="submit-btn">
             Submit Advising
-          </button>
-        </div> */}
+          </button> */}
+        </div>
       </div>
       <Footer />
     </>

@@ -70,9 +70,17 @@ class AdminController extends Controller
 
     public function updateVariables(Request $request)
     {
-        $data = $this->variableService->updateVariables($request->current_semester, $request->semester_starting_date, $request->current_week_no, $request->current_day_of_week);
+        $data = $this->variableService->updateVariables($request->current_semester, $request->semester_starting_date, $request->current_week_no, $request->current_day_of_week, $request->advising);
 
         return response()->json($data);
+    }
+
+
+     public function getVariables(Request $request)
+    {
+        $data = $this->variableService->getVariables();
+
+        return response()->json($data[0]);
     }
     
 }

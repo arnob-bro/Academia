@@ -54,3 +54,5 @@ export const postAttendanceStatusOfStudentsApi = async (attendanceData) => {
     return { error: "Attendance post failed!" };
   }
 };
+
+
