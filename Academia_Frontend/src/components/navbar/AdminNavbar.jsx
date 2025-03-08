@@ -46,7 +46,10 @@ const AdminNavbar = () => {
     <nav className="admin-navbar">
       <div className="admin-nav-top">
         <img src="/assets/logo.png" className="admin-logo" alt="Logo" />
-        <h1>Academia</h1>
+        <div className="academia">
+            <h1>Academia</h1>
+        </div>
+        
 
         {/* Profile Section */}
         <div className="admin-navbar-admin-profile" ref={profileDropdownRef}>
