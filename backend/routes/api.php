@@ -35,6 +35,7 @@ Route::get('/admin/leave-application-request', [AdminController::class, 'getAllL
 Route::get('/admin/all-courses', [AdminController::class, 'getAllCourses']);
 Route::get('/admin/variable-update', [AdminController::class, 'updateVariables']);
 Route::get('/admin/variables', [AdminController::class, 'getVariables']);
+Route::get('/admin/department-wise-info', [AdminController::class,'getDepartmentWiseCount']);
 
 
 
@@ -48,6 +49,9 @@ Route::post('/faculty/schedule/student-attendance/',[FacultyController::class, '
 Route::get('/faculty/schedule/student-attendance/weeks', [FacultyController::class, 'getAllWeeksForAttendanceHistory']);
 Route::post('/faculty/assessment/assessment-creation', [FacultyController::class, 'CreateAssessment']);
 Route::get('/faculty/courses/{courseID}/assessments', [FacultyController::class, 'getAssessmentsByCourseAndSemester']);
+Route::get('/faculty/{facultyID}/faculty-info', [FacultyController::class, 'getFacultyInfo']);
+Route::get('/faculty/{facultyID}/daily-routine', [FacultyController::class, 'getDailyScheduleOfAFaculty']);
+Route::get('/faculty/{facultyID}/weekly-routine', [FacultyController::class, 'getWeeklyScheduleOfAFaculty']);
 
 
 Route::post('/student/AllInformationsOfStudent', [StudentController::class, 'storeAllInformationsOfStudent']);

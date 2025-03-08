@@ -5,6 +5,7 @@ use App\Services\CourseService;
 use App\Services\ScheduleService;
 use App\Services\LeaveApplicationService;
 use App\Services\VariableService;
+use App\Services\InfoService;
 
 use Illuminate\Http\Request;
 
@@ -17,12 +18,15 @@ class AdminController extends Controller
     private $scheduleService;
     private $leaveApplicationService;
 
-    public function __construct(CourseService $courseService , ScheduleService $scheduleService, LeaveApplicationService $leaveApplicationService, VariableService $variableService)
+    private $infoService;
+
+    public function __construct(CourseService $courseService , ScheduleService $scheduleService, LeaveApplicationService $leaveApplicationService, VariableService $variableService, InfoService $infoService)
     {
         $this->courseService = $courseService;
         $this->scheduleService = $scheduleService;
         $this->leaveApplicationService = $leaveApplicationService;
         $this->variableService = $variableService;
+        $this->infoService = $infoService;
 
     }
 
@@ -81,6 +85,13 @@ class AdminController extends Controller
         $data = $this->variableService->getVariables();
 
         return response()->json($data[0]);
+    }
+
+    public function getDepartmentWiseCount(Request $request)
+    {
+        $data = $this->infoService->getDepartmentWiseCount();
+
+        return response()->json($data);
     }
     
 }

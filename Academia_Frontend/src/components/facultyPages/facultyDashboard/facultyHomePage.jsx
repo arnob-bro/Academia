@@ -1,14 +1,55 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Navbarfaculty from "../../navbar/navbarfaculty";
 import Footer from "../../footer/footer";
 import "./facultyHomePage.css";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
+import {
+  getFacultyInfoApi,
+  getDailyScheduleOfAFacultyApi,
+} from "../../../Api/faculty";
 
 const FacultyHomePage = () => {
-  const navigate = useNavigate(); // Initialize navigate function
+  const navigate = useNavigate();
+
+  const [facultyInfo, setFacultyInfo] = useState({});
+  const [dailySchedule, setDailySchedule] = useState([]);
+
+  useEffect(() => {
+    const faculty = JSON.parse(localStorage.getItem("userData"));
+
+    if (!faculty) return;
+    const getFacultyInfo = async () => {
+      try {
+        const data = await getFacultyInfoApi(faculty.userID);
+        console.log(data);
+        setFacultyInfo(data);
+      } catch (error) {
+        console.error("Error fetching leave history:", error);
+      }
+    };
+
+    getFacultyInfo();
+  }, []);
+
+  useEffect(() => {
+    const faculty = JSON.parse(localStorage.getItem("userData"));
+
+    if (!faculty) return;
+    const getDailyScheduleOfAFaculty = async () => {
+      try {
+        const data = await getDailyScheduleOfAFacultyApi(faculty.userID);
+        console.log(data);
+        setDailySchedule(data);
+      } catch (error) {
+        console.error("Error fetching daily routine:", error);
+      }
+    };
+
+    getDailyScheduleOfAFaculty();
+  }, []);
 
   const handleRequestLeave = () => {
-    navigate("/faculty-leave-application"); // Redirect to the faculty leave application page
+    navigate("/faculty-leave-application");
   };
 
   return (
@@ -23,16 +64,16 @@ const FacultyHomePage = () => {
               <div className="profile-image"></div>
               <div className="profile-info">
                 <p>
-                  <strong>Name:</strong> Mickey Mouse
+                  <strong>Name:</strong> {facultyInfo.name}
                 </p>
                 <p>
-                  <strong>Id:</strong> 20220104000
+                  <strong>Id:</strong> {facultyInfo.facultyID}
                 </p>
                 <p>
-                  <strong>Phone:</strong> 01711111111
+                  <strong>Email:</strong> {facultyInfo.institutional_email}
                 </p>
                 <p>
-                  <strong>Department:</strong> CSE
+                  <strong>Department:</strong> {facultyInfo.department}
                 </p>
               </div>
             </div>
@@ -43,7 +84,8 @@ const FacultyHomePage = () => {
             <div className="schedule">
               <h3>Today's Schedule</h3>
               <p>
-                <strong>Day:</strong> Tuesday | <strong>Date:</strong> 14.01.2025
+                <strong>Day:</strong> Tuesday | <strong>Date:</strong>{" "}
+                14.01.2025
               </p>
               <table>
                 <thead>
@@ -54,21 +96,13 @@ const FacultyHomePage = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>CSE3100</td>
-                    <td>10:00 AM - 11:00 AM</td>
-                    <td>7A07</td>
-                  </tr>
-                  <tr>
-                    <td>CSE3101</td>
-                    <td>11:00 AM - 12:00 PM</td>
-                    <td>7A07</td>
-                  </tr>
-                  <tr>
-                    <td>CSE3102</td>
-                    <td>12:00 PM - 01:00 PM</td>
-                    <td>7A07</td>
-                  </tr>
+                  {dailySchedule.map((schedule, index) => (
+                    <tr key={schedule.scheduleID}>
+                      <td>{schedule.scheduleID}</td>
+                      <td>{schedule.start_time + " - " + schedule.end_time}</td>
+                      <td>{schedule.room_no}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>

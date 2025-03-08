@@ -34,7 +34,7 @@ export const updateVariablesApi = async (data) => {
   try {
     console.log("Sending request to API with data:", data); // Debugging output
     const response = await axios.get(`${baseURL}/variable-update`, {
-      params: { 
+      params: {
         current_semester: data.current_semester,
         semester_starting_date: data.semester_starting_date,
         current_week_no: data.current_week_no,
@@ -47,19 +47,18 @@ export const updateVariablesApi = async (data) => {
     console.log("Response from API:", response.data); // Debugging output
     return response.data;
   } catch (error) {
-    console.error("Error updating variables:", error.response?.data || error.message);
+    console.error(
+      "Error updating variables:",
+      error.response?.data || error.message
+    );
     throw error;
   }
-
-  
 };
-
 
 export const getVariablesApi = async () => {
   try {
     console.log("Sending request to API with data:"); // Debugging output
     const response = await axios.get(`${baseURL}/variables`, {
-     
       headers: {
         "Content-Type": "application/json",
       },
@@ -67,9 +66,29 @@ export const getVariablesApi = async () => {
     console.log("Response from API:", response.data); // Debugging output
     return response.data;
   } catch (error) {
-    console.error("Error fetching variables:", error.response?.data || error.message);
+    console.error(
+      "Error fetching variables:",
+      error.response?.data || error.message
+    );
     throw error;
   }
+};
 
-  
+export const getDepartmentDatasApi = async () => {
+  try {
+    console.log("Sending request to API with data:");
+    const response = await axios.get(`${baseURL}/department-wise-info`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    console.log("Response from API:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error(
+      "Error fetching departmentData:",
+      error.response?.data || error.message
+    );
+    throw error;
+  }
 };

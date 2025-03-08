@@ -54,7 +54,9 @@ const FacultyAssessmentTracker = () => {
     try {
       const response = await axios.get(
         `http://127.0.0.1:8000/api/faculty/courses/${selectedCourse}/assessments`,
+        `http://127.0.0.1:8000/api/faculty/courses/${selectedCourse}/assessments`,
         {
+          // params: { courseID: selectedCourse }, // Add courseID parameter
           headers: { "Content-Type": "application/json" },
         }
       );
@@ -141,26 +143,25 @@ const FacultyAssessmentTracker = () => {
     setShowModal(false);
   };
   const [editIndex, setEditIndex] = useState(null); // Track which row is being edited
-const [studentData, setStudentData] = useState([
-  { id: 1, name: "John Doe", marks: 85 },
-  { id: 2, name: "Jane Smith", marks: 90 },
-  { id: 3, name: "Bob Johnson", marks: 78 }
-]);
+  const [studentData, setStudentData] = useState([
+    { id: 1, name: "John Doe", marks: 85 },
+    { id: 2, name: "Jane Smith", marks: 90 },
+    { id: 3, name: "Bob Johnson", marks: 78 },
+  ]);
 
-const handleEdit = (index) => {
-  setEditIndex(index);
-};
+  const handleEdit = (index) => {
+    setEditIndex(index);
+  };
 
-const handleSave = (index) => {
-  setEditIndex(null);
-};
+  const handleSave = (index) => {
+    setEditIndex(null);
+  };
 
-const handleMarksChange = (index, newMarks) => {
-  const updatedData = [...studentData];
-  updatedData[index].marks = newMarks;
-  setStudentData(updatedData);
-};
-
+  const handleMarksChange = (index, newMarks) => {
+    const updatedData = [...studentData];
+    updatedData[index].marks = newMarks;
+    setStudentData(updatedData);
+  };
 
   return (
     <>
@@ -242,52 +243,58 @@ const handleMarksChange = (index, newMarks) => {
             </table>
           </div>
         )}
-{showModal && (
-  <div className="modal-overlay">
-    <div className="modal-content">
-      <button className="modal-close-btn" onClick={closeModal}>
-        X
-      </button>
-      <h3>Student Marks</h3>
-      <table className="modal-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Marks</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {studentData.map((student, index) => (
-            <tr key={student.id}>
-              <td>{student.id}</td>
-              <td>{student.name}</td>
-              <td>
-                {editIndex === index ? (
-                  <input
-                    type="number"
-                    value={student.marks}
-                    onChange={(e) => handleMarksChange(index, e.target.value)}
-                  />
-                ) : (
-                  student.marks
-                )}
-              </td>
-              <td>
-                {editIndex === index ? (
-                  <button onClick={() => handleSave(index)}>Save</button>
-                ) : (
-                  <button onClick={() => handleEdit(index)}>Edit</button>
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  </div>
-)}
+        {showModal && (
+          <div className="modal-overlay">
+            <div className="modal-content">
+              <button className="modal-close-btn" onClick={closeModal}>
+                X
+              </button>
+              <h3>Student Marks</h3>
+              <table className="modal-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Marks</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {studentData.map((student, index) => (
+                    <tr key={student.id}>
+                      <td>{student.id}</td>
+                      <td>{student.name}</td>
+                      <td>
+                        {editIndex === index ? (
+                          <input
+                            type="number"
+                            value={student.marks}
+                            onChange={(e) =>
+                              handleMarksChange(index, e.target.value)
+                            }
+                          />
+                        ) : (
+                          student.marks
+                        )}
+                      </td>
+                      <td>
+                        {editIndex === index ? (
+                          <button onClick={() => handleSave(index)}>
+                            Save
+                          </button>
+                        ) : (
+                          <button onClick={() => handleEdit(index)}>
+                            Edit
+                          </button>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
 
         {showCreateForm && (
           <div className="create-assessment-form">
