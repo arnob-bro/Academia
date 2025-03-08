@@ -150,5 +150,12 @@ class FacultyController extends Controller
 
         return response()->json($data);
     }
+
+    public function getWeeklyScheduleOfAFaculty(Request $request)
+    {
+       $data= $this->scheduleService->getWeeklyScheduleOfAFaculty($request->facultyID);
+
+        return response()->json($data);
+    }
     
 }

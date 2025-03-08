@@ -123,3 +123,25 @@ export const getDailyScheduleOfAFacultyApi = async (facultyID) => {
     }
   }
 };
+
+export const getWeeklySchedulesApi = async (facultyID) => {
+  try {
+    const response = await axios.get(
+      `http://127.0.0.1:8000/api/faculty/${facultyID}/weekly-routine`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error(
+      "Error fetching weekly schedules:",
+      error.response?.data || error
+    );
+    throw error;
+  }
+};

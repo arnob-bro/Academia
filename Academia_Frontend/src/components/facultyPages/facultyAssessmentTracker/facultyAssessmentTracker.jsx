@@ -53,9 +53,9 @@ const FacultyAssessmentTracker = () => {
     setIsFetching(true);
     try {
       const response = await axios.get(
-        `http://127.0.0.1:8000/api/faculty/courses/assessments`,
+        `http://127.0.0.1:8000/api/faculty/courses/${selectedCourse}/assessments`,
         {
-          params: { courseID: selectedCourse }, // Add courseID parameter
+          // params: { courseID: selectedCourse }, // Add courseID parameter
           headers: { "Content-Type": "application/json" },
         }
       );

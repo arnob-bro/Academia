@@ -33,7 +33,7 @@ const StudentClassRoutine = () => {
     };
 
     fetchVariables();
-  }, []); // Run once when the component mounts
+  }, []);
 
   useEffect(() => {
     const fetchSchedule = async () => {
