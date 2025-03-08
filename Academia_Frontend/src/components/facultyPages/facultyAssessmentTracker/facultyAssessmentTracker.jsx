@@ -7,6 +7,7 @@ import axios from "axios";
 
 const FacultyAssessmentTracker = () => {
   const [selectedCourse, setSelectedCourse] = useState("");
+  const [selectedCourseCode, setSelectedCourseCode] = useState("");
   const [courses, setCourses] = useState([]);
   const [assessments, setAssessments] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -20,7 +21,7 @@ const FacultyAssessmentTracker = () => {
   const [facultyID, setFacultyID] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [modalData, setModalData] = useState([]);
-  const [isFetching, setIsFetching] = useState(false); // State to track if fetching is in progress
+  const [isFetching, setIsFetching] = useState(false); // Track fetching status
 
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem("userData"));
@@ -32,14 +33,14 @@ const FacultyAssessmentTracker = () => {
   useEffect(() => {
     const fetchCourses = async () => {
       if (!facultyID) return;
-      setIsFetching(true); // Set fetching to true while fetching data
+      setIsFetching(true);
       try {
         const allCourses = await handleFetchCoursesOfAFacultyApi(facultyID);
         setCourses(allCourses || []);
       } catch (error) {
         console.error("Error fetching courses:", error);
       }
-      setIsFetching(false); // Set fetching to false when done
+      setIsFetching(false);
     };
     fetchCourses();
   }, [facultyID]);
@@ -49,27 +50,36 @@ const FacultyAssessmentTracker = () => {
       alert("Please select a course first!");
       return;
     }
-
     setIsFetching(true);
     try {
       const response = await axios.get(
+        `http://127.0.0.1:8000/api/faculty/courses/${selectedCourse}/assessments`,
         `http://127.0.0.1:8000/api/faculty/courses/${selectedCourse}/assessments`,
         {
           // params: { courseID: selectedCourse }, // Add courseID parameter
           headers: { "Content-Type": "application/json" },
         }
       );
-
-      // Ensure we're getting array data
+      console.log(response);
       const data = Array.isArray(response?.data) ? response.data : [];
       setAssessments(data);
       setIsLoaded(true);
     } catch (error) {
       console.error("Error fetching assessments:", error);
-      setAssessments([]); // Reset to empty array on error
+      setAssessments([]);
       alert("Failed to fetch assessments.");
     }
     setIsFetching(false);
+  };
+
+  // Toggle assessments: if already loaded, hide them; otherwise, fetch them.
+  const toggleAssessments = async () => {
+    if (isLoaded) {
+      setAssessments([]);
+      setIsLoaded(false);
+    } else {
+      await fetchAssessments();
+    }
   };
 
   const createAssessment = async (assessmentData) => {
@@ -82,7 +92,6 @@ const FacultyAssessmentTracker = () => {
           body: JSON.stringify(assessmentData),
         }
       );
-
       const data = await response.json();
       if (response.ok) {
         setMessage(data.message);
@@ -110,13 +119,48 @@ const FacultyAssessmentTracker = () => {
     createAssessment(assessmentData);
   };
 
-  const handleViewDetails = () => {
-    setModalData(fetchModalData());
-    setShowModal(true);
+  // Fetch and display student marks for a given assessment- modal table
+  const handleGetData = async (assessment) => {
+    try {
+      // Adjust the endpoint below based on your API.
+      const assessmentId = assessment.assessment_id || assessment.id;
+      const response = await axios.get(
+        `http://127.0.0.1:8000/api/faculty/assessment/${assessmentId}/student-marks`,
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      const data = Array.isArray(response?.data) ? response.data : [];
+      setModalData(data);
+      setShowModal(true);
+    } catch (error) {
+      console.error("Error fetching student marks:", error);
+      alert("Failed to fetch student marks.");
+    }
   };
 
   const closeModal = () => {
     setShowModal(false);
+  };
+  const [editIndex, setEditIndex] = useState(null); // Track which row is being edited
+  const [studentData, setStudentData] = useState([
+    { id: 1, name: "John Doe", marks: 85 },
+    { id: 2, name: "Jane Smith", marks: 90 },
+    { id: 3, name: "Bob Johnson", marks: 78 },
+  ]);
+
+  const handleEdit = (index) => {
+    setEditIndex(index);
+  };
+
+  const handleSave = (index) => {
+    setEditIndex(null);
+  };
+
+  const handleMarksChange = (index, newMarks) => {
+    const updatedData = [...studentData];
+    updatedData[index].marks = newMarks;
+    setStudentData(updatedData);
   };
 
   return (
@@ -126,27 +170,43 @@ const FacultyAssessmentTracker = () => {
         <div className="faculty-assessment-tracker-course-selection">
           <label>Select Course: </label>
           <select
-            value={selectedCourse}
-            onChange={(e) => setSelectedCourse(e.target.value)}
+            // Store both courseID and course_code separated by "|"
+            value={
+              selectedCourse ? `${selectedCourse}|${selectedCourseCode}` : ""
+            }
+            onChange={(e) => {
+              const value = e.target.value;
+              if (value === "") {
+                setSelectedCourse("");
+                setSelectedCourseCode("");
+              } else {
+                const [courseID, courseCode] = value.split("|");
+                setSelectedCourse(courseID);
+                setSelectedCourseCode(courseCode);
+              }
+            }}
           >
             <option value="">-- Select Course --</option>
             {courses.map((course, index) => (
-              <option key={index} value={course.courseID}>
+              <option
+                key={index}
+                value={`${course.courseID}|${course.course_code}`}
+              >
                 {course.course_code} {course.section}
               </option>
             ))}
           </select>
           <button
             className="get-assessment-btn"
-            onClick={fetchAssessments}
-            disabled={!selectedCourse || isFetching || showCreateForm} // Disable if no course selected, fetching in progress, or create form is visible
+            onClick={toggleAssessments}
+            disabled={!selectedCourse || isFetching || showCreateForm}
           >
-            Get Assessment
+            {isLoaded ? "Hide Get Assessment" : "Get Assessment"}
           </button>
           <button
             className="create-assessment-btn"
             onClick={() => setShowCreateForm(!showCreateForm)}
-            disabled={!selectedCourse || isFetching || assessments.length > 0} // Disable if no course selected, fetching in progress, or assessments already exist
+            disabled={!selectedCourse || isFetching || isLoaded}
           >
             {showCreateForm ? "Hide Create Assessment" : "Create Assessment"}
           </button>
@@ -154,7 +214,7 @@ const FacultyAssessmentTracker = () => {
 
         {isLoaded && selectedCourse && (
           <div className="faculty-assessment-tracker-table-container">
-            <h3>Assessments for Course ID: {selectedCourse}</h3>
+            <h3>Assessments for Course: {selectedCourseCode}</h3>
             <table className="faculty-assessment-tracker-table">
               <thead>
                 <tr>
@@ -162,6 +222,7 @@ const FacultyAssessmentTracker = () => {
                   <th>Weight</th>
                   <th>Date</th>
                   <th>Semester</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -171,14 +232,17 @@ const FacultyAssessmentTracker = () => {
                     <td>{assessment.assessment_weight}</td>
                     <td>{assessment.assessment_date}</td>
                     <td>{assessment.semester}</td>
+                    <td>
+                      <button onClick={() => handleGetData(assessment)}>
+                        Get Data
+                      </button>
+                    </td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
         )}
-
-        {/* Modal */}
         {showModal && (
           <div className="modal-overlay">
             <div className="modal-content">
@@ -192,14 +256,38 @@ const FacultyAssessmentTracker = () => {
                     <th>ID</th>
                     <th>Name</th>
                     <th>Marks</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {modalData.map((item) => (
-                    <tr key={item.id}>
-                      <td>{item.id}</td>
-                      <td>{item.name}</td>
-                      <td>{item.marks}</td>
+                  {studentData.map((student, index) => (
+                    <tr key={student.id}>
+                      <td>{student.id}</td>
+                      <td>{student.name}</td>
+                      <td>
+                        {editIndex === index ? (
+                          <input
+                            type="number"
+                            value={student.marks}
+                            onChange={(e) =>
+                              handleMarksChange(index, e.target.value)
+                            }
+                          />
+                        ) : (
+                          student.marks
+                        )}
+                      </td>
+                      <td>
+                        {editIndex === index ? (
+                          <button onClick={() => handleSave(index)}>
+                            Save
+                          </button>
+                        ) : (
+                          <button onClick={() => handleEdit(index)}>
+                            Edit
+                          </button>
+                        )}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
