@@ -79,7 +79,17 @@ body {
     margin-top: 20px;
     border-radius: 5px;
   }
-  
+  .get-data-btn{
+    background-color: #8f0e0e;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    border-radius: 5px;
+    margin-right: 20px;
+  }
   .save-btn:hover {
     background-color: #218838;
   }

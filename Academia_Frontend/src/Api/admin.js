@@ -2,6 +2,7 @@ import axios from "axios";
 
 const baseURL = "http://127.0.0.1:8000/api/admin";
 
+
 export const registerStudentApi = async (data) => {
   try {
     const response = await axios.post(`${baseURL}/student-admission`, data, {
@@ -89,6 +90,20 @@ export const getDepartmentDatasApi = async () => {
       "Error fetching departmentData:",
       error.response?.data || error.message
     );
+    throw error;
+  }
+};
+
+export const scheduleCourseApi = async (data) => {
+  try {
+    const response = await axios.post(`${baseURL}/course-schedule`, data, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error scheduling course:", error);
     throw error;
   }
 };
