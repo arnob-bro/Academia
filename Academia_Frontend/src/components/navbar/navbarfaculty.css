@@ -78,10 +78,18 @@ h1 {
 
 /* Bottom Navigation Bar */
 .faculty-navbar-nav-bottom {
-  display: flex;
-    justify-content: space-around;
-    background: #21637f;
-    padding: 5px 0;
+display: flex;
+  justify-content: space-around;
+  background: #21637f;
+  padding: 5px 0;
+  overflow-x: auto;
+  /* Enable horizontal scrolling */
+  white-space: nowrap;
+  /* Prevent links from wrapping */
+  scrollbar-width: none;
+  /* For Firefox */
+  scrollbar-color: #59b4ea transparent;
+  /* Custom scrollbar */
 }
 
 .faculty-navbar-nav-bottom a {
