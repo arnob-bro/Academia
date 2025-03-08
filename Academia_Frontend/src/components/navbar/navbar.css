@@ -5,24 +5,24 @@
 /* Top Navigation Bar */
 .student-navbar-nav-top {
   display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: linear-gradient(to right, #eef9ff, #8ddbfa);
-    padding: 6px 30px;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to right, #eef9ff, #8ddbfa);
+  padding: 6px 30px;
 }
 
 .student-navbar-logo {
   width: 50px;
-    height: 50px;
-    gap: 10 px;
-    border-radius: 50px;
+  height: 50px;
+  gap: 10 px;
+  border-radius: 50px;
 }
 
 h1 {
   font-size: 50px;
-    font-weight: bold;
-    color: black;
-    font-family: "Times New Roman";
+  font-weight: bold;
+  color: black;
+  font-family: "Times New Roman";
 }
 
 /* Profile Section */
@@ -47,6 +47,7 @@ h1 {
   color: rgb(0, 0, 0);
   font-size: 17px;
 }
+
 .student-navbar-dropdown-item:first-child {
   font-weight: 500;
 }
@@ -76,25 +77,25 @@ h1 {
 /* Bottom Navigation Bar */
 .student-navbar-nav-bottom {
   display: flex;
-    justify-content: space-around;
-    background: #21637f;
-    padding: 5px 0;
-    overflow-x: auto;
-    /* Enable horizontal scrolling */
-    white-space: nowrap;
-    /* Prevent links from wrapping */
-    scrollbar-width: none;
-    /* For Firefox */
-    scrollbar-color: #59b4ea transparent;
-    /* Custom scrollbar */
+  justify-content: space-around;
+  background: #21637f;
+  padding: 5px 0;
+  overflow-x: visible;
+  /* Enable horizontal scrolling */
+  white-space: nowrap;
+  /* Prevent links from wrapping */
+  scrollbar-width: none;
+  /* For Firefox */
+  scrollbar-color: #59b4ea transparent;
+  /* Custom scrollbar */
 }
 
 .student-navbar-nav-bottom a {
   color: white;
-    text-decoration: none;
-    padding: 10px 15px;
-    font-weight: bold;
-    transition: color 0.3s;
+  text-decoration: none;
+  padding: 10px 15px;
+  font-weight: bold;
+  transition: color 0.3s;
 }
 
 .student-navbar-nav-bottom a:hover {
@@ -132,8 +133,9 @@ h1 {
   overflow: hidden;
   z-index: 1000;
 }
+
 .Student-navbar-dropdown-content a {
-  color: black  !important;  
+  color: black !important;
   font-weight: 500;
   padding: 10px;
   display: block;

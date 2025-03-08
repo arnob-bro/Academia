@@ -82,7 +82,7 @@ display: flex;
   justify-content: space-around;
   background: #21637f;
   padding: 5px 0;
-  overflow-x: auto;
+  overflow-x: visible;
   /* Enable horizontal scrolling */
   white-space: nowrap;
   /* Prevent links from wrapping */
