@@ -20,8 +20,18 @@ const FacultyAssessmentTracker = () => {
   const [error, setError] = useState("");
   const [facultyID, setFacultyID] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const [modalData, setModalData] = useState([]);
   const [isFetching, setIsFetching] = useState(false); // Track fetching status
+
+  // Hard-coded student data to be displayed in the modal
+  const [studentData, setStudentData] = useState([
+    { id: 1, name: "John Doe", marks: 85 },
+    { id: 2, name: "Jane Smith", marks: 90 },
+    { id: 3, name: "Bob Johnson", marks: 78 },
+  ]);
+
+  // State for tracking which modal table cell is being edited.
+  // It holds an object with row index and column key (id, name, or marks)
+  const [editingCell, setEditingCell] = useState({ row: null, column: null });
 
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem("userData"));
@@ -54,9 +64,7 @@ const FacultyAssessmentTracker = () => {
     try {
       const response = await axios.get(
         `http://127.0.0.1:8000/api/faculty/courses/${selectedCourse}/assessments`,
-        `http://127.0.0.1:8000/api/faculty/courses/${selectedCourse}/assessments`,
         {
-          // params: { courseID: selectedCourse }, // Add courseID parameter
           headers: { "Content-Type": "application/json" },
         }
       );
@@ -119,48 +127,39 @@ const FacultyAssessmentTracker = () => {
     createAssessment(assessmentData);
   };
 
-  // Fetch and display student marks for a given assessment- modal table
-  const handleGetData = async (assessment) => {
-    try {
-      // Adjust the endpoint below based on your API.
-      const assessmentId = assessment.assessment_id || assessment.id;
-      const response = await axios.get(
-        `http://127.0.0.1:8000/api/faculty/assessment/${assessmentId}/student-marks`,
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-      const data = Array.isArray(response?.data) ? response.data : [];
-      setModalData(data);
-      setShowModal(true);
-    } catch (error) {
-      console.error("Error fetching student marks:", error);
-      alert("Failed to fetch student marks.");
-    }
+  // Updated handleGetData: simply open the modal without fetching data.
+  const handleGetData = () => {
+    setShowModal(true);
   };
 
   const closeModal = () => {
     setShowModal(false);
-  };
-  const [editIndex, setEditIndex] = useState(null); // Track which row is being edited
-  const [studentData, setStudentData] = useState([
-    { id: 1, name: "John Doe", marks: 85 },
-    { id: 2, name: "Jane Smith", marks: 90 },
-    { id: 3, name: "Bob Johnson", marks: 78 },
-  ]);
-
-  const handleEdit = (index) => {
-    setEditIndex(index);
+    // Clear any cell editing when closing the modal
+    setEditingCell({ row: null, column: null });
   };
 
-  const handleSave = (index) => {
-    setEditIndex(null);
+  // Handle clicking on a cell in the modal table to make it editable.
+  const handleCellClick = (row, column) => {
+    setEditingCell({ row, column });
   };
 
-  const handleMarksChange = (index, newMarks) => {
+  // Update studentData state when a cell value changes.
+  const handleCellChange = (row, column, newValue) => {
     const updatedData = [...studentData];
-    updatedData[index].marks = newMarks;
+    updatedData[row] = { ...updatedData[row], [column]: newValue };
     setStudentData(updatedData);
+  };
+
+  // When the input loses focus, end the editing mode.
+  const handleCellBlur = () => {
+    setEditingCell({ row: null, column: null });
+  };
+
+  // Optional: if user presses Enter, end editing
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.target.blur();
+    }
   };
 
   return (
@@ -243,6 +242,7 @@ const FacultyAssessmentTracker = () => {
             </table>
           </div>
         )}
+
         {showModal && (
           <div className="modal-overlay">
             <div className="modal-content">
@@ -250,47 +250,41 @@ const FacultyAssessmentTracker = () => {
                 X
               </button>
               <h3>Student Marks</h3>
+              <p>Total Marks: 20</p>
               <table className="modal-table">
                 <thead>
                   <tr>
                     <th>ID</th>
                     <th>Name</th>
                     <th>Marks</th>
-                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {studentData.map((student, index) => (
-                    <tr key={student.id}>
-                      <td>{student.id}</td>
-                      <td>{student.name}</td>
-                      <td>
-                        {editIndex === index ? (
-                          <input
-                            type="number"
-                            value={student.marks}
-                            onChange={(e) =>
-                              handleMarksChange(index, e.target.value)
-                            }
-                          />
-                        ) : (
-                          student.marks
-                        )}
-                      </td>
-                      <td>
-                        {editIndex === index ? (
-                          <button onClick={() => handleSave(index)}>
-                            Save
-                          </button>
-                        ) : (
-                          <button onClick={() => handleEdit(index)}>
-                            Edit
-                          </button>
-                        )}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
+  {studentData.map((student, rowIndex) => (
+    <tr key={student.id}>
+      {/* ID Cell (Non-editable) */}
+      <td>{student.id}</td>
+
+      {/* Name Cell */}
+      <td>
+       
+          {student.name}
+          
+      </td>
+
+      {/* Marks Cell */}
+      <td>
+        <input
+          type="number"
+          value={student.marks}
+          onChange={(e) => handleCellChange(rowIndex, "marks", e.target.value)}
+          className="inline-input"
+        />
+      </td>
+    </tr>
+  ))}
+</tbody>
+
               </table>
             </div>
           </div>

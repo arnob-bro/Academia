@@ -31,6 +31,7 @@ import FacultyLeaveAdmin from "./components/adminPages/facultyLeaveAdmin/faculty
 import CourseManagement from "./components/adminPages/courseManagement/courseManagement.jsx"; 
 import CourseSchedule from "./components/adminPages/courseScheduleManagement/courseSchedule.jsx";
 import FacultyAssessmentTracker from "./components/facultyPages/facultyAssessmentTracker/facultyAssessmentTracker.jsx";
+
 function App() {
   const userData = JSON.parse(localStorage.getItem("userData"));
 
