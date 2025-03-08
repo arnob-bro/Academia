@@ -172,3 +172,57 @@ h1 {
       font-size: 15px;
       font-weight: bold;
     }
+    /* Dropdown Button */
+
+
+/* Management Dropdown */
+.admin-navbar-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.admin-navbar-dropbtn {
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  padding: 10px 15px;
+  transition: color 0.3s;
+}
+
+.admin-navbar-dropbtn:hover {
+  color: #59b4ea;
+}
+
+.admin-navbar-dropdown-content {
+  display: none;
+  position: absolute;
+  background: white;
+  min-width: 180px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.admin-navbar-dropdown-content a {
+  color: black !important;
+  font-weight: 500;
+  padding: 10px;
+  display: block;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.admin-navbar-dropdown-content a:hover {
+  background-color: #ebe3e3;
+  padding: 10px;
+}
+
+
+/* Show dropdown when active */
+.admin-navbar-dropdown:hover .admin-navbar-dropdown-content {
+  display: block;
+}
