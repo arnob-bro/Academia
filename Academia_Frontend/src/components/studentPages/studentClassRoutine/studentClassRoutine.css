@@ -1,0 +1,80 @@
+/* Full-page layout */
+.routine-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #FFFDF1, #FFDAFA);
+}
+
+/* Center content */
+.routine-container {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+h3{
+  color: #0e0e53;
+}
+/* Navbar and Footer full width */
+/* .navbar, .footer {
+  width: 100%;
+} */
+
+/* Routine Info */
+.routine-info {
+  background-color: #f8e1ff;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 16px;
+  text-align: center;
+  width: 60%;
+  margin-bottom: 20px;
+}
+
+.routine-info p {
+  margin: 5px 0;
+  font-weight: 400;
+}
+
+/* Routine Table */
+.routine-table {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 90%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+th, td {
+  border: 1px solid #BB5BB5;
+  padding: 10px;
+}
+
+th {
+  background-color: #f3a8ee;
+}
+
+/* Button Styling */
+.download-btn {
+  padding: 10px 15px;
+  background-color: #ee5050;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.download-btn:hover {
+  background-color: #cc2c2c;
+}
+
+.footer {
+  margin-top: auto;
+}

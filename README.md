@@ -33,8 +33,8 @@ This system is intended for use by university administrators, faculty members, a
      - Assign faculty to courses and departments.
    - **Tuition Fee Management:**
      - Oversee tuition fee payments and records.
-   - **Budget Tracking:**
-     - Monitor and manage the university's budget.
+   - **Faculty Leave Review:**
+     - Review and manage the leave applications of faculties.
    - **Reporting:**
      - Generate reports on academic performance and resource utilization.
 
@@ -47,6 +47,10 @@ This system is intended for use by university administrators, faculty members, a
      - Access academic performance and transcripts.
    - **Results:**
      - View examination results.
+   - **Performance Tracker:**
+     - View assessment performance.
+      - **Attendance Tracking:**
+     - Monitor course-wise attendance.
 
 3. **Faculty Panel:**
    - **Course Materials:**
@@ -56,11 +60,9 @@ This system is intended for use by university administrators, faculty members, a
    - **Academic Performance Tracking:**
      - Assess and track student academic performance.
    - **Scheduling:**
-     - Manage personal teaching schedules.
-   - **Assignments and Exams:**
-     - Create and grade assignments and exams.
-   - **Collaboration:**
-     - Collaborate with other faculty members and departments.
+     - Reschedule personal teaching schedules.
+   - **Assessment Results:**
+     - Update marks of assessments and exams for each students.
 
 4. **Resource Management:**
    - **Scheduling and Allocation:**
@@ -81,29 +83,36 @@ This system is intended for use by university administrators, faculty members, a
 
    **Admin Panel:**
    ```http
-   POST /api/admin/add-teacher
-   POST /api/admin/invite-teacher
-   POST /api/admin/admit-student
-   GET /api/admin/budget-tracker
-   POST /api/admin/manage-tuition
-   GET /api/admin/reports
+   POST /admin/create-new-course
+   POST /admin/edit-an-existing-course
+   POST /admin/course-schedule
+   POST /admin/leave-application-request
+   GET /admin/leave-application-request
+   GET /admin/all-courses
+
    ```
    **Student Panel:**
    ```http
-   POST /api/student/enroll
-   GET /api/student/courses/:courseId/materials
-   POST /api/student/assessments/submit
-   GET /api/student/results
-   GET /api/student/class-routine
+   POST /student/AllInformationsOfStudent
+   POST /student/edit-all-information-of-student
+   GET /student/weekly-schedule
+   GET /student/daily-schedule
+   POST /student/course_enrollment
+   GET /student/all-available-courses
+   GET /student/course-enrollment
+
    ```
    **Faculty Panel:**
    ```http
-   POST /api/faculty/upload-materials
-   POST /api/faculty/track-attendance
-   GET /api/faculty/student-performance
-   GET /api/faculty/schedule
-   POST /api/faculty/manage-assessments
-   POST /api/faculty/collaborate
+   POST /faculty/course-reschedule
+   GET /faculty/room-schedule
+   POST /faculty/leave-application-request
+   GET /faculty/leave-application-request
+   GET /faculty/my-courses/
+   GET /faculty/courses/{courseID}/all-students
+   POST /faculty/schedule/student-attendance/
+   GET /faculty/schedule/student-attendance/weeks
+
    ```
    **Resource Management:**
    ```http
@@ -114,7 +123,9 @@ This system is intended for use by university administrators, faculty members, a
 
    **User Authentication:**
    ```http
-   POST /api/auth/login
+   POST /api/login
+   POST /api/admin/student-admission
+   POST /api/admin/faculty-registration
    ```
 
 ## Milestones
@@ -123,8 +134,6 @@ This system is intended for use by university administrators, faculty members, a
    - Set up the project environment and initialize the repository.
    - Implement user authentication:
       - Secure registration by admin and user login functionality.
-   - Develop the course enrollment modules:
-      - Allow students to register and enroll in courses.
    - Set up the backend with Laravel and design the database schema for courses, users, and enrollments.
    - Design a basic frontend with React for creating and managing courses.
    
@@ -133,11 +142,14 @@ This system is intended for use by university administrators, faculty members, a
    - Implement class routine and scheduling features:
       - Allow students to view personalized class schedules.
       - Enable faculty to manage teaching schedules.
-   - Develop academic record and performance tracking:
-      - Allow students to access academic records and results.
-      - Enable faculty to track student performance.
+      - Course schedule management by admin.
+   - Develop the course enrollment modules:
+      - Allow students to register and enroll in courses.
+   - Implement leave applications of faculties.
+      - Enable faculty to apply for leaves.
+      - Enable admin to review faculties' leaves.
    - Integrate API endpoints for academic management and scheduling.
-   - Enhance UI/UX for academic interactions with improved designs and responsiveness.
+   - Enhance UI/UX for academic interactions with improved designs.
 
 ---
 ### Milestone 3: Resource Management and Advanced Features (Final Checkpoint)
@@ -145,8 +157,10 @@ This system is intended for use by university administrators, faculty members, a
       - Schedule and allocate classrooms and laboratories.
       - Manage library resources and track usage.
       - Organize events and extracurricular activities.
+   - Develop academic record and performance tracking:
+      - Allow students to access academic records and performance tracking.
+      - Enable faculty to track students' performance.
    - Develop administrative features:
-      - Manage student admissions and faculty assignments.
       - Oversee tuition fee payments and budget tracking.
       - Generate reports on academic performance and resource utilization.
    - Finalize UI/UX designs and optimize for performance.
@@ -160,4 +174,4 @@ This system is intended for use by university administrators, faculty members, a
 | 20200204058 | Mahdi Mubassera        | mubasseramahdi@gmail.com | Frontend |
 | 20220104064 | Abdul Mohaimen Khan Arnob | abdulmohaimenkhanarnob@gmail.com | Lead + Frontend + Backend |
 | 20220104068 | Samira Ahmed Fiha  | fihaahmed@outlook.com | Frontend          |
-| 20220104075 | Sayeb Mohaimen          | muhaimen360@gmail.com           | Backend           |
+| 20220104075 | Sayeb Mohaimen          | muhaimen360@gmail.com           | Frontend           |

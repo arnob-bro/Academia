@@ -1,0 +1,194 @@
+.faculty-management-container {
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Search Box */
+.faculty-management-search-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+    width: 100%;
+}
+
+.faculty-management-search-box input {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #21637f;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.faculty-management-search-box input:focus {
+    border-color: #0c3b4f;
+    box-shadow: 0 0 5px #21637f;
+    outline: none;
+}
+
+.faculty-management-filter-icon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+/* Search Box Dropdown */
+.faculty-management-search-box select {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #21637f;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Faculty Table */
+.faculty-management-faculty-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.faculty-management-faculty-table th,
+.faculty-management-faculty-table td {
+    padding: 12px;
+    border: 1px solid #b6c5cb;
+    text-align: left;
+}
+
+.faculty-management-faculty-table th {
+    background-color: #21637f;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.faculty-management-faculty-table tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+.faculty-management-faculty-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Select Course Button */
+.faculty-management-select-course-button {
+    background-color: #21637f;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.faculty-management-select-course-button:hover {
+    background-color: #356174;
+    transform: scale(1.05);
+}
+
+.faculty-management-select-course-button:active {
+    background-color: #356174;
+    transform: scale(0.98);
+}
+
+/* Modal Styles */
+.faculty-management-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.faculty-management-modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    max-width: 90%;
+    text-align: center;
+}
+
+.faculty-management-modal h3 {
+    margin-bottom: 15px;
+    color: #083041;
+}
+
+/* Course Selection Checkboxes */
+.faculty-management-modal label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 8px 0;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Custom Checkbox Styling */
+.faculty-management-modal input[type="checkbox"] {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #21637f;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+}
+
+/* Checkbox Tick Mark */
+.faculty-management-modal input[type="checkbox"]::before {
+    content: "✔";
+    font-size: 14px;
+    color: white;
+    position: absolute;
+    display: none;
+}
+
+/* Show Tick Mark When Checked */
+.faculty-management-modal input[type="checkbox"]:checked {
+    background-color: #21637f;
+    border-color: #21637f;
+}
+
+.faculty-management-modal input[type="checkbox"]:checked::before {
+    display: block;
+}
+
+/* Modal Buttons */
+.faculty-management-modal button {
+    margin: 10px;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.faculty-management-modal button:first-of-type {
+    background-color: #21637f;
+    color: white;
+}
+
+.faculty-management-modal button:last-of-type {
+    background-color: #e64242;
+    color: white;
+}
+
+.faculty-management-modal button:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+}
+
+.faculty-management-modal button:active {
+    transform: scale(0.95);
+}

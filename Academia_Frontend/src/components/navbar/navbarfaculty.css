@@ -1,97 +1,331 @@
-.navbar {
-    width: 100%;
-  }
-  
-  /* Top Navigation Bar */
-  .nav-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: linear-gradient(to right, #FAF3C4, #D07CE1);
-    padding: 6px 30px;
-  }
-  
-  .logo {
-    width: 50px;
+.faculty-navbar {
+  width: 100%;
+}
+
+/* Top Navigation Bar */
+.faculty-navbar-nav-top {
+display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to right, #eef9ff, #8ddbfa);
+  padding: 6px 30px;
+}
+
+.faculty-navbar-logo {
+  width: 50px;
     height: 50px;
-    border-radius: 50%;
-  }
-  
-  h1 {
-    font-size: 50px;
+    gap: 10 px;
+    border-radius: 50px;
+}
+
+h1 {
+  font-size: 50px;
     font-weight: bold;
     color: black;
     font-family: "Times New Roman";
+}
+
+/* Profile Section */
+.faculty-navbar-profile-info {
+  position: relative;
+}
+
+.faculty-navbar-profile-icon {
+  font-size: 40px;
+  cursor: pointer;
+  margin-right: 35px;
+}
+
+.faculty-navbar-dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: 40px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  width: 150px;
+  z-index: 1000;
+}
+
+.faculty-navbar-dropdown-item {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+  font-size: 17px;
+}
+
+.faculty-navbar-dropdown-item:hover {
+  background: #86c1d8;
+}
+
+.faculty-navbar-dropdown-divider {
+  height: 1px;
+  background: #ccc;
+  margin: 5px 0;
+}
+
+.faculty-navbar-logout {
+  width: 100%;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-weight: bold;
+  color: red;
+  padding: 10px;
+}
+
+/* Bottom Navigation Bar */
+.faculty-navbar-nav-bottom {
+display: flex;
+  justify-content: space-around;
+  background: #21637f;
+  padding: 5px 0;
+  overflow-x: visible;
+  /* Enable horizontal scrolling */
+  white-space: nowrap;
+  /* Prevent links from wrapping */
+  scrollbar-width: none;
+  /* For Firefox */
+  scrollbar-color: #59b4ea transparent;
+  /* Custom scrollbar */
+}
+
+.faculty-navbar-nav-bottom a {
+color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.faculty-navbar-nav-bottom a:hover {
+  color: #59b4ea;
+}
+/* Tracker Dropdown */
+.faculty-navbar-dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.faculty-navbar-dropdown-menu {
+  position: absolute;
+  background: white;
+  width: 200px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 2000;
+  display: none;
+}
+
+.faculty-navbar-dropdown:hover .faculty-navbar-dropdown-menu,
+.faculty-navbar-dropdown-menu.open {
+  display: block;
+}
+
+.faculty-navbar-dropdown-menu a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+  font-size: 17px;
+}
+
+.faculty-navbar-dropdown-menu a:hover {
+  background: #f4f4f4;
+}
+
+/* Divider inside Tracker Dropdown */
+.faculty-navbar-dropdown-divider {
+  height: 1px;
+  background: #ccc;
+  margin: 5px 0;
+}
+/* Tracker Dropdown Title */
+.tracker-dropdown-title {
+  color: white; 
+  font-weight: bold; 
+  padding: 10px 15px; 
+  cursor: pointer;
+  transition: color 0.3s; 
+}
+
+.tracker-dropdown-title:hover {
+  color: #59b4ea;
+}
+
+.faculty-navbar-profile-info {
+  position: relative;
+}
+
+.faculty-navbar-dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: 50px;
+  /* Adjust to ensure it appears below the icon */
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  width: 150px;
+  z-index: 1000;
+  display: none;
+  /* Add this */
+}
+
+/* Ensure it appears when state is true */
+.faculty-navbar-dropdown-menu.open {
+  display: block;
+}
+
+@media screen and (max-width: 768px) {
+  .faculty-navbar-nav-bottom {
+    flex-direction: column;
+    align-items: center;
   }
-  
-  /* Profile Section */
-  .profile-info {
-    position: relative;
-  }
-  
-  .profile-icon {
-    font-size: 40px;
-    cursor: pointer;
-    margin-right: 35px;
-  }
-  
-  .dropdown-menu {
-    position: absolute;
-    right: 0;
-    top: 40px;
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-    width: 150px;
-    z-index: 1000;
-  }
-  
-  .dropdown-item {
+
+  .faculty-navbar-nav-bottom a,
+  .faculty-navbar-dropbtn {
     display: block;
-    padding: 10px;
-    text-decoration: none;
-    color: black;
-    font-size: 17px;
-  }
-  
-  .dropdown-item:hover {
-    background: #f4f4f4;
-  }
-  
-  .dropdown-divider {
-    height: 1px;
-    background: #ccc;
-    margin: 5px 0;
-  }
-  
-  .logout {
     width: 100%;
-    border: none;
-    background: none;
-    cursor: pointer;
-    font-weight: bold;
-    color: red;
+    text-align: center;
     padding: 10px;
   }
-  
-  /* Bottom Navigation Bar */
-  .nav-bottom {
-    display: flex;
-    justify-content: space-evenly;
-    background: #BB5BB5;
-    padding: 10px 0;
+
+  .faculty-navbar-dropdown-content {
+    position: relative;
+    width: 100%;
+    text-align: center;
   }
-  
-  .nav-bottom a {
-    color: white;
-    text-decoration: none;
-    padding: 10px 15px;
-    font-weight: bold;
-    transition: color 0.3s;
+}
+
+
+/* Tracker Dropdown */
+.faculty-navbar-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.tracker-dropdown-title {
+  background: transparent;
+  color: white;
+  font-weight: bold;
+  padding: 10px 15px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: color 0.3s;
+}
+
+.tracker-dropdown-title:hover {
+  color: #59b4ea;
+}
+
+/* Dropdown Menu */
+.faculty-navbar-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  width: 220px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 2000;
+  overflow: hidden;
+}
+
+.faculty-navbar-dropdown-item {
+  display: block;
+  padding: 12px 15px;
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
+  transition: background 0.3s ease-in-out;
+}
+
+.faculty-navbar-dropdown-item:hover {
+  background: #f4f4f4;
+}
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 768px) {
+  .faculty-navbar-dropdown {
+    width: 100%;
+    text-align: center;
   }
-  
-  .nav-bottom a:hover {
-    color: #f8e35d;
+
+  .faculty-navbar-dropdown-menu {
+    width: 100%;
+    left: 0;
   }
-  
+}
+
+
+
+
+
+/* Tracker Dropdown */
+.faculty-navbar-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.tracker-dropdown-title {
+  background: transparent;
+  color: white;
+  font-weight: bold;
+  padding: 10px 15px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: color 0.3s;
+}
+
+.tracker-dropdown-title:hover {
+  color: #59b4ea;
+}
+
+/* Dropdown Menu */
+.faculty-navbar-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  width: 220px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 2000;
+  overflow: hidden;
+}
+
+.faculty-navbar-dropdown-item {
+  display: block;
+  padding: 12px 15px;
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
+  transition: background 0.3s ease-in-out;
+}
+
+.faculty-navbar-dropdown-item:hover {
+  background: #f4f4f4;
+}
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 768px) {
+  .faculty-navbar-dropdown {
+    width: 100%;
+    text-align: center;
+  }
+
+  .faculty-navbar-dropdown-menu {
+    width: 100%;
+    left: 0;
+  }
+}
+
+
+

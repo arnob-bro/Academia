@@ -1,0 +1,165 @@
+
+
+
+/* Faculty leave form container */
+.faculty-leave-form-container {
+    text-align: center;
+        padding: 20px;
+        background: linear-gradient(to bottom, #fffdf1, #ffdafa);
+        min-height: 100vh;
+        margin-top: 30px;
+    
+}
+
+.faculty-leave-request-btn {
+    background-color: #22577a;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 20px;
+}
+
+.faculty-leave-request-btn:hover {
+    background-color: #1c4d5a;
+}
+
+h2 {
+    font-size: 24px;
+    color: #22577a;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Modal overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal container */
+.modal-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modal-container label {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.modal-container select,
+.modal-container input[type="date"],
+.modal-container textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.modal-container textarea {
+    height: 100px;
+}
+
+.modal-container .faculty-leave-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.faculty-leave-buttons button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.faculty-leave-buttons .faculty-leave-request-btn {
+    background-color: #22577a;
+    color: white;
+}
+
+.faculty-leave-buttons .faculty-leave-cancel-btn {
+    background-color: #ff8800;
+    color: white;
+}
+
+.faculty-leave-buttons button:hover {
+    opacity: 0.9;
+}
+
+/* Table styling */
+.leave-history-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+}
+
+.leave-history-table th,
+.leave-history-table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ccc;
+}
+
+.leave-history-table th {
+    background-color: #22577a;
+    color: white;
+}
+
+.leave-history-table td {
+    background-color: #f9f9f9;
+}
+
+.leave-history-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+    .faculty-leave-form-container {
+        padding: 20px;
+    }
+
+    .modal-container {
+        padding: 20px;
+        width: 90%;
+    }
+
+    .faculty-leave-request-btn {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    .faculty-leave-buttons button {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    .leave-history-table th,
+    .leave-history-table td {
+        padding: 10px;
+        font-size: 12px;
+    }
+}

@@ -4,19 +4,33 @@ import {
   Route,
   Routes,
   Navigate,
-} from "react-router-dom";
+} from "react-router-dom"; 
+
 import LoginPage from "./components/Login/LoginPage";
-import Home from "./components/student pages/studentDashboard/home";
-import StudentAdvisingPage from "./components/student pages/studentAdvisingPage/studentAdvisingPage";
-import StudentCourseEnrollment from "./components/student pages/studentCourseEnrollment/studentCourseEnrollment.jsx";
-import StudentAdmission from "./components/admin Pages/Student Admission Page/StudentAdmission.jsx";
-import FacultyAdvisingPage from "./components/faculty pages/facultyAdvisingPage/facultyAdvisingPage";
-import FacultyManagement from "./components/admin pages/Faculty Management/FacultyManagement.jsx";
-import FacultyRecruitment from "./components/admin Pages/Faculty Recruitment/FacultyRecruitment.jsx";
-import StudentResultPage from "./components/student pages/studentResultPage/studentResultPage.jsx";
-import FacultyHomePage from "./components/faculty pages/facultyAdvisingPage/faculty Dashboard/facultyHomePage.jsx";
-import AdminHomePage from "./components/admin Pages/admin dashboard/adminHomePage.jsx";
+import Home from "./components/studentPages/studentDashboard/home.jsx";
+import StudentAdvisingPage from "./components/studentPages/studentAdvisingPage/studentAdvisingPage.jsx";
+import StudentCourseEnrollment from "./components/studentPages/studentCourseEnrollment/studentCourseEnrollment.jsx";
+import StudentAdmission from "./components/adminPages/studentAdmissionPage/StudentAdmission.jsx";
+import FacultyAdvisingPage from "./components/facultyPages/facultyAdvisingPage/facultyAdvisingPage.jsx";
+import FacultyManagement from "./components/adminPages/facultyManagement/FacultyManagement.jsx";
+import FacultyRecruitment from "./components/adminPages/facultyRecruitment/FacultyRecruitment.jsx";
+import StudentResultPage from "./components/studentPages/studentResultPage/studentResultPage.jsx";
+import FacultyHomePage from "./components/facultyPages/facultyDashboard/facultyHomePage.jsx";
+import AdminHomePage from "./components/adminPages/adminDashboard/adminHomePage.jsx";
 import ResetPassword from "./components/Login/ResetPassword.jsx";
+import StudentPerformanceTracker from "./components/studentPages/studentPerformanceTracker/studentPerformanceTracker.jsx";
+import StudentClassRoutine from "./components/studentPages/studentClassRoutine/studentClassRoutine.jsx";
+import FacultyRoutine from "./components/facultyPages/facultyRoutine/facultyRoutine.jsx";
+
+import FacultyAvailableSchedule from "./components/facultyPages/facultyAvailableSchedule/facultyAvailableSchedule.jsx";
+import FacultyPerformanceTracker from "./components/facultyPages/facultyPerformanceTracker/facultyPerformanceTracker.jsx";
+import FacultyAttendanceTracker from "./components/facultyPages/facultyAttendanceTracker/facultyAttendanceTracker.jsx";
+
+import FacultyLeave from "./components/facultyPages/facultyLeaveApplication/facultyLeave.jsx";
+import FacultyLeaveAdmin from "./components/adminPages/facultyLeaveAdmin/facultyLeaveAdmin.jsx"; 
+import CourseManagement from "./components/adminPages/courseManagement/courseManagement.jsx"; 
+import CourseSchedule from "./components/adminPages/courseScheduleManagement/courseSchedule.jsx";
+import FacultyAssessmentTracker from "./components/facultyPages/facultyAssessmentTracker/facultyAssessmentTracker.jsx";
 
 function App() {
   const userData = JSON.parse(localStorage.getItem("userData"));
@@ -24,56 +38,65 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/Login" element={<LoginPage />} />
-        <Route path="/reset-password" element={<ResetPassword />} />
-
-        {!userData ? (
-          <Route path="*" element={<Navigate to="/Login" replace />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/reset-password" element={<ResetPassword />} />  
+        
+        
+        
+        {!userData ? (<><Route path="*" element={<Navigate to="/login" replace />}/> 
+            
+          </>
         ) : (
           <>
-            {userData.Role === "student" && (
+            {/* Conditionally render home page based on user role */}
+            <Route
+              path="/"
+              element={
+                userData.role === "student" ? (
+                  <Home />
+                ) : userData.role === "faculty" ? (
+                  <FacultyHomePage />
+                ) : (
+                  <AdminHomePage />
+                )
+              }
+            />
+
+            {/* Student Routes */}
+            {userData.role === "student" && (
               <>
-                <Route path="/" element={<Home />} />
-                <Route
-                  path="/course-advising"
-                  element={<StudentAdvisingPage />}
-                />
-                <Route
-                  path="/course-enrollment"
-                  element={<StudentCourseEnrollment />}
-                />
-                <Route
-                  path="/student-result-page"
-                  element={<StudentResultPage />}
-                />
+                <Route path="/course-advising" element={<StudentAdvisingPage />} />
+                <Route path="/course-enrollment" element={<StudentCourseEnrollment />} />
+                <Route path="/student-performance-tracker" element={<StudentPerformanceTracker />} />
+                <Route path="/student-result-page" element={<StudentResultPage />} />
+                <Route path="/student-class-routine" element={<StudentClassRoutine />} />
               </>
             )}
 
-            {userData.Role === "faculty" && (
+            {/* Faculty Routes */}
+            {userData.role === "faculty" && (
               <>
-                <Route
-                  path="/faculty-advising-page"
-                  element={<FacultyAdvisingPage />}
-                />
-                <Route path="/" element={<FacultyHomePage />} />
+              <Route path="/faculty-advising-page" element={<FacultyAdvisingPage />} />
+              <Route path="/faculty-routine" element={<FacultyRoutine />} />
+              <Route path="/faculty-available-schedule" element={<FacultyAvailableSchedule />} />
+              <Route path="/faculty-routine" element={<FacultyRoutine />} /> 
+              <Route path="/faculty-performance-tracker" element={<FacultyPerformanceTracker />} />
+              <Route path="/faculty-attendance-tracker" element={<FacultyAttendanceTracker />} />
+              <Route path="faculty-leave-application" element={<FacultyLeave/>} /> 
+              <Route path="/faculty-assessment-tracker" element={<FacultyAssessmentTracker />} />
               </>
+              
             )}
 
-            {userData.Role === "admin" && (
+            {/* Admin Routes */}
+            {userData.role === "admin" && (
               <>
-                <Route
-                  path="/Student-Admission"
-                  element={<StudentAdmission />}
-                />
-                <Route
-                  path="/faculty-management"
-                  element={<FacultyManagement />}
-                />
-                <Route
-                  path="/faculty-recruitment"
-                  element={<FacultyRecruitment />}
-                />
-                <Route path="/" element={<AdminHomePage />} />
+                <Route path="/Student-Admission" element={<StudentAdmission />} />
+                <Route path="/faculty-management" element={<FacultyManagement />} />
+                <Route path="/faculty-recruitment" element={<FacultyRecruitment />} /> 
+                <Route path="/course-management-admin" element={<CourseManagement/>}/> 
+                <Route path="/course-schedule" element={<CourseSchedule/>}/>
+                <Route path="/faculty-leave-admin" element={<FacultyLeaveAdmin/>}/>
               </>
             )}
           </>

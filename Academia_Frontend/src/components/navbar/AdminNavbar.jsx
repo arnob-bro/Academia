@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./AdminNavbar.css";
 import { logout } from "../../Api/auth";
+import { FaGraduationCap } from 'react-icons/fa';
 
 const AdminNavbar = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
   const profileDropdownRef = useRef(null);
@@ -32,29 +34,47 @@ const AdminNavbar = () => {
 
   const handleLogout = (e) => {
     e.preventDefault();
-    logout();
+    try {
+      logout();
+      navigate("/login");
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <nav className="admin-navbar">
       <div className="admin-nav-top">
-        <img src="/assets/logo.png" className="admin-logo" alt="Logo" />
-        <h1>Academia</h1>
+        <FaGraduationCap className="faculty-navbar-logo" />
+        
+                <div className="academia"> <h1>Academia</h1></div>
+        
 
         {/* Profile Section */}
-        <div className="admin-profile" ref={profileDropdownRef}>
-          <span className="profile-icon" onClick={toggleProfileDropdown}>
-            👤
-          </span>
+        <div className="admin-navbar-admin-profile" ref={profileDropdownRef}>
+          <div className="adminSession">
+            <p>Session: Spring 2024</p>
+          </div>
+          
+          <button
+            className="admin-navbar-profile-btn"
+            onClick={toggleProfileDropdown}
+          >
+            Id: 20220xx ▼
+          </button>
 
           {/* Dropdown Menu */}
           {profileDropdownOpen && (
-            <div className="dropdown-menu">
-              <Link to="/admin-profile" className="dropdown-item">
-                Admin Profile
+            <div className="admin-navbar-dropdown-menu">
+              <Link to="/admin-profile" className="admin-navbar-dropdown-item">
+                Admin Profile 
               </Link>
-              <hr className="dropdown-divider" />
-              <button className="dropdown-item logout" onClick={handleLogout}>
+              <hr className="admin-navbar-dropdown-divider" />
+              <button
+                className="admin-navbar-dropdown-item logout"
+                onClick={handleLogout}
+              >
                 Logout
               </button>
             </div>
@@ -66,10 +86,13 @@ const AdminNavbar = () => {
         {[
           { name: "Home", path: "/" },
           { name: "Student Admission", path: "/student-admission" },
-          { name: "Faculty Management", path: "/faculty-management" },
           { name: "Faculty Recruitment", path: "/faculty-recruitment" },
-          { name: "Fee Management", path: " " },
-          { name: "Material Overview", path: " " },
+          { name: "Faculty Management", path: "/faculty-management" },
+          { name: "Faculty Leave Request", path: "/faculty-leave-admin" },
+          { name: "Fee Management", path: "" },
+          
+          { name: "Course Management", path: "/course-management-admin" },
+          { name: "Schedule Management ", path: "/course-schedule" },
         ].map((item) => (
           <Link
             key={item.name}

@@ -1,0 +1,174 @@
+/* Full page layout */
+.schedule-container {
+    text-align: center;
+    padding: 20px;
+    background: #f4f7fc;
+    min-height: 100vh;
+    margin-top: 30px;
+}
+
+/* Title styling */
+.schedule-title {
+    color: #21637f;
+    margin-bottom: 10px;
+}
+
+/* Current week text */
+.current-week {
+    font-size: 18px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+/* Room dropdown */
+.room-dropdown {
+    padding: 8px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: 2px solid #87879e;
+    border-radius: 5px;
+}
+
+/* Week dropdown */
+.week-dropdown {
+    padding: 8px;
+    margin-bottom: 30px; /* Add some gap between the dropdown and the table */
+    font-size: 16px;
+    border: 2px solid #87879e;
+    border-radius: 5px;
+}
+
+/* Table container */
+.schedule-table {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* Table styling */
+.schedule-table table {
+    width: 90%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    text-align: center;
+    border-color: #00000065;
+}
+
+/* Table headers */
+.schedule-table th, td {
+    border: 1px solid #0000005e;
+    padding: 10px;
+    font-size: 14px;
+}
+
+/* Header background */
+.schedule-table th {
+    background-color: #21637f;
+}
+
+/* Available slot */
+.available {
+    background-color: #d2ffc7;
+    font-weight: bold;
+}
+
+/* Occupied slot */
+.occupied {
+    background-color: #f3436991;
+    color: white;
+    font-weight: bold;
+}
+
+/* Reschedule Button */
+.reschedule-btn {
+    background-color: #4b9aee;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.reschedule-btn:hover {
+    background-color: #007bff;
+}
+
+/* Pop-up container */
+.reschedule-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Card in the center of the screen */
+.reschedule-card {
+    background-color: white;
+    padding: 20px;
+    width: 400px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+/* Cross button styling */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Form styling inside popup */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Margin between form elements */
+form > label, form > select {
+    margin-bottom: 10px;
+}
+
+/* Select dropdowns */
+.week-dropdown, .course-dropdown, .room-dropdown, .time-slot-dropdown {
+    padding: 8px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    border: 2px solid #87879e;
+    border-radius: 5px;
+}
+
+/* Submit button styling */
+.submit-btn {
+    background-color:  #ca2424;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: #ca1c1c;
+}
+
+/* Positioning for table */
+.schedule-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+
+.room-dropdown {
+    margin-right: 15px;
+}

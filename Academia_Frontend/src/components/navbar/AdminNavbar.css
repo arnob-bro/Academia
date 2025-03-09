@@ -2,22 +2,24 @@
     width: 100%;
 }
 
+
+
 .admin-nav-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(to right, #FAF3C4, #D07CE1);
+    background: linear-gradient(to right, #eef9ff, #8ddbfa);
     padding: 6px 30px;
 }
 
-.admin-logo {
+.admin-navbar-admin-logo {
     width: 50px;
     height: 50px;
     gap: 10 px;
     border-radius: 50px;
 }
 
-.admin-nav-bottom a {
+.admin-navbar-admin-nav-bottom a {
     color: white;
     text-decoration: none;
     padding: 10px 15px;
@@ -25,8 +27,8 @@
     transition: color 0.3s;
 }
 
-.admin-nav-bottom a:hover,
-.admin-nav-bottom a.active {
+.admin-navbar-admin-nav-bottom a:hover,
+.admin-navbar-admin-nav-bottom a.active {
     color: #f8e35d;
     /* Highlight active link */
     font-weight: bold;
@@ -42,22 +44,22 @@ h1 {
 }
 
 
-.admin-session-info {
+.admin-navbar-admin-session-info {
     text-align: right;
 }
 
-.admin-logout {
-    background: #FAF3C4;
+.admin-navbar-admin-logout {
+    background: #90c6ef;
     border: none;
     padding: 5px 12px;
-    color: #BB5BB5;
+    color: #2f5d8b;
     font-weight: bold;
     cursor: pointer;
     border-radius: 15px;
     transition: background 0.3s, color 0.3s;
 }
 
-.admin-login {
+.admin-navbar-admin-login {
     background: #e64c4c;
     border: none;
     padding: 5px 12px;
@@ -71,8 +73,17 @@ h1 {
 .admin-nav-bottom {
     display: flex;
     justify-content: space-around;
-    background: #BB5BB5;
-    padding: 10px 0;
+    background: #21637f;
+    padding: 5px 0;   
+        overflow-x: auto;
+        /* Enable horizontal scrolling */
+        white-space: nowrap;
+        /* Prevent links from wrapping */
+        scrollbar-width: none;
+        /* For Firefox */
+        scrollbar-color: #59b4ea transparent;
+        /* Custom scrollbar */
+      
 }
 
 .admin-nav-bottom a {
@@ -85,21 +96,21 @@ h1 {
 
 .admin-nav-bottom a:hover,
 .admin-nav-bottom a.active {
-    color: #f8e35d;
+    color: #59b4ea;
 }
 
   /* Profile Section */
-  .profile-info {
+  .admin-navbar-profile-info {
     position: relative;
   }
   
-  .profile-icon {
-    font-size: 40px;
+  .admin-navbar-profile-icon {
+    /* font-size: 40px; */
     cursor: pointer;
     margin-right: 35px;
   }
   
-  .dropdown-menu {
+  .admin-navbar-dropdown-menu {
     position: absolute;
     right: 0;
     top: 40px;
@@ -111,7 +122,7 @@ h1 {
     z-index: 1000;
   }
   
-  .dropdown-item {
+  .admin-navbar-dropdown-item {
     display: block;
     padding: 10px;
     text-decoration: none;
@@ -119,17 +130,17 @@ h1 {
     font-size: 17px;
   }
   
-  .dropdown-item:hover {
+  .admin-navbar-dropdown-item:hover {
     background: #f4f4f4;
   }
   
-  .dropdown-divider {
+  .admin-navbar-dropdown-divider {
     height: 1px;
     background: #ccc;
     margin: 5px 0;
   }
   
-  .logout {
+  .admin-navbar-logout {
     width: 100%;
     border: none;
     background: none;
@@ -138,3 +149,80 @@ h1 {
     color: red;
     padding: 10px;
   }
+
+    .admin-navbar-profile-btn {
+      
+      background: none;
+      border: 1px solid #21637f;
+      color: #21637f;
+      font-weight: bold;
+      padding: 5px 12px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background 0.3s, color 0.3s;
+      width: 100%;
+    }
+  
+    .admin-navbar-profile-btn:hover {
+      background: #21637f;
+      color: white;
+    }
+
+    .adminSession{
+      font-size: 15px;
+      font-weight: bold;
+    }
+    /* Dropdown Button */
+
+
+/* Management Dropdown */
+.admin-navbar-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.admin-navbar-dropbtn {
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  padding: 10px 15px;
+  transition: color 0.3s;
+}
+
+.admin-navbar-dropbtn:hover {
+  color: #59b4ea;
+}
+
+.admin-navbar-dropdown-content {
+  display: none;
+  position: absolute;
+  background: white;
+  min-width: 180px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.admin-navbar-dropdown-content a {
+  color: black !important;
+  font-weight: 500;
+  padding: 10px;
+  display: block;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.admin-navbar-dropdown-content a:hover {
+  background-color: #ebe3e3;
+  padding: 10px;
+}
+
+
+/* Show dropdown when active */
+.admin-navbar-dropdown:hover .admin-navbar-dropdown-content {
+  display: block;
+}

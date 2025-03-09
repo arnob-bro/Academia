@@ -1,0 +1,27 @@
+# Node modules
+node_modules/
+
+# Build files (generated after running `npm run build` or `yarn build`)
+build/
+dist/
+
+# Local development environment files
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+
+# Temporary files
+*.cache
+*.bak
+*.swp
+
+# Docker related
+Dockerfile
+docker-compose.yml
+
+# Version control
+.git
+.gitignore

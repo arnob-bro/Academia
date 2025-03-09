@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "http://127.0.0.1:8000/api/Login";
+const baseURL = "http://127.0.0.1:8000/api/login";
 
 export const login = async (data) => {
   const config = {
@@ -15,9 +15,9 @@ export const login = async (data) => {
 
 export const logout = async () => {
   try {
-    await localStorage.removeItem("userData");
-    alert("Logout successful");
-    window.location.href = "/";
+    localStorage.removeItem("userData");
+    // alert("Logout successful");
+    // window.location.href = "/login";
   } catch (error) {
     throw new Error("Logout failed: " + error.response.data.message);
   }

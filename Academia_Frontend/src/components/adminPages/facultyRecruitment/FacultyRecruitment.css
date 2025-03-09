@@ -1,0 +1,106 @@
+.faculty-recruitment-form-container {
+  max-width: 90%;
+  margin: 50px auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.faculty-recruitment-form-title {
+  text-align: center;
+  font-size: 26px;
+  color: #0e0e53;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+.faculty-recruitment-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.faculty-recruitment-form-group {
+  width: 97%;
+  margin-bottom: 18px;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #21637f;
+}
+
+/* Uniform Input & Dropdown Styles */
+input,
+select {
+  width: 100%;
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: #f9f9f9;
+  font-size: 15px;
+  transition: all 0.3s ease-in-out;
+  appearance: none;
+  /* Removes default dropdown arrow */
+}
+
+select {
+  cursor: pointer;
+}
+
+input:focus,
+select:focus {
+  border-color: #21637f;
+  background: #fff;
+  outline: none;
+  box-shadow: 0 0 6px rgba(14, 14, 83, 0.3);
+}
+
+/* Buttons Styling */
+.faculty-recruitment-form-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.register-btn,
+.clear-btn {
+  padding: 14px 28px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.register-btn {
+  background-color: #21637f;
+  color: white;
+}
+
+.clear-btn {
+  background-color: #df5361;
+  color: white;
+}
+
+.register-btn:hover {
+  background-color: #00354b;
+}
+
+.clear-btn:hover {
+  background-color: #b52b38;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .faculty-recruitment-form-group {
+    width: 100%;
+  }
+}

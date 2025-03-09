@@ -1,0 +1,29 @@
+# Node modules (if you have any in the backend)
+node_modules/
+
+# Composer dependencies (can be installed inside the container)
+vendor/
+
+# Laravel storage & cache folders
+/storage/
+# Don't include environment files (unless you want to configure it inside the container)
+.env
+.env.local
+.env.*.local
+*.log
+
+# Logs
+*.log
+
+# Temporary files
+*.cache
+*.bak
+*.swp
+
+# Docker related
+Dockerfile
+docker-compose.yml
+
+# Version control
+.git
+.gitignore

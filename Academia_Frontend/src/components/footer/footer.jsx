@@ -3,12 +3,10 @@ import "./footer.css";
 
 const Footer = () => {
   return (
-    <>
-      <footer className="footer">
-        <p>Powered By MOAB</p>
-        <p>Copyright © 2025 Academia. All rights reserved.</p>
-      </footer>
-    </>
+    <footer className="Footer">
+      <p>Powered By MOAB</p>
+      <p>© 2025 Academia. All rights reserved.</p>
+    </footer>
   );
 };
 

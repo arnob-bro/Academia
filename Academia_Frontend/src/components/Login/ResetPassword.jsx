@@ -30,8 +30,13 @@ export default function ResetPassword() {
         </div>
         <button type="submit" className="reset-button">Send Reset Link</button>
       </form>
-      <p className="footer-text">Powered By ABCDEFGHIJK</p>
-      <p className="footer-text">Copyright &copy; 2025 Academia. All rights reserved.</p>   
+      <div className="login-footer-text">
+          <p >Powered By MOAB</p>
+            <p>
+          Copyright &copy; 2025 Academia. All rights reserved.
+          </p>
+        </div>
+   
     </div>
   );
 }

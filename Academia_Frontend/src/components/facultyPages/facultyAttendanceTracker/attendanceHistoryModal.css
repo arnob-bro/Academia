@@ -1,0 +1,158 @@
+/* Attendance History Modal */
+.attendance-history-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    /* Ensure it appears above other content */
+}
+
+/* Modal Content */
+.attendance-history-modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-height: 80vh;
+    overflow-y: auto;
+    /* Make the modal scrollable along the Y-axis */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Close Modal Button */
+.attendance-history-modal-close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.attendance-history-modal-close-modal:hover {
+    color: #ff4444;
+    /* Change to a red color on hover */
+}
+
+/* Filter Section */
+.attendance-history-modal-filter-container {
+    margin-bottom: 20px;
+}
+
+/* Table Styling */
+.attendance-history-modal-attendance-history-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    /* Adding space below the table */
+}
+
+.attendance-history-modal-attendance-history-table th,
+.attendance-history-modal-attendance-history-table td {
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.attendance-history-modal-attendance-history-table th {
+    background-color: #460048;
+    
+}
+
+/* Status Button Styling */
+.attendance-history-modal-status-btn {
+    padding: 5px;
+    margin: 2px;
+    cursor: pointer;
+    border: 1px solid #d9b464;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.attendance-history-modal-status-btn.selected {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.attendance-history-modal-status-btn:hover {
+    background-color: #3e8e41;
+}
+
+/* Close Button Styling */
+.attendance-history-modal-close-btn {
+    padding: 6px 12px;
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.attendance-history-modal-close-btn:hover {
+    background-color: #e63333;
+}
+
+/* Edit Button Styling */
+.attendance-history-modal-edit-btn {
+    padding: 6px 12px;
+    background-color: #ff8800;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.attendance-history-modal-edit-btn:hover {
+    background-color: #e67300;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .attendance-history-modal-content {
+        width: 90%;
+        padding: 15px;
+        max-height: 90vh;
+        /* Allow more space for small screens */
+    }
+
+    .attendance-history-modal-close-modal {
+        font-size: 20px;
+    }
+
+    .attendance-history-modal-attendance-history-table th,
+    .attendance-history-modal-attendance-history-table td {
+        font-size: 14px;
+        /* Adjust font size for small screens */
+        padding: 6px;
+    }
+
+    .attendance-history-modal-filter-container {
+        margin-bottom: 15px;
+    }
+}
+
+/* Scrollable Table */
+.attendance-history-modal-attendance-history-table {
+    max-height: 500px;
+    /* Limit table height */
+    overflow-y: auto;
+    /* Enable scrolling in the table */
+}
+
+/* Additional Custom Styling for Buttons in Table */
+.attendance-history-modal-attendance-history-table td select {
+    width: 100%;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}

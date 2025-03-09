@@ -1,13 +1,21 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./navbar.css";
 import { logout } from "../../Api/auth";
+import { FaGraduationCap } from 'react-icons/fa';
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const [activeLink, setActiveLink] = useState("Home");
   const handleLogout = (e) => {
     e.preventDefault();
-    logout();
+    try {
+      logout();
+      navigate("/login");
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
@@ -50,50 +58,65 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="navbar">
-      <div className="nav-top">
-        <img src="/assets/logo.png" className="logo" alt="Logo" />
-        <h1>Academia</h1>
-
-        <div className="profile-info" ref={profileDropdownRef}>
-          {/* Profile Icon (Click to open dropdown) */}
-          <span className="profile-icon" onClick={toggleProfileDropdown}>
-            👤
-          </span>
-
-          {/* Profile Dropdown Menu */}
-          {profileDropdownOpen && (
-            <div className="dropdown-menu">
-              <Link to="/student-profile" className="dropdown-item">
-                Student Profile
-              </Link>
-              <hr className="dropdown-divider" /> {/* Divider Line */}
-              <button className="dropdown-item logout" onClick={handleLogout}>
-                Logout
-              </button>
+    <nav className="student-navbar">
+            <div className="admin-nav-top">
+          <FaGraduationCap className="faculty-navbar-logo" />
+          
+                  <div className="academia"> <h1>Academia</h1></div>
+      
+              {/* Profile Section */}
+              <div className="admin-navbar-admin-profile" ref={profileDropdownRef}>
+                <div className="adminSession">
+                  <p>Session: Spring 2024</p>
+                </div>
+                
+                <button
+                  className="admin-navbar-profile-btn"
+                  onClick={toggleProfileDropdown}
+                >
+                  Id: 20220xx ▼
+                </button>
+      
+                {/* Dropdown Menu */}
+                {profileDropdownOpen && (
+                  <div className="admin-navbar-dropdown-menu">
+                    <Link to="/student-profile" className="admin-navbar-dropdown-item">
+                      Student Profile 
+                    </Link>
+                    <hr className="admin-navbar-dropdown-divider" />
+                    <button
+                      className="admin-navbar-dropdown-item logout"
+                      onClick={handleLogout}
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
-          )}
-        </div>
-      </div>
 
-      <div className="nav-bottom">
+      <div className="student-navbar-nav-bottom">
         <Link to="/">Home</Link>
 
         {/* Enrollment Dropdown */}
-        <div className="dropdown" ref={enrollmentDropdownRef}>
-          <button className="dropbtn" onClick={toggleEnrollmentDropdown}>
+        <div className="Student-navbar-dropdown" ref={enrollmentDropdownRef}>
+          <button
+            className="Student-navbar-dropbtn"
+            onClick={toggleEnrollmentDropdown}
+          >
             Enrollment ▼
           </button>
           {enrollmentDropdownOpen && (
-            <div className="dropdown-content">
+            <div className="Student-navbar-dropdown-content">
               <Link to="/course-advising">Course Advising</Link>
-              <hr className="dropdown-divider" />
+              <hr className="Student-navbar-dropdown-divider" />
               <Link to="/course-enrollment">Enrollment Details</Link>
             </div>
           )}
         </div>
 
-        <Link to=" ">Class Routine</Link>
+        <Link to="/student-class-routine">Class Routine</Link>
+        <Link to="/student-performance-tracker">Performance Tracker</Link>
         <Link to="/student-result-page">Result</Link>
         <Link to=" ">Notice</Link>
         <Link to=" ">Payment</Link>
