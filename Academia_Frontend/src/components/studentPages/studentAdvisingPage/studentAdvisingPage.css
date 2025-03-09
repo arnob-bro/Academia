@@ -26,6 +26,11 @@
   margin-top: 20px;
 }
 
+
+.course-selection th{
+  background: #21637f;
+}
+
 .course-selection th,
 .course-selection td {
   border: 1px solid #ddd;
@@ -59,4 +64,9 @@ button {
 .delete-btn{
   background-color: #e74c3c;
   color: white;
+}
+
+
+.selected-courses th{
+  background: #21637f;
 }

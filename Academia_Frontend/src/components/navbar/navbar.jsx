@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./navbar.css";
 import { logout } from "../../Api/auth";
+import { FaGraduationCap } from 'react-icons/fa';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -59,8 +60,9 @@ const Navbar = () => {
   return (
     <nav className="student-navbar">
             <div className="admin-nav-top">
-              <img src="/assets/logo.png" className="admin-logo" alt="Logo" />
-              <h1>Academia</h1>
+          <FaGraduationCap className="faculty-navbar-logo" />
+          
+                  <div className="academia"> <h1>Academia</h1></div>
       
               {/* Profile Section */}
               <div className="admin-navbar-admin-profile" ref={profileDropdownRef}>
@@ -78,8 +80,8 @@ const Navbar = () => {
                 {/* Dropdown Menu */}
                 {profileDropdownOpen && (
                   <div className="admin-navbar-dropdown-menu">
-                    <Link to="/admin-profile" className="admin-navbar-dropdown-item">
-                      Admin Profile 
+                    <Link to="/student-profile" className="admin-navbar-dropdown-item">
+                      Student Profile 
                     </Link>
                     <hr className="admin-navbar-dropdown-divider" />
                     <button
