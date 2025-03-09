@@ -180,3 +180,149 @@ color: white;
 .faculty-navbar-dropdown-menu.open {
   display: block;
 }
+
+@media screen and (max-width: 768px) {
+  .faculty-navbar-nav-bottom {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .faculty-navbar-nav-bottom a,
+  .faculty-navbar-dropbtn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .faculty-navbar-dropdown-content {
+    position: relative;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+
+/* Tracker Dropdown */
+.faculty-navbar-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.tracker-dropdown-title {
+  background: transparent;
+  color: white;
+  font-weight: bold;
+  padding: 10px 15px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: color 0.3s;
+}
+
+.tracker-dropdown-title:hover {
+  color: #59b4ea;
+}
+
+/* Dropdown Menu */
+.faculty-navbar-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  width: 220px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 2000;
+  overflow: hidden;
+}
+
+.faculty-navbar-dropdown-item {
+  display: block;
+  padding: 12px 15px;
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
+  transition: background 0.3s ease-in-out;
+}
+
+.faculty-navbar-dropdown-item:hover {
+  background: #f4f4f4;
+}
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 768px) {
+  .faculty-navbar-dropdown {
+    width: 100%;
+    text-align: center;
+  }
+
+  .faculty-navbar-dropdown-menu {
+    width: 100%;
+    left: 0;
+  }
+}
+
+
+
+
+
+/* Tracker Dropdown */
+.faculty-navbar-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.tracker-dropdown-title {
+  background: transparent;
+  color: white;
+  font-weight: bold;
+  padding: 10px 15px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: color 0.3s;
+}
+
+.tracker-dropdown-title:hover {
+  color: #59b4ea;
+}
+
+/* Dropdown Menu */
+.faculty-navbar-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  width: 220px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 2000;
+  overflow: hidden;
+}
+
+.faculty-navbar-dropdown-item {
+  display: block;
+  padding: 12px 15px;
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
+  transition: background 0.3s ease-in-out;
+}
+
+.faculty-navbar-dropdown-item:hover {
+  background: #f4f4f4;
+}
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 768px) {
+  .faculty-navbar-dropdown {
+    width: 100%;
+    text-align: center;
+  }
+
+  .faculty-navbar-dropdown-menu {
+    width: 100%;
+    left: 0;
+  }
+}

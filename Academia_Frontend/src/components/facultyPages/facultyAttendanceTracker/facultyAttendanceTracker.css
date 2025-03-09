@@ -1,15 +1,17 @@
+/* General Container */
 .faculty-attendance-tracker-container {
     padding: 20px;
-    /* max-width: 1200px; */
     margin: 0 auto;
+    /* max-width: 1200px; */
 }
 
 /* Course Selection */
 .faculty-attendance-tracker-course-selection {
     margin-bottom: 20px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     gap: 10px;
+    align-items: flex-start;
 }
 
 .faculty-attendance-tracker-course-selection label {
@@ -23,7 +25,8 @@
     font-size: 14px;
     border-radius: 5px;
     border: 1px solid #ccc;
-    width: 250px;
+    width: 100%;
+    max-width: 250px;
     cursor: pointer;
 }
 
@@ -66,7 +69,7 @@
 }
 
 .faculty-attendance-tracker-attendance-table th {
-    background-color: #a839e0;
+    background-color: #21637f;
     font-weight: bold;
 }
 
@@ -221,5 +224,46 @@
     .faculty-attendance-tracker-attendance-table th,
     .faculty-attendance-tracker-attendance-table td {
         padding: 10px;
+        font-size: 12px;
     }
+
+    .faculty-attendance-tracker-status-btn {
+        font-size: 12px;
+    }
+}
+
+
+
+
+
+/* Course Selection Button */
+.faculty-attendance-tracker-course-selection button {
+    padding: 10px 20px;
+    background-color: #21637f;
+    /* Green color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover effect */
+.faculty-attendance-tracker-course-selection button:hover {
+    background-color: #0f3b4e;
+    /* Darker green */
+    transform: scale(1.05);
+}
+
+/* Focus effect */
+.faculty-attendance-tracker-course-selection button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Disabled state */
+.faculty-attendance-tracker-course-selection button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
 }

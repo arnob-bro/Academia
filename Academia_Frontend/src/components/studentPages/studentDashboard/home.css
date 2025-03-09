@@ -1,7 +1,7 @@
 /* Background and Layout */
 .home-container {
     background: linear-gradient(to bottom, #FFFDF1, #FFDAFA);
-    padding: 20px;
+    /* padding: 20px; */
   }
   
   /* Content Section */

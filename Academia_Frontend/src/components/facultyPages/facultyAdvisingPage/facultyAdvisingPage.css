@@ -1,6 +1,6 @@
 /* General Styles */
 .faculty-advising-container {
-  background: linear-gradient(to bottom right, #ffebf3, #fffdf1);
+  background: #f4f7fc;
   padding: 30px;
   min-height: 100vh;
   border-radius: 12px;
@@ -44,11 +44,11 @@ h3 {
 }
 
 .student-list li:hover {
-  background: #f7d6ff;
+  background: #a5dbf4;
 }
 
 .student-list .selected {
-  background: #007bff;
+  background: #21637f;
   color: white;
   font-weight: bold;
   border-radius: 5px;

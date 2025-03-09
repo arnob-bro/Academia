@@ -166,6 +166,7 @@ const FacultyAssessmentTracker = () => {
     <>
       <Navbarfaculty />
       <div className="faculty-assessment-tracker-container">
+        <h2>Assesment Tracker</h2>
         <div className="faculty-assessment-tracker-course-selection">
           <label>Select Course: </label>
           <select
