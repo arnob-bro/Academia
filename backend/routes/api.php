@@ -36,6 +36,8 @@ Route::get('/admin/all-courses', [AdminController::class, 'getAllCourses']);
 Route::get('/admin/variable-update', [AdminController::class, 'updateVariables']);
 Route::get('/admin/variables', [AdminController::class, 'getVariables']);
 Route::get('/admin/department-wise-info', [AdminController::class,'getDepartmentWiseCount']);
+Route::get('/admin/faculties', [AdminController::class,'getAllFaculty']);
+Route::get('/admin/all-courses-schedule', [AdminController::class,'getAllCoursesSchedule']);
 
 
 

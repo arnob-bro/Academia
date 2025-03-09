@@ -2,7 +2,6 @@ import axios from "axios";
 
 const baseURL = "http://127.0.0.1:8000/api/admin";
 
-
 export const registerStudentApi = async (data) => {
   try {
     const response = await axios.post(`${baseURL}/student-admission`, data, {
@@ -104,6 +103,64 @@ export const scheduleCourseApi = async (data) => {
     return response.data;
   } catch (error) {
     console.error("Error scheduling course:", error);
+    throw error;
+  }
+};
+
+export const getAllCoursesApi = async () => {
+  const config = {
+    headers: {
+      "Content-type": "application/json",
+    },
+  };
+  const response = await axios.get(`${baseURL}/all-courses`, config);
+  console.log(response.data);
+  return response.data;
+};
+
+export const getAllFacultyApi = async () => {
+  const config = {
+    headers: {
+      "Content-type": "application/json",
+    },
+  };
+  const response = await axios.get(`${baseURL}/faculties`, config);
+  console.log(response.data);
+  return response.data;
+};
+
+export const createNewCourseApi = async (newCourse) => {
+  try {
+    const response = await axios.post(
+      `${baseURL}/create-new-course`,
+      newCourse,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error creating course:", error);
+    throw error;
+  }
+};
+
+export const editACourseApi = async (newCourse) => {
+  try {
+    const response = await axios.post(
+      `${baseURL}/edit-an-existing-course`,
+      newCourse,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error editing course:", error);
     throw error;
   }
 };

@@ -6,44 +6,47 @@ import "./facultyAvailableSchedule.css";
 const FacultyAvailableSchedule = () => {
   const [selectedRoom, setSelectedRoom] = useState("7A03");
   const [selectedWeek, setSelectedWeek] = useState("1st");
-  const [isPopupOpen, setIsPopupOpen] = useState(false); 
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   // Schedule data for rooms and weeks
   const scheduleData = {
     "7A03": {
       "1st": {
-        "Sunday": { "9:00 - 10:00 am": "CSE 3103", "2:00 - 3:00 pm": "CSE 3117" },
-        "Monday": { "10:00 - 11:00 am": "HUM 3115", "3:00 - 4:00 pm": "CSE 3110" },
-        "Tuesday": { "9:00 - 10:00 am": "CSE 3117" },
-        "Wednesday": { "1:00 - 2:00 pm": "CSE 3103" },
-        "Thursday": { "8:00 - 9:00 am": "CSE 3109" },
+        Sunday: { "9:00 - 10:00 am": "CSE 3103", "2:00 - 3:00 pm": "CSE 3117" },
+        Monday: {
+          "10:00 - 11:00 am": "HUM 3115",
+          "3:00 - 4:00 pm": "CSE 3110",
+        },
+        Tuesday: { "9:00 - 10:00 am": "CSE 3117" },
+        Wednesday: { "1:00 - 2:00 pm": "CSE 3103" },
+        Thursday: { "8:00 - 9:00 am": "CSE 3109" },
       },
       "2nd": {
-        "Monday": { "10:00 - 11:00 am": "CSE 3101" },
-        "Wednesday": { "12:00 - 1:00 pm": "CSE 3103" },
+        Monday: { "10:00 - 11:00 am": "CSE 3101" },
+        Wednesday: { "12:00 - 1:00 pm": "CSE 3103" },
       },
       "3rd": {
-        "Tuesday": { "10:00 - 11:00 am": "CSE 3105" },
+        Tuesday: { "10:00 - 11:00 am": "CSE 3105" },
       },
       "4th": {
-        "Thursday": { "9:00 - 10:00 am": "CSE 3110" },
+        Thursday: { "9:00 - 10:00 am": "CSE 3110" },
       },
     },
     "7A04": {
       "1st": {
-        "Sunday": { "10:00 - 11:00 am": "CSE 3101" },
-        "Monday": { "2:00 - 3:00 pm": "CSE 3117" },
+        Sunday: { "10:00 - 11:00 am": "CSE 3101" },
+        Monday: { "2:00 - 3:00 pm": "CSE 3117" },
       },
       "2nd": {
-        "Wednesday": { "12:00 - 1:00 pm": "CSE 3103" },
+        Wednesday: { "12:00 - 1:00 pm": "CSE 3103" },
       },
     },
     "7A05": {
       "1st": {
-        "Tuesday": { "10:00 - 11:00 am": "CSE 3117" },
+        Tuesday: { "10:00 - 11:00 am": "CSE 3117" },
       },
       "3rd": {
-        "Thursday": { "1:00 - 2:00 pm": "CSE 3101" },
+        Thursday: { "1:00 - 2:00 pm": "CSE 3101" },
       },
     },
   };
@@ -169,12 +172,18 @@ const FacultyAvailableSchedule = () => {
 
                 <label htmlFor="time-select">Select Time Slot:</label>
                 <select id="time-select" className="time-slot-dropdown">
-                  <option value="8:00 - 9:00 am">Sunday - 8:00 - 9:00 am</option>
-                  <option value="9:00 - 10:00 am">Monday - 9:00 - 10:00 am</option>
+                  <option value="8:00 - 9:00 am">
+                    Sunday - 8:00 - 9:00 am
+                  </option>
+                  <option value="9:00 - 10:00 am">
+                    Monday - 9:00 - 10:00 am
+                  </option>
                   {/* Add more dynamically based on available times */}
                 </select>
 
-                <button type="submit" className="submit-btn">Submit</button>
+                <button type="submit" className="submit-btn">
+                  Submit
+                </button>
               </form>
             </div>
           </div>

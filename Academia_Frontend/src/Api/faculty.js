@@ -145,3 +145,29 @@ export const getWeeklySchedulesApi = async (facultyID) => {
     throw error;
   }
 };
+
+export const getRoomSchedulesApi = async (week_no, room_no) => {
+  try {
+    const response = await axios.get(
+      `http://127.0.0.1:8000/api/faculty/room-schedule`,
+      {
+        params: {
+          week_no: week_no,
+          room_no: room_no,
+        },
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error(
+      "Error fetching room schedules:",
+      error.response?.data || error
+    );
+    throw error;
+  }
+};

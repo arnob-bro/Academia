@@ -127,6 +127,25 @@ class InfoService
     }
 }
 
+
+    public function getAllFaculty()
+{
+    try {
+        $query = "
+            SELECT *
+            FROM faculties;
+        ";
+
+        $results = DB::select($query);
+
+        return $results;
+    } catch (\Exception $e) {
+        return [
+            'error' => "Failed to fetch faculties!",
+            'message' => $e->getMessage(),
+        ];
+    }
+}
             
         
 }

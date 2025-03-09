@@ -32,14 +32,14 @@ class AdminController extends Controller
 
     public function createNewCourse(Request $request)
     {
-        $data = $this->courseService->createNewCourse($request->course_code, $request->course_name, $request->department, $request->description, $request->credit, $request->section, $request->facultyID, $request->number_of_vacant_seats, $request->prerequisite_course_code);
+        $data = $this->courseService->createNewCourse($request->course_code, $request->course_name, $request->department, $request->description, $request->credits, $request->section, $request->facultyID, $request->number_of_vacant_seats, $request->prerequisite_course_code);
 
         return response()->json($data);
     }
 
     public function editAnExistingCourse(Request $request)
     {
-        $data = $this->courseService->editAnExistingCourse($request->course_code, $request->course_name, $request->department, $request->description, $request->credit, $request->section, $request->facultyID, $request->number_of_vacant_seats, $request->prerequisite_course_code);
+        $data = $this->courseService->editAnExistingCourse($request->course_code, $request->course_name, $request->department, $request->description, $request->credits, $request->section, $request->facultyID, $request->number_of_vacant_seats, $request->prerequisite_course_code);
 
         return response()->json($data);
     }
@@ -90,6 +90,20 @@ class AdminController extends Controller
     public function getDepartmentWiseCount(Request $request)
     {
         $data = $this->infoService->getDepartmentWiseCount();
+
+        return response()->json($data);
+    }
+
+    public function getAllFaculty(Request $request)
+    {
+        $data = $this->infoService->getAllFaculty();
+
+        return response()->json($data);
+    }
+
+    public function getAllCoursesSchedule(Request $request)
+    {
+        $data = $this->courseService->getAllCoursesSchedule();
 
         return response()->json($data);
     }
