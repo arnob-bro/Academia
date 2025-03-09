@@ -1,6 +1,7 @@
 /* General Container Styling */
 .faculty-performance-tracker-container {
     max-width: 900px;
+    min-height: 100%;
     margin: auto;
     padding: 30px;
     text-align: center;

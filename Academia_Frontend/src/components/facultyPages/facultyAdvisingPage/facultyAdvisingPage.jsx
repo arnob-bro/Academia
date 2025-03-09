@@ -98,7 +98,7 @@ const FacultyAdvisingPage = () => {
     <>
       <Navbarfaculty/>
       <div className="faculty-advising-container">
-        <h1>Faculty Advising Panel</h1>
+        <h2>Faculty Advising Panel</h2>
 
         {/* Student List */}
         <div className="student-list">

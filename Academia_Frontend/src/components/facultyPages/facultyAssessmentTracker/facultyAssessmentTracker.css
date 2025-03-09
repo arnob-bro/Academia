@@ -1,17 +1,127 @@
-.get-data-btn {
-  padding: 5px 10px;
-  background-color: #f73636;
+/* Global Styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
+}
+
+/* Button Styling */
+button {
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+button:disabled {
+  background-color: #d3d3d3;
+  cursor: not-allowed;
+}
+
+/* Faculty Assessment Tracker Container */
+.faculty-assessment-tracker-container {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.faculty-assessment-tracker-container h2 {
+  font-size: 24px;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Course Selection Section */
+.faculty-assessment-tracker-course-selection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.faculty-assessment-tracker-course-selection label {
+  font-size: 16px;
+  color: #555;
+  margin-right: 10px;
+}
+
+.faculty-assessment-tracker-course-selection select {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  width: 300px;
+}
+
+.get-assessment-btn,
+.create-assessment-btn {
+  padding: 8px 15px;
+  background-color: #0066cc;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
 
-.get-data-btn:hover {
+.get-assessment-btn:hover,
+.create-assessment-btn:hover {
+  background-color: #005bb5;
+}
+
+.create-assessment-btn {
+  margin-left: 15px;
+}
+
+/* Assessment Table */
+.faculty-assessment-tracker-table-container {
+  margin-top: 20px;
+}
+
+.faculty-assessment-tracker-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.faculty-assessment-tracker-table th,
+.faculty-assessment-tracker-table td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.faculty-assessment-tracker-table th {
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+.faculty-assessment-tracker-table td {
+  color: #555;
+}
+
+.faculty-assessment-tracker-table button {
+  background-color: #f73636;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.faculty-assessment-tracker-table button:hover {
   background-color: #b30018;
 }
 
-/* Modal Overlay */
+/* Modal Styling */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -25,25 +135,16 @@
   z-index: 1000;
 }
 
-/* Style for disabled buttons */
-button:disabled {
-  background-color: grey;
-  cursor: not-allowed;
-}
-
-/* Modal Content - Increased size */
 .modal-content {
   background-color: white;
   padding: 20px;
-  width: 50%; /* Increased width from 33% to 50% */
-  max-height: 80vh; /* Ensures the modal doesn't exceed the viewport height */
+  width: 60%;
+  max-height: 80vh;
   overflow-y: auto;
-  position: relative;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Close Button */
 .modal-close-btn {
   position: absolute;
   top: 10px;
@@ -54,67 +155,115 @@ button:disabled {
   cursor: pointer;
 }
 
-/* Modal Table */
 .modal-table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 20px;
 }
 
 .modal-table th,
 .modal-table td {
-  border: 1px solid #ddd;
-  padding: 8px;
+  padding: 12px;
   text-align: left;
+  border: 1px solid #ddd;
 }
 
 .modal-table th {
   background-color: #f4f4f4;
-  color: black;
+  color: #333;
 }
 
-.modal-actions {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 20px;
+.modal-table td {
+  color: #555;
 }
 
-.edit-btn,
-.save-btn {
-  padding: 10px 10px;
-  border: none;
-  cursor: pointer;
-  background-color: #4CAF50;
-  color: white;
-  border-radius: 5px;
+.modal-table input {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
   font-size: 16px;
 }
 
-.edit-btn {
-  background-color: #FF9800;
-}
-
-.edit-icon {
-  margin-right: 8px;
-}
-
-.get-assessment-btn {
-  background-color: rgb(107, 247, 130);
-  color: white;
-  font-weight: 600;
-}
-
-.create-assessment-btn {
-  background-color: rgb(15, 15, 129);
-  color: white;
-  font-weight: 600;
-  margin-left: 10px;
-}
 .inline-input {
-  width: 80%;
-  border: none;
-  outline: none;
-  background: transparent;
-  font: inherit;
-  text-align: center; /* Keeps text aligned */
+  width: 80px;
 }
 
+/* Create Assessment Form */
+.create-assessment-form {
+  margin-top: 20px;
+}
+
+.create-assessment-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.create-assessment-form label {
+  font-size: 16px;
+  color: #555;
+}
+
+.create-assessment-form input {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+}
+
+.create-assessment-form button {
+  background-color: #21637f;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.create-assessment-form button:hover {
+  background-color: #0f4258;
+}
+
+.success-message {
+  color: green;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.error-message {
+  color: red;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .faculty-assessment-tracker-container {
+    padding: 15px;
+  }
+
+  .faculty-assessment-tracker-course-selection {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .faculty-assessment-tracker-course-selection label,
+  .faculty-assessment-tracker-course-selection select {
+    width: 100%;
+  }
+
+  .modal-content {
+    width: 90%;
+  }
+
+  .create-assessment-form input,
+  .create-assessment-form button {
+    width: 100%;
+  }
+
+  .faculty-assessment-tracker-table td,
+  .faculty-assessment-tracker-table th {
+    font-size: 14px;
+  }
+}

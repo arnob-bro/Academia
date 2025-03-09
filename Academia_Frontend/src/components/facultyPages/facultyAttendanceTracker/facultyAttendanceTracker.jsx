@@ -121,7 +121,9 @@ const FacultyAttendanceTracker = () => {
     <>
       <Navbarfaculty />
       <div className="faculty-attendance-tracker-container">
+        <h2>Attendance Tracker</h2>
         <div className="faculty-attendance-tracker-course-selection">
+          
           <label>Select Course: </label>
           <select
             value={selectedCourse}

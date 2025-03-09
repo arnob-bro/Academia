@@ -10,13 +10,13 @@
     max-width: 300px;
     margin-bottom: 20px;
     border-radius: 5px;
-    border: 1px solid #e6ade2;
+    border: 1px solid #21637f;
     font-size: 16px;
 }
 
 .student-course-enrollment-search-bar:focus {
-    border-color: #BB5BB5;
-    box-shadow: #BB5BB5;
+    border-color: #21637f;
+    box-shadow: #21637f;
     /* Purple color when focused */
     outline: none;
     /* Remove the default outline */
@@ -30,7 +30,7 @@
 
 .student-course-enrollment-enrollment-table th,
 .student-course-enrollment-enrollment-table td {
-    border: 1px solid #e6ade2;
+    border: 1px solid #21637f;
     padding: 10px;
     text-align: center;
 }
@@ -70,3 +70,6 @@
     }
 }
 
+.student-course-enrollment-enrollment-table th{
+    background: #21637f;
+}

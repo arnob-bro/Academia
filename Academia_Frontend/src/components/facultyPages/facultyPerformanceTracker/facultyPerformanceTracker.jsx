@@ -50,7 +50,7 @@ export const FacultyPerformanceTracker = () => {
     <>
       <Navbarfaculty />
       <div className="faculty-performance-tracker-container">
-        <h2>Faculty Performance Tracker</h2>
+        <h2>Student Performance Tracker</h2>
 
         {/* Course Selection Dropdown */}
         <div className="faculty-performance-tracker-dropdown-container">

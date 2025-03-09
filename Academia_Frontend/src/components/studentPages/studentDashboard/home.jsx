@@ -160,9 +160,11 @@ const Home = () => {
             <h3>Attendance Tracker</h3>
             <ChartAt data={data} />
           </div>
+             
         </div>
-        <Footer />
+    
       </div>
+       <Footer />
     </>
   );
 };

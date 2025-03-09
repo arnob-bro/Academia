@@ -2,14 +2,14 @@
 .schedule-container {
     text-align: center;
     padding: 20px;
-    background: linear-gradient(to bottom, #fffdf1, #ffdafa);
+    background: #f4f7fc;
     min-height: 100vh;
     margin-top: 30px;
 }
 
 /* Title styling */
 .schedule-title {
-    color: #0e0e53;
+    color: #21637f;
     margin-bottom: 10px;
 }
 
@@ -45,7 +45,7 @@
 }
 
 /* Table styling */
-table {
+.schedule-table table {
     width: 90%;
     border-collapse: collapse;
     margin: 0 auto;
@@ -54,20 +54,20 @@ table {
 }
 
 /* Table headers */
-th, td {
+.schedule-table th, td {
     border: 1px solid #0000005e;
     padding: 10px;
     font-size: 14px;
 }
 
 /* Header background */
-th {
-    background-color: #ffffff;
+.schedule-table th {
+    background-color: #21637f;
 }
 
 /* Available slot */
 .available {
-    background-color: #addfd2;
+    background-color: #d2ffc7;
     font-weight: bold;
 }
 

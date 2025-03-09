@@ -161,8 +161,9 @@ const FacultyHomePage = () => {
           </div>
 
           {/* Footer */}
-          <Footer />
+          
         </div>
+        <Footer />
       </div>
     </>
   );

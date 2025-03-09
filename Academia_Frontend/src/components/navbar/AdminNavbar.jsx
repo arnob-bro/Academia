@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./AdminNavbar.css";
 import { logout } from "../../Api/auth";
+import { FaGraduationCap } from 'react-icons/fa';
 
 const AdminNavbar = () => {
   const navigate = useNavigate();
@@ -45,10 +46,9 @@ const AdminNavbar = () => {
   return (
     <nav className="admin-navbar">
       <div className="admin-nav-top">
-        <img src="/assets/logo.png" className="admin-logo" alt="Logo" />
-        <div className="academia">
-            <h1>Academia</h1>
-        </div>
+        <FaGraduationCap className="faculty-navbar-logo" />
+        
+                <div className="academia"> <h1>Academia</h1></div>
         
 
         {/* Profile Section */}
